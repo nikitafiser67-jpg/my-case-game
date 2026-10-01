@@ -7,7 +7,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { overflow: hidden; font-family: Arial; background: #0f0f1a; user-select: none; -webkit-tap-highlight-color: transparent; color: white; }
-
         #coinCounter {
             position: absolute; top: 15px; left: 15px;
             background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
@@ -18,7 +17,6 @@
             pointer-events: none;
         }
         #coinCounter span { font-size: 24px; }
-
         #status {
             position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
             color: white; background: rgba(0,0,0,0.6); padding: 8px 20px;
@@ -26,13 +24,11 @@
             border: 1px solid rgba(255,255,255,0.1); pointer-events: none; z-index: 10;
             white-space: nowrap;
         }
-
         #cases {
             display: flex; justify-content: center; align-items: center;
             height: 100vh; gap: 20px; flex-wrap: wrap; padding: 20px;
             overflow-y: auto;
         }
-
         .case {
             width: 160px; height: 220px;
             background: linear-gradient(145deg, #1e1e3a, #2a2a4a);
@@ -50,7 +46,6 @@
         .case .case-name { font-size: 16px; font-weight: bold; }
         .case .case-price { font-size: 18px; color: #ffd700; font-weight: bold; }
         .case .case-rarity { font-size: 12px; opacity: 0.6; }
-
         #rouletteContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
@@ -58,20 +53,17 @@
             flex-direction: column;
         }
         #rouletteContainer.active { display: flex; }
-
         #rouletteWindow {
             width: 90%; max-width: 500px; height: 120px;
             background: #1a1a2e; border-radius: 15px;
             border: 2px solid rgba(255,215,0,0.3);
             overflow: hidden; position: relative;
         }
-
         #rouletteTrack {
             display: flex; position: absolute; top: 0; left: 0;
             height: 100%; align-items: center;
             transition: transform 6s cubic-bezier(0.1, 0.8, 0.1, 1);
         }
-
         .roulette-item {
             flex: 0 0 100px; height: 80px;
             display: flex; flex-direction: column; align-items: center;
@@ -84,13 +76,11 @@
         .roulette-item.rare { border-color: #3498db; background: rgba(52,152,219,0.1); }
         .roulette-item.epic { border-color: #9b59b6; background: rgba(155,89,182,0.1); }
         .roulette-item.legendary { border-color: #ffd700; background: rgba(255,215,0,0.1); }
-
         #roulettePointer {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             width: 4px; height: 100%; background: #ffd700;
             z-index: 5; box-shadow: 0 0 20px rgba(255,215,0,0.5);
         }
-
         #rouletteResult {
             margin-top: 30px; text-align: center; display: none;
         }
@@ -105,7 +95,6 @@
             touch-action: manipulation;
         }
         #rouletteResult .result-btn:active { transform: scale(0.95); }
-
         #inventoryToggle {
             position: absolute; bottom: 30px; right: 20px;
             background: rgba(155,89,182,0.8); backdrop-filter: blur(10px);
@@ -115,7 +104,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
         #inventoryToggle:active { transform: scale(0.9); }
-
         #inventoryMenu {
             position: absolute; bottom: -100%; left: 0; width: 100%;
             background: rgba(20,20,40,0.98); backdrop-filter: blur(20px);
@@ -127,7 +115,6 @@
         #inventoryMenu.open { bottom: 0; }
         #inventoryMenu::-webkit-scrollbar { width: 3px; }
         #inventoryMenu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-
         .menu-header {
             display: flex; justify-content: space-between; align-items: center;
             color: white; margin-bottom: 15px; padding-bottom: 10px;
@@ -140,7 +127,6 @@
             cursor: pointer; touch-action: manipulation;
         }
         .menu-close:active { transform: scale(0.9); }
-
         .inventory-item {
             display: flex; justify-content: space-between; align-items: center;
             padding: 10px 14px; margin-bottom: 6px;
@@ -160,18 +146,15 @@
         .inventory-item.rare { border-left-color: #3498db; }
         .inventory-item.epic { border-left-color: #9b59b6; }
         .inventory-item.legendary { border-left-color: #ffd700; }
-
         #emptyInventory {
             text-align: center; color: rgba(255,255,255,0.4); padding: 30px;
             font-size: 14px;
         }
-
         #info {
             position: absolute; bottom: 10px; left: 0; width: 100%;
             text-align: center; color: rgba(255,255,255,0.2); font-size: 11px;
             pointer-events: none; z-index: 5;
         }
-
         @media (max-width: 500px) {
             .case { width: 130px; height: 180px; }
             .case .case-emoji { font-size: 45px; }
@@ -187,15 +170,11 @@
     </style>
 </head>
 <body>
-
     <div id="coinCounter">
         <span>🪙</span> <span id="coinCount">0</span>
     </div>
-
     <div id="status">🎰 Выбери кейс</div>
-
     <div id="cases"></div>
-
     <div id="rouletteContainer">
         <div id="rouletteWindow">
             <div id="roulettePointer"></div>
@@ -208,7 +187,6 @@
             <button class="result-btn" id="resultBtn">Забрать</button>
         </div>
     </div>
-
     <button id="inventoryToggle">🎒</button>
     <div id="inventoryMenu">
         <div class="menu-header">
@@ -217,9 +195,7 @@
         </div>
         <div id="inventoryList"></div>
     </div>
-
     <div id="info">Крути кейсы и собирай скины!</div>
-
     <script>
         const rarities = {
             common: { name: 'Обычный', color: '#95a5a6' },
@@ -227,7 +203,6 @@
             epic: { name: 'Эпический', color: '#9b59b6' },
             legendary: { name: 'Легендарный', color: '#ffd700' },
         };
-
         const allItems = [
             { id: 'c1', name: 'Ржавый ключ', emoji: '🔑', rarity: 'common', price: 5 },
             { id: 'c2', name: 'Старая монета', emoji: '🪙', rarity: 'common', price: 5 },
@@ -247,28 +222,23 @@
             { id: 'l3', name: 'Крылья ангела', emoji: '🪽', rarity: 'legendary', price: 100 },
             { id: 'l4', name: 'Меч легенд', emoji: '⚔️', rarity: 'legendary', price: 100 },
         ];
-
         const cases = [
             { id: 'case1', name: 'Бронзовый кейс', emoji: '📦', price: 10, rarity: 'common', chances: { common: 70, rare: 25, epic: 4, legendary: 1 } },
             { id: 'case2', name: 'Серебряный кейс', emoji: '🎁', price: 30, rarity: 'rare', chances: { common: 40, rare: 40, epic: 15, legendary: 5 } },
             { id: 'case3', name: 'Золотой кейс', emoji: '🏆', price: 100, rarity: 'epic', chances: { common: 10, rare: 30, epic: 45, legendary: 15 } },
             { id: 'case4', name: 'Алмазный кейс', emoji: '💎', price: 250, rarity: 'legendary', chances: { common: 0, rare: 15, epic: 50, legendary: 35 } },
         ];
-
         let coins = parseInt(localStorage.getItem('caseCoins')) || 100;
         let inventory = JSON.parse(localStorage.getItem('caseInventory')) || [];
-
         const coinDisplay = document.getElementById('coinCount');
         function updateCoins() {
             coinDisplay.textContent = coins;
             localStorage.setItem('caseCoins', coins);
         }
         updateCoins();
-
         function saveInventory() {
             localStorage.setItem('caseInventory', JSON.stringify(inventory));
         }
-
         function renderCases() {
             const container = document.getElementById('cases');
             container.innerHTML = cases.map(c => `
@@ -279,12 +249,10 @@
                     <div class="case-rarity">${rarities[c.rarity].name}</div>
                 </div>
             `).join('');
-
             container.querySelectorAll('.case').forEach(el => {
                 el.addEventListener('click', () => openCase(el.dataset.id));
             });
         }
-
         function openCase(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -295,14 +263,11 @@
             }
             coins -= c.price;
             updateCoins();
-
             const rarity = getRandomRarity(c.chances);
             const items = allItems.filter(i => i.rarity === rarity);
             const item = items[Math.floor(Math.random() * items.length)];
-
             showRoulette(c, item);
         }
-
         function getRandomRarity(chances) {
             const roll = Math.random() * 100;
             let cumulative = 0;
@@ -313,39 +278,31 @@
             }
             return 'common';
         }
-
         function showRoulette(c, winningItem) {
             const container = document.getElementById('rouletteContainer');
             const track = document.getElementById('rouletteTrack');
             const resultDiv = document.getElementById('rouletteResult');
-
             container.classList.add('active');
             resultDiv.classList.remove('show');
-
             const items = [];
             const all = [...allItems];
             for (let i = 0; i < 30; i++) {
                 items.push(all[Math.floor(Math.random() * all.length)]);
             }
             items[20] = winningItem;
-
             track.innerHTML = items.map(item => {
                 return `<div class="roulette-item ${item.rarity}">
                     <div class="item-emoji">${item.emoji}</div>
                     <div class="item-name">${item.name}</div>
                 </div>`;
             }).join('');
-
             track.style.transition = 'none';
             track.style.transform = 'translateX(0)';
             void track.offsetWidth;
-
             const itemWidth = 110;
             const targetPos = -(20 * itemWidth) + (document.getElementById('rouletteWindow').offsetWidth / 2) - (itemWidth / 2);
-
             track.style.transition = 'transform 6s cubic-bezier(0.1, 0.8, 0.1, 1)';
             track.style.transform = `translateX(${targetPos}px)`;
-
             setTimeout(() => {
                 resultDiv.classList.add('show');
                 const r = rarities[winningItem.rarity];
@@ -353,21 +310,17 @@
                 resultDiv.querySelector('.result-name').textContent = winningItem.name;
                 resultDiv.querySelector('.result-rarity').textContent = r.name;
                 resultDiv.querySelector('.result-rarity').style.color = r.color;
-
                 inventory.push(winningItem);
                 saveInventory();
                 renderInventory();
-
                 document.getElementById('status').textContent = `🎁 Выпало: ${winningItem.name}`;
                 setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 2000);
             }, 6200);
         }
-
         document.getElementById('resultBtn').addEventListener('click', () => {
             document.getElementById('rouletteContainer').classList.remove('active');
             renderCases();
         });
-
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (inventory.length === 0) {
@@ -387,7 +340,6 @@
                     <button class="sell-btn" data-index="${index}">🪙 ${item.price}</button>
                 </div>`;
             }).join('');
-
             list.querySelectorAll('.sell-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = parseInt(btn.dataset.index);
@@ -403,7 +355,6 @@
                 });
             });
         }
-
         const invMenu = document.getElementById('inventoryMenu');
         document.getElementById('inventoryToggle').onclick = () => {
             invMenu.classList.toggle('open');
@@ -412,10 +363,8 @@
         document.getElementById('closeInventory').onclick = () => {
             invMenu.classList.remove('open');
         };
-
         renderCases();
         renderInventory();
-
         console.log('🎰 Игра Крутка Кейсов запущена!');
     </script>
 </body>
