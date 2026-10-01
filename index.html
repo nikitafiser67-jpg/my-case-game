@@ -27,30 +27,43 @@
             white-space: nowrap;
         }
 
-        #cases {
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; gap: 20px; flex-wrap: wrap; padding: 20px;
-            overflow-y: auto;
+        /* ---- КЕЙСЫ (горизонтальный свайп) ---- */
+        #casesWrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            padding: 80px 0 100px 0;
         }
 
+        #cases {
+            display: flex; gap: 15px; padding: 0 20px;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            max-width: 100%;
+        }
+        #cases::-webkit-scrollbar { display: none; }
+
         .case {
-            width: 160px; height: 220px;
+            flex: 0 0 150px; height: 210px;
             background: linear-gradient(145deg, #1e1e3a, #2a2a4a);
             border-radius: 20px;
             border: 2px solid rgba(255,255,255,0.1);
             display: flex; flex-direction: column; align-items: center;
-            justify-content: center; gap: 12px; cursor: pointer;
+            justify-content: center; gap: 10px; cursor: pointer;
             transition: all 0.3s; touch-action: manipulation;
             box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            scroll-snap-align: center;
             position: relative;
             overflow: hidden;
         }
         .case:active { transform: scale(0.95); }
-        .case .case-emoji { font-size: 60px; }
-        .case .case-name { font-size: 16px; font-weight: bold; }
-        .case .case-price { font-size: 18px; color: #ffd700; font-weight: bold; }
-        .case .case-rarity { font-size: 12px; opacity: 0.6; }
+        .case .case-emoji { font-size: 55px; }
+        .case .case-name { font-size: 14px; font-weight: bold; text-align: center; }
+        .case .case-price { font-size: 17px; color: #ffd700; font-weight: bold; }
+        .case .case-rarity { font-size: 11px; opacity: 0.6; }
 
+        /* ---- РУЛЕТКА ---- */
         #rouletteContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
@@ -106,8 +119,9 @@
         }
         #rouletteResult .result-btn:active { transform: scale(0.95); }
 
+        /* ---- ИНВЕНТАРЬ ---- */
         #inventoryToggle {
-            position: absolute; bottom: 30px; right: 20px;
+            position: absolute; bottom: 25px; right: 20px;
             background: rgba(155,89,182,0.8); backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2); color: white;
             width: 60px; height: 60px; border-radius: 50%; font-size: 28px;
@@ -115,6 +129,19 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
         #inventoryToggle:active { transform: scale(0.9); }
+
+        /* ---- ЕЖЕДНЕВНЫЙ БОНУС ---- */
+        #dailyBonus {
+            position: absolute; bottom: 25px; left: 20px;
+            background: rgba(46,204,113,0.8); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2); color: white;
+            width: 60px; height: 60px; border-radius: 50%; font-size: 28px;
+            cursor: pointer; z-index: 20; touch-action: manipulation;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            display: flex; align-items: center; justify-content: center;
+        }
+        #dailyBonus:active { transform: scale(0.9); }
+        #dailyBonus.claimed { background: rgba(100,100,100,0.5); opacity: 0.5; }
 
         #inventoryMenu {
             position: absolute; bottom: -100%; left: 0; width: 100%;
@@ -166,18 +193,13 @@
             font-size: 14px;
         }
 
-        #info {
-            position: absolute; bottom: 10px; left: 0; width: 100%;
-            text-align: center; color: rgba(255,255,255,0.2); font-size: 11px;
-            pointer-events: none; z-index: 5;
-        }
-
         @media (max-width: 500px) {
-            .case { width: 130px; height: 180px; }
+            .case { flex: 0 0 130px; height: 180px; }
             .case .case-emoji { font-size: 45px; }
-            .case .case-name { font-size: 14px; }
-            .case .case-price { font-size: 16px; }
+            .case .case-name { font-size: 12px; }
+            .case .case-price { font-size: 15px; }
             #inventoryToggle { bottom: 20px; right: 15px; width: 54px; height: 54px; font-size: 24px; }
+            #dailyBonus { bottom: 20px; left: 15px; width: 54px; height: 54px; font-size: 24px; }
             #coinCounter { font-size: 16px; padding: 6px 14px; top: 10px; left: 10px; }
             #coinCounter span { font-size: 18px; }
             #status { font-size: 11px; padding: 6px 14px; }
@@ -194,7 +216,9 @@
 
     <div id="status">🎰 Выбери кейс</div>
 
-    <div id="cases"></div>
+    <div id="casesWrapper">
+        <div id="cases"></div>
+    </div>
 
     <div id="rouletteContainer">
         <div id="rouletteWindow">
@@ -209,7 +233,9 @@
         </div>
     </div>
 
+    <button id="dailyBonus">🎁</button>
     <button id="inventoryToggle">🎒</button>
+
     <div id="inventoryMenu">
         <div class="menu-header">
             <h3>🎒 Инвентарь</h3>
@@ -217,8 +243,6 @@
         </div>
         <div id="inventoryList"></div>
     </div>
-
-    <div id="info">Крути кейсы и собирай скины!</div>
 
     <script>
         const rarities = {
@@ -249,14 +273,15 @@
         ];
 
         const cases = [
-            { id: 'case1', name: 'Бронзовый кейс', emoji: '📦', price: 10, rarity: 'common', chances: { common: 70, rare: 25, epic: 4, legendary: 1 } },
-            { id: 'case2', name: 'Серебряный кейс', emoji: '🎁', price: 30, rarity: 'rare', chances: { common: 40, rare: 40, epic: 15, legendary: 5 } },
-            { id: 'case3', name: 'Золотой кейс', emoji: '🏆', price: 100, rarity: 'epic', chances: { common: 10, rare: 30, epic: 45, legendary: 15 } },
-            { id: 'case4', name: 'Алмазный кейс', emoji: '💎', price: 250, rarity: 'legendary', chances: { common: 0, rare: 15, epic: 50, legendary: 35 } },
+            { id: 'case1', name: 'Бронзовый', emoji: '📦', price: 10, rarity: 'common', chances: { common: 70, rare: 25, epic: 4, legendary: 1 } },
+            { id: 'case2', name: 'Серебряный', emoji: '🎁', price: 30, rarity: 'rare', chances: { common: 40, rare: 40, epic: 15, legendary: 5 } },
+            { id: 'case3', name: 'Золотой', emoji: '🏆', price: 100, rarity: 'epic', chances: { common: 10, rare: 30, epic: 45, legendary: 15 } },
+            { id: 'case4', name: 'Алмазный', emoji: '💎', price: 250, rarity: 'legendary', chances: { common: 0, rare: 15, epic: 50, legendary: 35 } },
         ];
 
         let coins = parseInt(localStorage.getItem('caseCoins')) || 100;
         let inventory = JSON.parse(localStorage.getItem('caseInventory')) || [];
+        let lastBonus = parseInt(localStorage.getItem('lastBonus')) || 0;
 
         const coinDisplay = document.getElementById('coinCount');
         function updateCoins() {
@@ -269,6 +294,28 @@
             localStorage.setItem('caseInventory', JSON.stringify(inventory));
         }
 
+        // ---- ЗВУК ----
+        function playSound(freq, duration) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.value = freq;
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playCoinSound() { playSound(1200, 0.15); setTimeout(() => playSound(1600, 0.1), 50); }
+        function playRareSound() { playSound(800, 0.2); setTimeout(() => playSound(1000, 0.2), 100); setTimeout(() => playSound(1400, 0.3), 200); }
+        function playLegendarySound() { playSound(600, 0.3); setTimeout(() => playSound(800, 0.3), 150); setTimeout(() => playSound(1000, 0.3), 300); setTimeout(() => playSound(1500, 0.5), 450); }
+
+        // ---- КЕЙСЫ ----
         function renderCases() {
             const container = document.getElementById('cases');
             container.innerHTML = cases.map(c => `
@@ -295,6 +342,7 @@
             }
             coins -= c.price;
             updateCoins();
+            playCoinSound();
 
             const rarity = getRandomRarity(c.chances);
             const items = allItems.filter(i => i.rarity === rarity);
@@ -346,13 +394,27 @@
             track.style.transition = 'transform 6s cubic-bezier(0.1, 0.8, 0.1, 1)';
             track.style.transform = `translateX(${targetPos}px)`;
 
+            // Звук во время крутки
+            let tickCount = 0;
+            const tickInterval = setInterval(() => {
+                playSound(600 + Math.random() * 400, 0.05);
+                tickCount++;
+                if (tickCount > 20) clearInterval(tickInterval);
+            }, 250);
+
             setTimeout(() => {
+                clearInterval(tickInterval);
                 resultDiv.classList.add('show');
                 const r = rarities[winningItem.rarity];
                 resultDiv.querySelector('.result-emoji').textContent = winningItem.emoji;
                 resultDiv.querySelector('.result-name').textContent = winningItem.name;
                 resultDiv.querySelector('.result-rarity').textContent = r.name;
                 resultDiv.querySelector('.result-rarity').style.color = r.color;
+
+                // Звук по редкости
+                if (winningItem.rarity === 'legendary') playLegendarySound();
+                else if (winningItem.rarity === 'epic') playRareSound();
+                else playCoinSound();
 
                 inventory.push(winningItem);
                 saveInventory();
@@ -365,58 +427,10 @@
 
         document.getElementById('resultBtn').addEventListener('click', () => {
             document.getElementById('rouletteContainer').classList.remove('active');
-            renderCases();
         });
 
+        // ---- ИНВЕНТАРЬ ----
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (inventory.length === 0) {
-                list.innerHTML = '<div id="emptyInventory">Инвентарь пуст 😢</div>';
-                return;
-            }
-            list.innerHTML = inventory.map((item, index) => {
-                const r = rarities[item.rarity];
-                return `<div class="inventory-item ${item.rarity}">
-                    <div class="info">
-                        <span class="emoji">${item.emoji}</span>
-                        <div>
-                            <div class="name">${item.name}</div>
-                            <div class="rarity" style="color:${r.color}">${r.name}</div>
-                        </div>
-                    </div>
-                    <button class="sell-btn" data-index="${index}">🪙 ${item.price}</button>
-                </div>`;
-            }).join('');
-
-            list.querySelectorAll('.sell-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const idx = parseInt(btn.dataset.index);
-                    const item = inventory[idx];
-                    if (!item) return;
-                    coins += item.price;
-                    updateCoins();
-                    inventory.splice(idx, 1);
-                    saveInventory();
-                    renderInventory();
-                    document.getElementById('status').textContent = `💰 Продано за ${item.price} 🪙`;
-                    setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 1500);
-                });
-            });
-        }
-
-        const invMenu = document.getElementById('inventoryMenu');
-        document.getElementById('inventoryToggle').onclick = () => {
-            invMenu.classList.toggle('open');
-            renderInventory();
-        };
-        document.getElementById('closeInventory').onclick = () => {
-            invMenu.classList.remove('open');
-        };
-
-        renderCases();
-        renderInventory();
-
-        console.log('🎰 Игра Крутка Кейсов запущена!');
-    </script>
-</body>
-  </html>
+      
