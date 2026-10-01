@@ -27,7 +27,6 @@
             white-space: nowrap;
         }
 
-        /* ---- КЕЙСЫ (горизонтальный свайп) ---- */
         #casesWrapper {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
@@ -54,8 +53,6 @@
             transition: all 0.3s; touch-action: manipulation;
             box-shadow: 0 8px 30px rgba(0,0,0,0.4);
             scroll-snap-align: center;
-            position: relative;
-            overflow: hidden;
         }
         .case:active { transform: scale(0.95); }
         .case .case-emoji { font-size: 55px; }
@@ -63,7 +60,6 @@
         .case .case-price { font-size: 17px; color: #ffd700; font-weight: bold; }
         .case .case-rarity { font-size: 11px; opacity: 0.6; }
 
-        /* ---- РУЛЕТКА ---- */
         #rouletteContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
@@ -82,7 +78,6 @@
         #rouletteTrack {
             display: flex; position: absolute; top: 0; left: 0;
             height: 100%; align-items: center;
-            transition: transform 6s cubic-bezier(0.1, 0.8, 0.1, 1);
         }
 
         .roulette-item {
@@ -119,7 +114,6 @@
         }
         #rouletteResult .result-btn:active { transform: scale(0.95); }
 
-        /* ---- ИНВЕНТАРЬ ---- */
         #inventoryToggle {
             position: absolute; bottom: 25px; right: 20px;
             background: rgba(155,89,182,0.8); backdrop-filter: blur(10px);
@@ -130,7 +124,6 @@
         }
         #inventoryToggle:active { transform: scale(0.9); }
 
-        /* ---- ЕЖЕДНЕВНЫЙ БОНУС ---- */
         #dailyBonus {
             position: absolute; bottom: 25px; left: 20px;
             background: rgba(46,204,113,0.8); backdrop-filter: blur(10px);
@@ -245,6 +238,40 @@
     </div>
 
     <script>
+        // ---- ЗВУК (один AudioContext на всё) ----
+        let audioCtx = null;
+        function getAudioCtx() {
+            if (!audioCtx) {
+                try {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                } catch(e) {}
+            }
+            return audioCtx;
+        }
+
+        function playSound(freq, duration) {
+            try {
+                const ctx = getAudioCtx();
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.frequency.value = freq;
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function playCoinSound() {
+            playSound(1200, 0.15);
+            setTimeout(() => playSound(1600, 0.1), 50);
+        }
+
+        // ---- ДАННЫЕ ----
         const rarities = {
             common: { name: 'Обычный', color: '#95a5a6' },
             rare: { name: 'Редкий', color: '#3498db' },
@@ -279,53 +306,44 @@
             { id: 'case4', name: 'Алмазный', emoji: '💎', price: 250, rarity: 'legendary', chances: { common: 0, rare: 15, epic: 50, legendary: 35 } },
         ];
 
-        let coins = parseInt(localStorage.getItem('caseCoins')) || 100;
-        let inventory = JSON.parse(localStorage.getItem('caseInventory')) || [];
-        let lastBonus = parseInt(localStorage.getItem('lastBonus')) || 0;
+        // ---- СОСТОЯНИЕ ----
+        let coins = 100;
+        let inventory = [];
+        let lastBonus = 0;
+
+        try {
+            const savedCoins = localStorage.getItem('caseCoins');
+            if (savedCoins !== null) coins = parseInt(savedCoins) || 0;
+            const savedInv = localStorage.getItem('caseInventory');
+            if (savedInv) inventory = JSON.parse(savedInv);
+            const savedBonus = localStorage.getItem('lastBonus');
+            if (savedBonus) lastBonus = parseInt(savedBonus) || 0;
+        } catch(e) {
+            console.log('localStorage недоступен, старт с нуля');
+        }
 
         const coinDisplay = document.getElementById('coinCount');
         function updateCoins() {
             coinDisplay.textContent = coins;
-            localStorage.setItem('caseCoins', coins);
+            try { localStorage.setItem('caseCoins', coins); } catch(e) {}
         }
         updateCoins();
 
         function saveInventory() {
-            localStorage.setItem('caseInventory', JSON.stringify(inventory));
+            try { localStorage.setItem('caseInventory', JSON.stringify(inventory)); } catch(e) {}
         }
-
-        // ---- ЗВУК ----
-        function playSound(freq, duration) {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.frequency.value = freq;
-                osc.type = 'sine';
-                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-                osc.start(audioCtx.currentTime);
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
-        }
-
-        function playCoinSound() { playSound(1200, 0.15); setTimeout(() => playSound(1600, 0.1), 50); }
-        function playRareSound() { playSound(800, 0.2); setTimeout(() => playSound(1000, 0.2), 100); setTimeout(() => playSound(1400, 0.3), 200); }
-        function playLegendarySound() { playSound(600, 0.3); setTimeout(() => playSound(800, 0.3), 150); setTimeout(() => playSound(1000, 0.3), 300); setTimeout(() => playSound(1500, 0.5), 450); }
 
         // ---- КЕЙСЫ ----
         function renderCases() {
             const container = document.getElementById('cases');
-            container.innerHTML = cases.map(c => `
-                <div class="case" data-id="${c.id}">
-                    <div class="case-emoji">${c.emoji}</div>
-                    <div class="case-name">${c.name}</div>
-                    <div class="case-price">🪙 ${c.price}</div>
-                    <div class="case-rarity">${rarities[c.rarity].name}</div>
-                </div>
-            `).join('');
+            container.innerHTML = cases.map(c => 
+                '<div class="case" data-id="' + c.id + '">' +
+                    '<div class="case-emoji">' + c.emoji + '</div>' +
+                    '<div class="case-name">' + c.name + '</div>' +
+                    '<div class="case-price">🪙 ' + c.price + '</div>' +
+                    '<div class="case-rarity">' + rarities[c.rarity].name + '</div>' +
+                '</div>'
+            ).join('');
 
             container.querySelectorAll('.case').forEach(el => {
                 el.addEventListener('click', () => openCase(el.dataset.id));
@@ -371,39 +389,30 @@
             resultDiv.classList.remove('show');
 
             const items = [];
-            const all = [...allItems];
             for (let i = 0; i < 30; i++) {
-                items.push(all[Math.floor(Math.random() * all.length)]);
+                items.push(allItems[Math.floor(Math.random() * allItems.length)]);
             }
             items[20] = winningItem;
 
-            track.innerHTML = items.map(item => {
-                return `<div class="roulette-item ${item.rarity}">
-                    <div class="item-emoji">${item.emoji}</div>
-                    <div class="item-name">${item.name}</div>
-                </div>`;
-            }).join('');
+            track.innerHTML = items.map(item => 
+                '<div class="roulette-item ' + item.rarity + '">' +
+                    '<div class="item-emoji">' + item.emoji + '</div>' +
+                    '<div class="item-name">' + item.name + '</div>' +
+                '</div>'
+            ).join('');
 
             track.style.transition = 'none';
             track.style.transform = 'translateX(0)';
             void track.offsetWidth;
 
             const itemWidth = 110;
-            const targetPos = -(20 * itemWidth) + (document.getElementById('rouletteWindow').offsetWidth / 2) - (itemWidth / 2);
+            const winWidth = document.getElementById('rouletteWindow').offsetWidth;
+            const targetPos = -(20 * itemWidth) + (winWidth / 2) - (itemWidth / 2);
 
             track.style.transition = 'transform 6s cubic-bezier(0.1, 0.8, 0.1, 1)';
-            track.style.transform = `translateX(${targetPos}px)`;
-
-            // Звук во время крутки
-            let tickCount = 0;
-            const tickInterval = setInterval(() => {
-                playSound(600 + Math.random() * 400, 0.05);
-                tickCount++;
-                if (tickCount > 20) clearInterval(tickInterval);
-            }, 250);
+            track.style.transform = 'translateX(' + targetPos + 'px)';
 
             setTimeout(() => {
-                clearInterval(tickInterval);
                 resultDiv.classList.add('show');
                 const r = rarities[winningItem.rarity];
                 resultDiv.querySelector('.result-emoji').textContent = winningItem.emoji;
@@ -411,16 +420,13 @@
                 resultDiv.querySelector('.result-rarity').textContent = r.name;
                 resultDiv.querySelector('.result-rarity').style.color = r.color;
 
-                // Звук по редкости
-                if (winningItem.rarity === 'legendary') playLegendarySound();
-                else if (winningItem.rarity === 'epic') playRareSound();
-                else playCoinSound();
+                playCoinSound();
 
                 inventory.push(winningItem);
                 saveInventory();
                 renderInventory();
 
-                document.getElementById('status').textContent = `🎁 Выпало: ${winningItem.name}`;
+                document.getElementById('status').textContent = '🎁 Выпало: ' + winningItem.name;
                 setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 2000);
             }, 6200);
         }
@@ -433,4 +439,87 @@
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (inventory.length === 0) {
-      
+                list.innerHTML = '<div id="emptyInventory">Инвентарь пуст 😢</div>';
+                return;
+            }
+            list.innerHTML = inventory.map((item, index) => {
+                const r = rarities[item.rarity];
+                return '<div class="inventory-item ' + item.rarity + '">' +
+                    '<div class="info">' +
+                        '<span class="emoji">' + item.emoji + '</span>' +
+                        '<div>' +
+                            '<div class="name">' + item.name + '</div>' +
+                            '<div class="rarity" style="color:' + r.color + '">' + r.name + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<button class="sell-btn" data-index="' + index + '">🪙 ' + item.price + '</button>' +
+                '</div>';
+            }).join('');
+
+            list.querySelectorAll('.sell-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.index);
+                    const item = inventory[idx];
+                    if (!item) return;
+                    coins += item.price;
+                    updateCoins();
+                    playCoinSound();
+                    inventory.splice(idx, 1);
+                    saveInventory();
+                    renderInventory();
+                    document.getElementById('status').textContent = '💰 Продано за ' + item.price + ' 🪙';
+                    setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 1500);
+                });
+            });
+        }
+
+        const invMenu = document.getElementById('inventoryMenu');
+        document.getElementById('inventoryToggle').onclick = () => {
+            invMenu.classList.toggle('open');
+            renderInventory();
+        };
+        document.getElementById('closeInventory').onclick = () => {
+            invMenu.classList.remove('open');
+        };
+
+        // ---- ЕЖЕДНЕВНЫЙ БОНУС ----
+        function checkDailyBonus() {
+            const now = Date.now();
+            const dayMs = 24 * 60 * 60 * 1000;
+            if (now - lastBonus > dayMs) {
+                document.getElementById('dailyBonus').classList.remove('claimed');
+            } else {
+                document.getElementById('dailyBonus').classList.add('claimed');
+            }
+        }
+
+        document.getElementById('dailyBonus').onclick = () => {
+            const now = Date.now();
+            const dayMs = 24 * 60 * 60 * 1000;
+            if (now - lastBonus < dayMs) {
+                const hoursLeft = Math.ceil((dayMs - (now - lastBonus)) / (60 * 60 * 1000));
+                document.getElementById('status').textContent = '⏳ Бонус через ' + hoursLeft + ' ч.';
+                setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 2000);
+                return;
+            }
+            const bonus = 50;
+            coins += bonus;
+            lastBonus = now;
+            try { localStorage.setItem('lastBonus', lastBonus); } catch(e) {}
+            updateCoins();
+            playCoinSound();
+            document.getElementById('dailyBonus').classList.add('claimed');
+            document.getElementById('status').textContent = '🎁 Бонус +' + bonus + ' 🪙!';
+            setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 2000);
+        };
+
+        checkDailyBonus();
+
+        // ---- СТАРТ ----
+        renderCases();
+        renderInventory();
+
+        console.log('🎰 Игра запущена! Монет:', coins);
+    </script>
+</body>
+</html>
