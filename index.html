@@ -149,9 +149,7 @@
             border: 1px solid rgba(168,85,247,0.3);
             border-radius: 14px; padding: 14px; text-align: center;
         }
-        .inv-stat-value {
-            font-size: 22px; font-weight: 900; color: #a855f7;
-        }
+        .inv-stat-value { font-size: 22px; font-weight: 900; color: #a855f7; }
         .inv-stat-value.gold { color: #f5a623; }
         .inv-stat-label {
             font-size: 10px; color: #9ca3af; margin-top: 4px;
@@ -171,7 +169,7 @@
         .inventory-item .emoji { font-size: 28px; }
         .inventory-item .item-img {
             width: 44px; height: 44px; object-fit: contain;
-            filter: brightness(1.2) drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+            filter: brightness(1.4) drop-shadow(0 2px 6px rgba(0,0,0,0.6));
         }
         .inventory-item .name {
             font-size: 13px; font-weight: 700;
@@ -209,7 +207,7 @@
             border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; background: rgba(0,0,0,0.2);
-            padding: 10px; transition: border-color 0.2s;
+            padding: 10px;
         }
         .upgrade-slot.filled {
             border-style: solid;
@@ -225,7 +223,7 @@
         }
         .upgrade-slot .slot-content img {
             max-width: 70px; max-height: 70px; object-fit: contain;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8)) brightness(1.2);
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8)) brightness(1.4);
         }
         .upgrade-slot .slot-content .slot-emoji { font-size: 50px; }
         .upgrade-slot .slot-content .slot-name {
@@ -241,9 +239,7 @@
             display: flex; justify-content: center; align-items: center;
             padding: 10px 0; position: relative;
         }
-        .upgrade-wheel {
-            position: relative; width: 220px; height: 220px;
-        }
+        .upgrade-wheel { position: relative; width: 220px; height: 220px; }
         .upgrade-wheel svg {
             width: 100%; height: 100%; transform: rotate(-90deg);
             filter: drop-shadow(0 0 20px rgba(168,85,247,0.3));
@@ -312,7 +308,6 @@
             color: white; font-size: 17px; font-weight: 800;
             cursor: pointer;
             box-shadow: 0 8px 30px rgba(124,58,237,0.4);
-            transition: transform 0.15s;
         }
         .upgrade-btn:disabled {
             background: #333; color: #777; box-shadow: none;
@@ -346,15 +341,9 @@
         }
         .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .profile-info { flex: 1; position: relative; z-index: 1; }
-        .profile-name {
-            font-size: 20px; font-weight: 900; margin-bottom: 4px;
-        }
-        .profile-id {
-            font-size: 12px; color: #a855f7; font-weight: 700; margin-bottom: 4px;
-        }
-        .profile-date {
-            font-size: 11px; color: #9ca3af;
-        }
+        .profile-name { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+        .profile-id { font-size: 12px; color: #a855f7; font-weight: 700; margin-bottom: 4px; }
+        .profile-date { font-size: 11px; color: #9ca3af; }
 
         .stats-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
@@ -394,7 +383,6 @@
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             padding: 4px; position: relative; opacity: 0.4;
-            transition: all 0.2s;
         }
         .achievement.unlocked {
             opacity: 1;
@@ -419,9 +407,7 @@
         }
         .profile-row .row-icon { font-size: 22px; }
         .profile-row .row-text { flex: 1; font-size: 14px; font-weight: 600; }
-        .profile-row .row-value {
-            font-size: 13px; color: #9ca3af; margin-right: 6px;
-        }
+        .profile-row .row-value { font-size: 13px; color: #9ca3af; margin-right: 6px; }
         .profile-row .row-arrow { color: #6b7280; font-size: 18px; }
         .profile-row.danger .row-text { color: #ef4444; }
         .profile-row.danger .row-icon { color: #ef4444; }
@@ -574,15 +560,19 @@
             flex: 0 0 90px; height: 90px;
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 2px;
-            background: rgba(255,255,255,0.06); margin: 0 5px;
+            background: rgba(255,255,255,0.08); margin: 0 5px;
             border-radius: 10px; border: 2px solid rgba(255,255,255,0.1);
             overflow: hidden;
         }
-        .roulette-item .item-image { width: 75px; height: 75px; object-fit: contain; filter: brightness(1.4); }
+        .roulette-item .item-image {
+            width: 75px; height: 75px;
+            object-fit: contain;
+            filter: brightness(2) contrast(1.3) drop-shadow(0 0 10px rgba(255,255,255,0.5));
+        }
         .roulette-item .item-emoji { font-size: 40px; }
-        .roulette-item.rare { border-color: #3b82f6; background: rgba(59,130,246,0.15); }
-        .roulette-item.epic { border-color: #a855f7; background: rgba(168,85,247,0.15); }
-        .roulette-item.legendary { border-color: #f5a623; background: rgba(245,166,35,0.15); }
+        .roulette-item.rare { border-color: #3b82f6; background: linear-gradient(160deg, #1a3a5d 0%, #0b162e 100%); }
+        .roulette-item.epic { border-color: #a855f7; background: linear-gradient(160deg, #3a2a5d 0%, #1a0f2e 100%); }
+        .roulette-item.legendary { border-color: #f5a623; background: linear-gradient(160deg, #4a3410 0%, #2a1a08 100%); }
         #roulettePointerInline {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             width: 3px; height: 100%; background: #f5a623;
@@ -619,6 +609,7 @@
             background: transparent; border: none;
             color: #9ca3af; font-weight: 700; font-size: 13px;
             cursor: pointer;
+            transition: all 0.15s;
         }
         .multi-btn.active {
             background: rgba(124,58,237,0.4);
@@ -650,7 +641,6 @@
             cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 8px;
             box-shadow: 0 8px 30px rgba(124,58,237,0.4);
-            transition: transform 0.15s;
         }
         #casePreview .open-btn-big:disabled {
             background: #333; color: #777; box-shadow: none;
@@ -683,17 +673,14 @@
         .item-card.legendary {
             background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
             border-color: rgba(245,166,35,0.4);
-            box-shadow: 0 0 20px rgba(245,166,35,0.15);
         }
         .item-card.epic {
             background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%);
             border-color: rgba(168,85,247,0.4);
-            box-shadow: 0 0 20px rgba(168,85,247,0.15);
         }
         .item-card.rare {
             background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
             border-color: rgba(59,130,246,0.4);
-            box-shadow: 0 0 20px rgba(59,130,246,0.1);
         }
         .item-card .item-img-wrap {
             flex: 1; display: flex; align-items: center; justify-content: center;
@@ -701,11 +688,10 @@
         }
         .item-card .item-img-wrap img {
             max-width: 100%; max-height: 80px; object-fit: contain;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7)) brightness(1.2);
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7)) brightness(1.3);
         }
         .item-card .item-img-wrap .item-emoji-big {
             font-size: 48px;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
         }
         .item-card .item-name {
             font-size: 11px; font-weight: 700; margin-top: 6px;
@@ -759,7 +745,7 @@
             display: flex; flex-direction: column; align-items: center;
             gap: 4px; min-height: 110px;
         }
-        .picker-item img { max-width: 60px; max-height: 60px; object-fit: contain; filter: brightness(1.2); }
+        .picker-item img { max-width: 60px; max-height: 60px; object-fit: contain; filter: brightness(1.3); }
         .picker-item .picker-emoji { font-size: 40px; }
         .picker-item .picker-name {
             font-size: 10px; font-weight: 700; text-align: center;
@@ -810,7 +796,7 @@
         }
         .result-img-wrap img {
             max-width: 100%; max-height: 100%; object-fit: contain;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)) brightness(1.2);
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)) brightness(1.3);
         }
         .result-img-wrap .result-emoji { font-size: 120px; }
         .result-name {
@@ -819,6 +805,61 @@
         }
         .result-btn {
             padding: 16px 60px; border-radius: 30px; border: none;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white; font-size: 16px; font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* ================= МУЛЬТИ-РЕЗУЛЬТАТ ================= */
+        #multiResult {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            z-index: 250; display: none;
+            flex-direction: column; padding: 30px 20px;
+            overflow-y: auto;
+        }
+        #multiResult.active { display: flex; }
+        .multi-title {
+            text-align: center;
+            font-size: 22px; font-weight: 900;
+            color: #a855f7; margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .multi-grid {
+            display: grid; grid-template-columns: 1fr;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .multi-item {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px;
+            border-radius: 14px;
+            border-left: 3px solid #f5a623;
+            background: rgba(255,255,255,0.05);
+        }
+        .multi-item.rare { border-left-color: #3b82f6; background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(0,0,0,0.2)); }
+        .multi-item.epic { border-left-color: #a855f7; background: linear-gradient(90deg, rgba(168,85,247,0.15), rgba(0,0,0,0.2)); }
+        .multi-item.legendary { border-left-color: #f5a623; background: linear-gradient(90deg, rgba(245,166,35,0.15), rgba(0,0,0,0.2)); }
+        .multi-item img {
+            width: 50px; height: 50px; object-fit: contain;
+            filter: brightness(1.4) drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+        }
+        .multi-item .multi-emoji { font-size: 36px; }
+        .multi-item .multi-info { flex: 1; min-width: 0; }
+        .multi-item .multi-name {
+            font-size: 13px; font-weight: 700;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .multi-item .multi-rarity {
+            font-size: 11px; opacity: 0.7; margin-top: 2px;
+        }
+        .multi-btn-close {
+            display: block;
+            margin: 24px auto 0;
+            padding: 16px 60px;
+            border-radius: 30px; border: none;
             background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: white; font-size: 16px; font-weight: 800;
             cursor: pointer;
@@ -835,7 +876,7 @@
             box-shadow: 0 10px 40px rgba(168,85,247,0.3);
         }
         #resultToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-        #resultToast .rt-img { width: 50px; height: 50px; object-fit: contain; brightness: 1.2; }
+        #resultToast .rt-img { width: 50px; height: 50px; object-fit: contain; brightness: 1.3; }
         #resultToast .rt-emoji { font-size: 32px; }
         #resultToast .rt-info { display: flex; flex-direction: column; }
         #resultToast .rt-name { font-size: 13px; font-weight: 700; }
@@ -1147,10 +1188,10 @@
         </div>
 
         <div class="case-options">
-            <div class="multi-btn-group">
-                <button class="multi-btn active">x1</button>
-                <button class="multi-btn">x2</button>
-                <button class="multi-btn">x3</button>
+            <div class="multi-btn-group" id="multiBtnGroup">
+                <button class="multi-btn active" data-multi="1">x1</button>
+                <button class="multi-btn" data-multi="2">x2</button>
+                <button class="multi-btn" data-multi="3">x3</button>
             </div>
             <div class="fast-toggle">
                 <div class="toggle-switch" id="fastToggle"></div>
@@ -1179,6 +1220,12 @@
         <div class="result-img-wrap" id="resultImgWrap"></div>
         <div class="result-name" id="resultName"></div>
         <button class="result-btn" id="resultBtn">Продолжить</button>
+    </div>
+
+    <div id="multiResult">
+        <div class="multi-title" id="multiTitle">🎁 ВЫПАЛО 2 СКИНА</div>
+        <div class="multi-grid" id="multiGrid"></div>
+        <button class="multi-btn-close" id="multiCloseBtn">Продолжить</button>
     </div>
 
     <script>
@@ -1282,6 +1329,7 @@
         let currentCase = null;
         let isSpinning = false;
         let fastMode = false;
+        let multiMode = 1;
         let upgradeFrom = null;
         let upgradeTo = null;
 
@@ -1312,7 +1360,7 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= ОНЛАЙН (ФЕЙКОВЫЙ) =================
+        // ================= ОНЛАЙН =================
         let onlineBase = 850 + Math.floor(Math.random() * 350);
         function updateOnline() {
             onlineBase += Math.floor(Math.random() * 7) - 3;
@@ -1378,17 +1426,20 @@
             if (!c.items || c.items.length === 0) { showStatus('⚠️ В кейсе пока нет предметов'); return; }
             if (c.price > 0 && coins < c.price) { showStatus('❌ Недостаточно монет!'); return; }
             currentCase = c;
+            multiMode = 1;
+
+            // Сброс кнопок мульти
+            document.querySelectorAll('#multiBtnGroup .multi-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.multi === '1');
+            });
 
             document.getElementById('previewName').textContent = c.name.toUpperCase();
 
             const heroEmoji = document.getElementById('previewEmoji');
-            if (c.image) {
-                heroEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
-            } else {
-                heroEmoji.innerHTML = '<div class="hero-emoji">' + c.emoji + '</div>';
-            }
+            if (c.image) heroEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
+            else heroEmoji.innerHTML = '<div class="hero-emoji">' + c.emoji + '</div>';
 
-            document.getElementById('openPrice').textContent = c.price === 0 ? 'Бесплатно' : c.price;
+            updateOpenPrice();
 
             const hero = document.getElementById('caseHero');
             hero.classList.remove('spinning');
@@ -1401,10 +1452,8 @@
 
             const sortedItems = [...c.items].sort((a, b) => b.price - a.price);
             const rarityChances = {
-                legendary: c.chances.legendary || 0,
-                epic: c.chances.epic || 0,
-                rare: c.chances.rare || 0,
-                common: c.chances.common || 0,
+                legendary: c.chances.legendary || 0, epic: c.chances.epic || 0,
+                rare: c.chances.rare || 0, common: c.chances.common || 0,
             };
             const rarityCounts = {};
             sortedItems.forEach(item => { rarityCounts[item.rarity] = (rarityCounts[item.rarity] || 0) + 1; });
@@ -1414,11 +1463,9 @@
                 const rarityChance = rarityChances[item.rarity] || 0;
                 const count = rarityCounts[item.rarity] || 1;
                 const itemChance = (rarityChance / count).toFixed(1);
-
                 const imgContent = item.image
                     ? '<img src="' + item.image + '" alt="' + item.name + '">'
                     : '<div class="item-emoji-big">' + item.emoji + '</div>';
-
                 return '<div class="item-card ' + item.rarity + '">' +
                     '<div class="item-chance">' + itemChance + '%</div>' +
                     '<div class="item-img-wrap">' + imgContent + '</div>' +
@@ -1430,6 +1477,22 @@
             document.getElementById('previewOpenBtn').disabled = false;
             document.getElementById('casePreview').classList.add('active');
         }
+
+        function updateOpenPrice() {
+            if (!currentCase) return;
+            const total = currentCase.price * multiMode;
+            document.getElementById('openPrice').textContent = total === 0 ? 'Бесплатно' : total;
+        }
+
+        // Мульти-кнопки
+        document.querySelectorAll('#multiBtnGroup .multi-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#multiBtnGroup .multi-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                multiMode = parseInt(btn.dataset.multi);
+                updateOpenPrice();
+            });
+        });
 
         document.getElementById('previewCloseBtn').onclick = () => {
             document.getElementById('casePreview').classList.remove('active');
@@ -1443,10 +1506,12 @@
         document.getElementById('previewOpenBtn').onclick = () => {
             if (isSpinning) return;
             if (!currentCase) return;
-            if (currentCase.price > 0 && coins < currentCase.price) return;
+            const totalPrice = currentCase.price * multiMode;
+            if (totalPrice > 0 && coins < totalPrice) { showStatus('❌ Недостаточно монет!'); return; }
 
             const c = currentCase;
-            if (c.price > 0) { coins -= c.price; updateCoins(); }
+            coins -= totalPrice;
+            updateCoins();
             playCoinSound();
 
             const hero = document.getElementById('caseHero');
@@ -1454,13 +1519,24 @@
             hero.classList.remove('spinning');
             winEl.classList.remove('active');
 
-            const rarity = getRandomRarity(c.chances);
-            let items = c.items.filter(i => i.rarity === rarity);
-            if (items.length === 0) items = c.items;
-            const item = items[Math.floor(Math.random() * items.length)];
+            // Генерируем выигрыши
+            const wins = [];
+            for (let i = 0; i < multiMode; i++) {
+                const rarity = getRandomRarity(c.chances);
+                let items = c.items.filter(it => it.rarity === rarity);
+                if (items.length === 0) items = c.items;
+                wins.push(items[Math.floor(Math.random() * items.length)]);
+            }
 
             isSpinning = true;
-            spinInlineRoulette(c, item);
+
+            if (multiMode === 1) {
+                // Обычный режим — крутим рулетку и показываем один результат
+                spinInlineRoulette(c, wins[0]);
+            } else {
+                // Мульти — крутим рулетку, потом показываем список
+                spinInlineRouletteMulti(c, wins);
+            }
         };
 
         function getRandomRarity(chances) {
@@ -1482,14 +1558,11 @@
 
             openBtn.disabled = true;
             openBtn.textContent = '🎡 Крутится...';
-
             hero.classList.add('spinning');
             winEl.classList.add('active');
 
             const items = [];
-            for (let i = 0; i < 30; i++) {
-                items.push(c.items[Math.floor(Math.random() * c.items.length)]);
-            }
+            for (let i = 0; i < 30; i++) items.push(c.items[Math.floor(Math.random() * c.items.length)]);
             items[20] = winningItem;
 
             track.innerHTML = items.map(item => {
@@ -1515,7 +1588,6 @@
             const itemWidth = 100;
             const winWidth = winEl.offsetWidth;
             const targetPos = -(20 * itemWidth) + (winWidth / 2) - (itemWidth / 2);
-
             track.style.transition = 'transform ' + spinTime + 's cubic-bezier(0.1, 0.8, 0.1, 1)';
             track.style.transform = 'translateX(' + targetPos + 'px)';
 
@@ -1535,11 +1607,12 @@
                 checkAchievements();
 
                 openBtn.disabled = false;
-                if (c.price > 0 && coins < c.price) {
+                const totalPrice = c.price * multiMode;
+                if (totalPrice > 0 && coins < totalPrice) {
                     openBtn.disabled = true;
                     openBtn.innerHTML = '❌ Мало монет';
                 } else {
-                    openBtn.innerHTML = 'Открыть за <span class="coin-icon">₿</span> <span id="openPrice">' + c.price + '</span>';
+                    openBtn.innerHTML = 'Открыть за <span class="coin-icon">₿</span> <span id="openPrice">' + totalPrice + '</span>';
                 }
                 isSpinning = false;
 
@@ -1549,6 +1622,109 @@
                 }, 1000);
             }, spinTime * 1000 + 200);
         }
+
+        function spinInlineRouletteMulti(c, wins) {
+            const track = document.getElementById('rouletteTrackInline');
+            const winEl = document.getElementById('rouletteWindowInline');
+            const hero = document.getElementById('caseHero');
+            const openBtn = document.getElementById('previewOpenBtn');
+
+            openBtn.disabled = true;
+            openBtn.textContent = '🎡 Крутится...';
+            hero.classList.add('spinning');
+            winEl.classList.add('active');
+
+            const items = [];
+            for (let i = 0; i < 30; i++) items.push(c.items[Math.floor(Math.random() * c.items.length)]);
+            items[20] = wins[0];
+
+            track.innerHTML = items.map(item => {
+                const imgContent = item.image
+                    ? '<img class="item-image" src="' + item.image + '" alt="' + item.name + '">'
+                    : '<div class="item-emoji">' + item.emoji + '</div>';
+                return '<div class="roulette-item ' + item.rarity + '">' + imgContent + '</div>';
+            }).join('');
+
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
+            void track.offsetWidth;
+
+            const spinTime = fastMode ? 3 : 6;
+
+            let tickCount = 0;
+            const tickInterval = setInterval(() => {
+                playSound(500 + Math.random() * 300, 0.04, 0.06);
+                tickCount++;
+                if (tickCount > (fastMode ? 15 : 25)) clearInterval(tickInterval);
+            }, fastMode ? 180 : 220);
+
+            const itemWidth = 100;
+            const winWidth = winEl.offsetWidth;
+            const targetPos = -(20 * itemWidth) + (winWidth / 2) - (itemWidth / 2);
+            track.style.transition = 'transform ' + spinTime + 's cubic-bezier(0.1, 0.8, 0.1, 1)';
+            track.style.transform = 'translateX(' + targetPos + 'px)';
+
+            setTimeout(() => {
+                clearInterval(tickInterval);
+                playWinSound();
+
+                // Добавляем все скины
+                wins.forEach(item => inventory.push(item));
+                saveInventory();
+                totalOpened += multiMode;
+                document.getElementById('statOpened').textContent = totalOpened;
+                try { localStorage.setItem('oxideOpened', totalOpened); } catch(e) {}
+
+                checkAchievements();
+
+                // Закрываем рулетку
+                winEl.classList.remove('active');
+                hero.classList.remove('spinning');
+
+                // Показываем список
+                setTimeout(() => {
+                    showMultiResult(wins);
+                }, 500);
+
+                openBtn.disabled = false;
+                const totalPrice = c.price * multiMode;
+                if (totalPrice > 0 && coins < totalPrice) {
+                    openBtn.disabled = true;
+                    openBtn.innerHTML = '❌ Мало монет';
+                } else {
+                    openBtn.innerHTML = 'Открыть за <span class="coin-icon">₿</span> <span id="openPrice">' + totalPrice + '</span>';
+                }
+                isSpinning = false;
+            }, spinTime * 1000 + 200);
+        }
+
+        function showMultiResult(wins) {
+            const modal = document.getElementById('multiResult');
+            const title = document.getElementById('multiTitle');
+            const grid = document.getElementById('multiGrid');
+
+            title.textContent = '🎁 ВЫПАЛО ' + wins.length + (wins.length === 1 ? ' СКИН' : ' СКИНА');
+
+            grid.innerHTML = wins.map(item => {
+                const r = rarities[item.rarity];
+                const imgContent = item.image
+                    ? '<img src="' + item.image + '" alt="' + item.name + '">'
+                    : '<div class="multi-emoji">' + item.emoji + '</div>';
+                return '<div class="multi-item ' + item.rarity + '">' +
+                    imgContent +
+                    '<div class="multi-info">' +
+                        '<div class="multi-name">' + item.name + '</div>' +
+                        '<div class="multi-rarity" style="color:' + r.color + '">' + r.name + ' · ₿ ' + item.price + '</div>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+
+            modal.classList.add('active');
+        }
+
+        document.getElementById('multiCloseBtn').onclick = () => {
+            document.getElementById('multiResult').classList.remove('active');
+        };
 
         function showResultToast(item) {
             const toast = document.getElementById('resultToast');
@@ -1671,7 +1847,6 @@
             document.getElementById('upgradeChanceValue').className = 'wheel-chance-value';
             document.getElementById('greenArc').setAttribute('stroke-dasharray', '0 283');
             document.getElementById('upgradeBtn').disabled = true;
-
             const pointer = document.getElementById('wheelPointer');
             pointer.classList.remove('spinning');
             pointer.style.transform = 'translateX(-50%) rotate(0deg)';
@@ -1687,8 +1862,7 @@
                 slotFrom.classList.add('filled');
                 slotFrom.innerHTML = '<div class="slot-content">' + imgContent +
                     '<div class="slot-name">' + item.name + '</div>' +
-                    '<div class="slot-price">₿ ' + item.price + '</div>' +
-                '</div>';
+                    '<div class="slot-price">₿ ' + item.price + '</div></div>';
             }
 
             const slotTo = document.getElementById('upgradeSlotTo');
@@ -1699,8 +1873,7 @@
                 slotTo.classList.add('filled');
                 slotTo.innerHTML = '<div class="slot-content">' + imgContent +
                     '<div class="slot-name">' + upgradeTo.name + '</div>' +
-                    '<div class="slot-price">₿ ' + upgradeTo.price + '</div>' +
-                '</div>';
+                    '<div class="slot-price">₿ ' + upgradeTo.price + '</div></div>';
             }
 
             const chanceValue = document.getElementById('upgradeChanceValue');
@@ -1710,14 +1883,9 @@
             if (upgradeFrom !== null && upgradeTo !== null) {
                 const fromPrice = inventory[upgradeFrom].price;
                 const toPrice = upgradeTo.price;
-
                 let chance;
                 if (toPrice <= fromPrice) chance = 100;
-                else {
-                    chance = Math.round((fromPrice / toPrice) * 100);
-                    if (chance > 95) chance = 95;
-                    if (chance < 1) chance = 1;
-                }
+                else { chance = Math.round((fromPrice / toPrice) * 100); if (chance > 95) chance = 95; if (chance < 1) chance = 1; }
 
                 chanceValue.textContent = chance + '%';
                 if (chance >= 50) chanceValue.className = 'wheel-chance-value green';
@@ -1727,7 +1895,6 @@
                 const circumference = 283;
                 const greenLength = (chance / 100) * circumference;
                 greenArc.setAttribute('stroke-dasharray', greenLength + ' ' + (circumference - greenLength));
-
                 upgradeBtn.disabled = false;
             } else {
                 chanceValue.textContent = '—';
@@ -1741,10 +1908,7 @@
             if (inventory.length === 0) { showStatus('⚠️ Инвентарь пуст'); return; }
             openPicker('inventory');
         };
-
-        document.getElementById('upgradeSlotTo').onclick = () => {
-            openPicker('kalash');
-        };
+        document.getElementById('upgradeSlotTo').onclick = () => { openPicker('kalash'); };
 
         function openPicker(type) {
             const modal = document.getElementById('pickerModal');
@@ -1758,23 +1922,19 @@
                         ? '<img src="' + item.image + '" alt="' + item.name + '">'
                         : '<div class="picker-emoji">' + item.emoji + '</div>';
                     return '<div class="picker-item ' + item.rarity + '" data-type="inv" data-index="' + index + '">' +
-                        imgContent +
-                        '<div class="picker-name">' + item.name + '</div>' +
-                        '<div class="picker-price">₿ ' + item.price + '</div>' +
-                    '</div>';
+                        imgContent + '<div class="picker-name">' + item.name + '</div>' +
+                        '<div class="picker-price">₿ ' + item.price + '</div></div>';
                 }).join('');
             } else {
                 title.textContent = 'Выбор из кейса «Калаши»';
                 const sorted = [...kalashItems].sort((a, b) => b.price - a.price);
-                grid.innerHTML = sorted.map((item) => {
+                grid.innerHTML = sorted.map(item => {
                     const imgContent = item.image
                         ? '<img src="' + item.image + '" alt="' + item.name + '">'
                         : '<div class="picker-emoji">' + item.emoji + '</div>';
                     return '<div class="picker-item ' + item.rarity + '" data-type="kalash" data-id="' + item.id + '">' +
-                        imgContent +
-                        '<div class="picker-name">' + item.name + '</div>' +
-                        '<div class="picker-price">₿ ' + item.price + '</div>' +
-                    '</div>';
+                        imgContent + '<div class="picker-name">' + item.name + '</div>' +
+                        '<div class="picker-price">₿ ' + item.price + '</div></div>';
                 }).join('');
             }
 
@@ -1790,24 +1950,15 @@
             modal.classList.add('active');
         }
 
-        document.getElementById('pickerClose').onclick = () => {
-            document.getElementById('pickerModal').classList.remove('active');
-        };
+        document.getElementById('pickerClose').onclick = () => { document.getElementById('pickerModal').classList.remove('active'); };
 
         document.getElementById('upgradeBtn').onclick = () => {
             if (upgradeFrom === null || upgradeTo === null) return;
-
             const fromItem = inventory[upgradeFrom];
             const toItem = upgradeTo;
-
             let chance;
             if (toItem.price <= fromItem.price) chance = 100;
-            else {
-                chance = Math.round((fromItem.price / toItem.price) * 100);
-                if (chance > 95) chance = 95;
-                if (chance < 1) chance = 1;
-            }
-
+            else { chance = Math.round((fromItem.price / toItem.price) * 100); if (chance > 95) chance = 95; if (chance < 1) chance = 1; }
             const success = Math.random() * 100 < chance;
 
             const pointer = document.getElementById('wheelPointer');
@@ -1824,7 +1975,6 @@
 
             setTimeout(() => {
                 inventory.splice(upgradeFrom, 1);
-
                 if (success) {
                     inventory.push(toItem);
                     saveInventory();
@@ -1836,7 +1986,6 @@
                     playFailSound();
                     showUpgradeResult(false, fromItem);
                 }
-
                 renderInventory();
                 resetUpgrade();
                 checkAchievements();
@@ -1849,20 +1998,15 @@
             const statusEl = document.getElementById('resultStatus');
             const imgWrap = document.getElementById('resultImgWrap');
             const nameEl = document.getElementById('resultName');
-
             if (success) { statusEl.textContent = '✅ УСПЕХ!'; statusEl.className = 'result-status success'; }
             else { statusEl.textContent = '❌ ПРОВАЛ'; statusEl.className = 'result-status fail'; }
-
             if (item.image) imgWrap.innerHTML = '<img src="' + item.image + '" alt="">';
             else imgWrap.innerHTML = '<div class="result-emoji">' + item.emoji + '</div>';
             nameEl.textContent = item.name;
-
             modal.classList.add('active');
         }
 
-        document.getElementById('resultBtn').onclick = () => {
-            document.getElementById('upgradeResult').classList.remove('active');
-        };
+        document.getElementById('resultBtn').onclick = () => { document.getElementById('upgradeResult').classList.remove('active'); };
 
         // ================= ПРОФИЛЬ =================
         function renderProfile() {
@@ -1887,9 +2031,7 @@
             if (firstDate) {
                 const d = new Date(firstDate);
                 dateEl.textContent = '📅 С нами с ' + d.toLocaleDateString('ru-RU');
-            } else {
-                dateEl.textContent = '📅 С нами с сегодня';
-            }
+            } else { dateEl.textContent = '📅 С нами с сегодня'; }
 
             document.getElementById('statBalance').textContent = coins.toLocaleString('ru-RU');
             document.getElementById('statCases').textContent = totalOpened;
@@ -1897,15 +2039,10 @@
             const totalValue = inventory.reduce((sum, item) => sum + item.price, 0);
             document.getElementById('statInvValue').textContent = totalValue.toLocaleString('ru-RU');
 
-            let bestSkin = '—';
-            let bestPrice = 0;
-            inventory.forEach(item => {
-                if (item.price > bestPrice) { bestPrice = item.price; bestSkin = item.emoji || '🔫'; }
-            });
+            let bestSkin = '—'; let bestPrice = 0;
+            inventory.forEach(item => { if (item.price > bestPrice) { bestPrice = item.price; bestSkin = item.emoji || '🔫'; } });
             document.getElementById('statBestSkin').textContent = bestSkin;
-
-            const legendaryCount = inventory.filter(i => i.rarity === 'legendary').length;
-            document.getElementById('statLegendary').textContent = legendaryCount;
+            document.getElementById('statLegendary').textContent = inventory.filter(i => i.rarity === 'legendary').length;
 
             renderAchievements();
         }
@@ -1914,15 +2051,12 @@
             const grid = document.getElementById('achievementsGrid');
             let unlocked = [];
             try { unlocked = JSON.parse(localStorage.getItem('oxideAchievements') || '[]'); } catch(e) {}
-
             grid.innerHTML = achievements.map(a => {
                 const isUnlocked = unlocked.includes(a.id);
                 return '<div class="achievement ' + (isUnlocked ? 'unlocked' : '') + '" data-id="' + a.id + '">' +
                     '<div class="ach-icon">' + (isUnlocked ? a.icon : '🔒') + '</div>' +
-                    '<div class="ach-name">' + a.name + '</div>' +
-                '</div>';
+                    '<div class="ach-name">' + a.name + '</div></div>';
             }).join('');
-
             grid.querySelectorAll('.achievement').forEach(el => {
                 el.addEventListener('click', () => {
                     const a = achievements.find(x => x.id === el.dataset.id);
@@ -1934,17 +2068,12 @@
         function checkAchievements() {
             let unlocked = [];
             try { unlocked = JSON.parse(localStorage.getItem('oxideAchievements') || '[]'); } catch(e) {}
-
             achievements.forEach(a => {
                 if (!unlocked.includes(a.id) && a.check()) {
                     unlocked.push(a.id);
-                    setTimeout(() => {
-                        playWinSound();
-                        showStatus('🏆 Достижение: ' + a.name + '!');
-                    }, 1500);
+                    setTimeout(() => { playWinSound(); showStatus('🏆 Достижение: ' + a.name + '!'); }, 1500);
                 }
             });
-
             try { localStorage.setItem('oxideAchievements', JSON.stringify(unlocked)); } catch(e) {}
         }
 
@@ -1953,7 +2082,6 @@
             document.getElementById('soundBtn').textContent = soundEnabled ? '🔊' : '🔇';
             document.getElementById('soundState').textContent = soundEnabled ? 'ВКЛ' : 'ВЫКЛ';
         };
-
         document.getElementById('rowReferral').onclick = () => {
             const block = document.getElementById('refBlock');
             let userId = tgUser ? tgUser.id : 'guest';
@@ -1961,13 +2089,11 @@
             document.getElementById('refText').textContent = url;
             block.style.display = block.style.display === 'none' ? 'block' : 'none';
         };
-
         document.getElementById('rowShare').onclick = () => {
             const text = 'Играю в Oxide Drop — открой свой кейс! ' + location.href;
             if (navigator.share) navigator.share({ title: 'Oxide Drop', text: text, url: location.href });
             else if (navigator.clipboard) { navigator.clipboard.writeText(text); showStatus('📤 Скопировано!'); }
         };
-
         document.getElementById('rowReset').onclick = () => {
             if (confirm('Сбросить весь прогресс? Это удалит монеты, скины и достижения!')) {
                 try {
@@ -1982,7 +2108,6 @@
                 location.reload();
             }
         };
-
         document.getElementById('refCopyBtn').onclick = () => {
             const text = document.getElementById('refText').textContent;
             if (navigator.clipboard) { navigator.clipboard.writeText(text); showStatus('📋 Скопировано!'); }
@@ -2001,11 +2126,9 @@
             coins += bonus;
             lastBonus = now;
             try { localStorage.setItem('oxideLastBonus', lastBonus); } catch(e) {}
-
             let dailyCount = parseInt(localStorage.getItem('oxideDailyCount') || '0');
             dailyCount++;
             try { localStorage.setItem('oxideDailyCount', dailyCount); } catch(e) {}
-
             updateCoins();
             playWinSound();
             showStatus('🎁 Бонус +' + bonus + ' монет!');
@@ -2029,7 +2152,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Онлайн + кейс за 600 монет!');
+        console.log('🎰 x2/x3 + яркие скины!');
     </script>
 </body>
 </html>
