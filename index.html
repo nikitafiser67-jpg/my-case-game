@@ -88,7 +88,7 @@
             border-radius: 10px; border: 2px solid rgba(255,255,255,0.1);
         }
         .roulette-item .item-emoji { font-size: 30px; }
-        .roulette-item .item-name { font-size: 10px; text-align: center; }
+        .roulette-item .item-name { font-size: 9px; text-align: center; padding: 0 2px; }
         .roulette-item.rare { border-color: #3498db; background: rgba(52,152,219,0.1); }
         .roulette-item.epic { border-color: #9b59b6; background: rgba(155,89,182,0.1); }
         .roulette-item.legendary { border-color: #ffd700; background: rgba(255,215,0,0.1); }
@@ -104,7 +104,7 @@
         }
         #rouletteResult.show { display: block; }
         #rouletteResult .result-emoji { font-size: 80px; }
-        #rouletteResult .result-name { font-size: 24px; font-weight: bold; margin-top: 10px; }
+        #rouletteResult .result-name { font-size: 20px; font-weight: bold; margin-top: 10px; padding: 0 20px; }
         #rouletteResult .result-rarity { font-size: 14px; opacity: 0.6; margin-top: 5px; }
         #rouletteResult .result-btn {
             margin-top: 20px; padding: 12px 40px; border-radius: 30px;
@@ -169,7 +169,7 @@
         }
         .inventory-item .info { display: flex; align-items: center; gap: 10px; }
         .inventory-item .emoji { font-size: 28px; }
-        .inventory-item .name { font-size: 14px; }
+        .inventory-item .name { font-size: 13px; }
         .inventory-item .rarity { font-size: 11px; opacity: 0.6; }
         .inventory-item .sell-btn {
             background: rgba(46,204,113,0.2); border: 1px solid #2ecc71;
@@ -196,8 +196,9 @@
             #coinCounter { font-size: 16px; padding: 6px 14px; top: 10px; left: 10px; }
             #coinCounter span { font-size: 18px; }
             #status { font-size: 11px; padding: 6px 14px; }
-            .inventory-item .name { font-size: 12px; }
+            .inventory-item .name { font-size: 11px; }
             .inventory-item .sell-btn { font-size: 11px; padding: 4px 10px; }
+            .roulette-item .item-name { font-size: 8px; }
         }
     </style>
 </head>
@@ -238,13 +239,11 @@
     </div>
 
     <script>
-        // ---- ЗВУК (один AudioContext на всё) ----
+        // ---- ЗВУК ----
         let audioCtx = null;
         function getAudioCtx() {
             if (!audioCtx) {
-                try {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                } catch(e) {}
+                try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
             }
             return audioCtx;
         }
@@ -279,26 +278,27 @@
             legendary: { name: 'Легендарный', color: '#ffd700' },
         };
 
+        // ---- 16 ПРЕДМЕТОВ (твои названия) ----
         const allItems = [
-            { id: 'c1', name: 'Ржавый ключ', emoji: '🔑', rarity: 'common', price: 5 },
-            { id: 'c2', name: 'Старая монета', emoji: '🪙', rarity: 'common', price: 5 },
-            { id: 'c3', name: 'Кусок ткани', emoji: '🧵', rarity: 'common', price: 5 },
-            { id: 'c4', name: 'Деревяшка', emoji: '🪵', rarity: 'common', price: 5 },
-            { id: 'c5', name: 'Камень', emoji: '🪨', rarity: 'common', price: 5 },
-            { id: 'r1', name: 'Серебряный ключ', emoji: '🔑', rarity: 'rare', price: 15 },
-            { id: 'r2', name: 'Синий кристалл', emoji: '💎', rarity: 'rare', price: 15 },
-            { id: 'r3', name: 'Кожаные перчатки', emoji: '🧤', rarity: 'rare', price: 15 },
-            { id: 'r4', name: 'Зелье силы', emoji: '🧪', rarity: 'rare', price: 15 },
-            { id: 'e1', name: 'Золотой ключ', emoji: '🔑', rarity: 'epic', price: 40 },
-            { id: 'e2', name: 'Фиолетовый кристалл', emoji: '💜', rarity: 'epic', price: 40 },
-            { id: 'e3', name: 'Плащ героя', emoji: '🧥', rarity: 'epic', price: 40 },
-            { id: 'e4', name: 'Корона', emoji: '👑', rarity: 'epic', price: 40 },
-            { id: 'l1', name: 'Алмазный ключ', emoji: '🔑', rarity: 'legendary', price: 100 },
-            { id: 'l2', name: 'Красный кристалл', emoji: '❤️', rarity: 'legendary', price: 100 },
-            { id: 'l3', name: 'Крылья ангела', emoji: '🪽', rarity: 'legendary', price: 100 },
-            { id: 'l4', name: 'Меч легенд', emoji: '⚔️', rarity: 'legendary', price: 100 },
+            { id: 'l1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
+            { id: 'l2', name: 'Штурмовая винтовка (Ледяной раскол)', emoji: '❄️', rarity: 'legendary', price: 1500 },
+            { id: 'l3', name: 'Штурмовая винтовка (Удар яда)', emoji: '☠️', rarity: 'legendary', price: 1000 },
+            { id: 'l4', name: 'Штурмовая винтовка (Цифровой потрошитель)', emoji: '💻', rarity: 'legendary', price: 850 },
+            { id: 'l5', name: 'Штурмовая винтовка (Рука мертвеца)', emoji: '💀', rarity: 'legendary', price: 800 },
+            { id: 'l6', name: 'Штурмовая винтовка (Спект)', emoji: '👻', rarity: 'legendary', price: 750 },
+            { id: 'l7', name: 'Штурмовая винтовка (Щупальца Кракена)', emoji: '🐙', rarity: 'legendary', price: 580 },
+            { id: 'l8', name: 'Штурмовая винтовка (Гроза района)', emoji: '⚡', rarity: 'legendary', price: 550 },
+            { id: 'l9', name: 'Штурмовая винтовка (Великолепная пятёрка)', emoji: '⭐', rarity: 'legendary', price: 500 },
+            { id: 'l10', name: 'Штурмовая винтовка (Страж Вальхаллы)', emoji: '🛡️', rarity: 'legendary', price: 500 },
+            { id: 'l11', name: 'Штурмовая винтовка (Ветер смерти)', emoji: '🌪️', rarity: 'legendary', price: 450 },
+            { id: 'l12', name: 'Штурмовая винтовка (Шёпот предков)', emoji: '🗣️', rarity: 'legendary', price: 450 },
+            { id: 'e1', name: 'Штурмовая винтовка (Золотой феникс)', emoji: '🔥', rarity: 'epic', price: 300 },
+            { id: 'e2', name: 'Штурмовая винтовка (Кислотный автомат)', emoji: '🧪', rarity: 'epic', price: 250 },
+            { id: 'r1', name: 'Штурмовая винтовка (Огненная лента)', emoji: '🎗️', rarity: 'rare', price: 150 },
+            { id: 'r2', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
+        // ---- КЕЙСЫ ----
         const cases = [
             { id: 'case1', name: 'Бронзовый', emoji: '📦', price: 10, rarity: 'common', chances: { common: 70, rare: 25, epic: 4, legendary: 1 } },
             { id: 'case2', name: 'Серебряный', emoji: '🎁', price: 30, rarity: 'rare', chances: { common: 40, rare: 40, epic: 15, legendary: 5 } },
@@ -318,9 +318,7 @@
             if (savedInv) inventory = JSON.parse(savedInv);
             const savedBonus = localStorage.getItem('lastBonus');
             if (savedBonus) lastBonus = parseInt(savedBonus) || 0;
-        } catch(e) {
-            console.log('localStorage недоступен, старт с нуля');
-        }
+        } catch(e) {}
 
         const coinDisplay = document.getElementById('coinCount');
         function updateCoins() {
@@ -364,6 +362,10 @@
 
             const rarity = getRandomRarity(c.chances);
             const items = allItems.filter(i => i.rarity === rarity);
+            if (items.length === 0) {
+                const fallback = allItems.filter(i => i.rarity === 'legendary');
+                items.push(...fallback);
+            }
             const item = items[Math.floor(Math.random() * items.length)];
 
             showRoulette(c, item);
@@ -377,7 +379,7 @@
                 cumulative += chances[r] || 0;
                 if (roll < cumulative) return r;
             }
-            return 'common';
+            return 'legendary';
         }
 
         function showRoulette(c, winningItem) {
@@ -519,7 +521,7 @@
         renderCases();
         renderInventory();
 
-        console.log('🎰 Игра запущена! Монет:', coins);
+        console.log('🎰 Игра запущена! Предметов:', allItems.length);
     </script>
 </body>
 </html>
