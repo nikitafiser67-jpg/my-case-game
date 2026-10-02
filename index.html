@@ -62,50 +62,69 @@
         .case.locked { opacity: 0.5; }
         .case.locked .case-price { color: #95a5a6; }
 
-        /* ---- ОКНО СОДЕРЖИМОГО КЕЙСА ---- */
+        /* ---- ОКНО СОДЕРЖИМОГО КЕЙСА (сетка 5x5) ---- */
         #casePreview {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-            z-index: 100; display: none; justify-content: center; align-items: center;
-            flex-direction: column; padding: 20px;
+            z-index: 100; display: none; flex-direction: column;
+            padding: 20px 15px; overflow-y: auto;
         }
         #casePreview.active { display: flex; }
 
         #casePreview .preview-header {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 15px;
+            margin-bottom: 15px; flex-shrink: 0;
         }
-        #casePreview .preview-emoji { font-size: 60px; }
-        #casePreview .preview-name { font-size: 24px; font-weight: bold; }
-        #casePreview .preview-price { font-size: 18px; color: #ffd700; }
+        #casePreview .preview-emoji { font-size: 45px; }
+        #casePreview .preview-name { font-size: 22px; font-weight: bold; }
+        #casePreview .preview-price { font-size: 16px; color: #ffd700; }
 
-        #casePreview .preview-content {
-            width: 100%; max-width: 500px; max-height: 50vh; overflow-y: auto;
-            background: rgba(255,255,255,0.03); border-radius: 15px;
-            padding: 15px; margin-bottom: 20px;
+        #casePreview .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+            flex: 1;
         }
-        #casePreview .preview-content::-webkit-scrollbar { width: 3px; }
-        #casePreview .preview-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
-        .preview-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 10px 12px; margin-bottom: 6px;
-            background: rgba(255,255,255,0.05); border-radius: 10px;
-            border-left: 3px solid #95a5a6;
+        .grid-item {
+            aspect-ratio: 1 / 1;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.1);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 4px;
+            position: relative;
+            overflow: hidden;
         }
-        .preview-item.legendary { border-left-color: #ffd700; background: rgba(255,215,0,0.05); }
-        .preview-item.epic { border-left-color: #9b59b6; background: rgba(155,89,182,0.05); }
-        .preview-item.rare { border-left-color: #3498db; background: rgba(52,152,219,0.05); }
+        .grid-item.legendary { border-color: #ffd700; background: rgba(255,215,0,0.08); }
+        .grid-item.epic { border-color: #9b59b6; background: rgba(155,89,182,0.08); }
+        .grid-item.rare { border-color: #3498db; background: rgba(52,152,219,0.08); }
 
-        .preview-item .left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .preview-item .item-img { width: 40px; height: 40px; object-fit: contain; }
-        .preview-item .item-emoji { font-size: 30px; }
-        .preview-item .item-info { display: flex; flex-direction: column; min-width: 0; }
-        .preview-item .item-name { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .preview-item .item-rarity { font-size: 11px; opacity: 0.6; }
-        .preview-item .item-chance { font-size: 15px; font-weight: bold; color: #ffd700; }
+        .grid-item .item-img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+        .grid-item .item-emoji { font-size: 28px; }
+        .grid-item .item-chance {
+            position: absolute;
+            bottom: 2px;
+            right: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            color: #ffd700;
+            background: rgba(0,0,0,0.6);
+            padding: 1px 4px;
+            border-radius: 6px;
+        }
 
         #casePreview .preview-buttons {
             display: flex; gap: 12px;
+            justify-content: center;
+            flex-shrink: 0;
+            padding-bottom: 10px;
         }
         #casePreview .preview-btn {
             padding: 14px 40px; border-radius: 30px; border: none;
@@ -270,9 +289,12 @@
             .inventory-item .name { font-size: 11px; }
             .inventory-item .sell-btn { font-size: 11px; padding: 4px 10px; }
             .roulette-item .item-name { font-size: 8px; }
-            #casePreview .preview-name { font-size: 20px; }
-            #casePreview .preview-emoji { font-size: 45px; }
-            #casePreview .preview-btn { padding: 12px 30px; font-size: 16px; }
+            #casePreview .preview-name { font-size: 18px; }
+            #casePreview .preview-emoji { font-size: 35px; }
+            #casePreview .preview-btn { padding: 12px 25px; font-size: 15px; }
+            #casePreview .preview-grid { gap: 6px; }
+            .grid-item .item-emoji { font-size: 22px; }
+            .grid-item .item-chance { font-size: 9px; }
         }
     </style>
 </head>
@@ -297,7 +319,7 @@
                 <div class="preview-price" id="previewPrice">🪙 0</div>
             </div>
         </div>
-        <div class="preview-content" id="previewContent"></div>
+        <div class="preview-grid" id="previewGrid"></div>
         <div class="preview-buttons">
             <button class="preview-btn open-btn" id="previewOpenBtn">Открыть</button>
             <button class="preview-btn close-btn" id="previewCloseBtn">Закрыть</button>
@@ -465,7 +487,7 @@
             });
         }
 
-        // ---- ОКНО СОДЕРЖИМОГО КЕЙСА ----
+        // ---- ОКНО СОДЕРЖИМОГО КЕЙСА (сетка 5x5) ----
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -485,48 +507,39 @@
             document.getElementById('previewName').textContent = c.name;
             document.getElementById('previewPrice').textContent = '🪙 ' + c.price;
 
-            // Сортируем предметы по цене (от дорогих к дешёвым)
+            // Сортируем по цене (от дорогих к дешёвым)
             const sortedItems = [...c.items].sort((a, b) => b.price - a.price);
 
-            // Считаем шанс для каждой редкости
+            // Шансы по редкостям
             const rarityChances = {
                 legendary: c.chances.legendary || 0,
                 epic: c.chances.epic || 0,
                 rare: c.chances.rare || 0,
                 common: c.chances.common || 0,
             };
-
-            // Считаем сколько предметов каждой редкости
             const rarityCounts = {};
             sortedItems.forEach(item => {
                 rarityCounts[item.rarity] = (rarityCounts[item.rarity] || 0) + 1;
             });
 
-            // Отрисовка
-            const content = document.getElementById('previewContent');
-            content.innerHTML = sortedItems.map(item => {
-                const r = rarities[item.rarity];
+            // Сетка
+            const grid = document.getElementById('previewGrid');
+            grid.innerHTML = sortedItems.map(item => {
                 const rarityChance = rarityChances[item.rarity] || 0;
                 const count = rarityCounts[item.rarity] || 1;
                 const itemChance = (rarityChance / count).toFixed(1);
-                
+
                 const imgContent = item.image 
-                    ? '<img class="item-img" src="' + item.image + '" alt="' + item.name + '">' 
+                    ? '<img class="item-img" src="' + item.image + '" alt="' + item.name + '" title="' + item.name + '">' 
                     : '<span class="item-emoji">' + item.emoji + '</span>';
-                
-                return '<div class="preview-item ' + item.rarity + '">' +
-                    '<div class="left">' +
-                        imgContent +
-                        '<div class="item-info">' +
-                            '<div class="item-name">' + item.name + '</div>' +
-                            '<div class="item-rarity" style="color:' + r.color + '">' + r.name + '</div>' +
-                        '</div>' +
-                    '</div>' +
+
+                return '<div class="grid-item ' + item.rarity + '">' +
+                    imgContent +
                     '<div class="item-chance">' + itemChance + '%</div>' +
                 '</div>';
             }).join('');
 
-            // Проверка на деньги
+            // Кнопка
             const openBtn = document.getElementById('previewOpenBtn');
             if (coins < c.price) {
                 openBtn.disabled = true;
@@ -544,17 +557,20 @@
             document.getElementById('casePreview').classList.remove('active');
         };
 
-        // Открыть кейс
+        // Открыть кейс — СРАЗУ РУЛЕТКА
         document.getElementById('previewOpenBtn').onclick = () => {
             if (!currentCase) return;
             if (coins < currentCase.price) return;
-            
+
+            // Закрываем окно содержимого
             document.getElementById('casePreview').classList.remove('active');
-            
+
+            // Списываем монеты
             coins -= currentCase.price;
             updateCoins();
             playCoinSound();
 
+            // Определяем приз
             const c = currentCase;
             const rarity = getRandomRarity(c.chances);
             let items = c.items.filter(i => i.rarity === rarity);
@@ -563,6 +579,7 @@
             }
             const item = items[Math.floor(Math.random() * items.length)];
 
+            // Сразу показываем рулетку
             showRoulette(c, item);
         };
 
