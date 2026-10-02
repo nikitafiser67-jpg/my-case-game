@@ -13,7 +13,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ================= HEADER ================= */
         #header {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
             display: flex; align-items: center; justify-content: space-between;
@@ -46,7 +45,6 @@
             box-shadow: 0 0 10px rgba(245,166,35,0.5);
         }
 
-        /* ================= CONTENT ================= */
         #content {
             position: absolute; top: 60px; bottom: 70px; left: 0; right: 0;
             overflow-y: auto; overflow-x: hidden;
@@ -69,7 +67,6 @@
             border-radius: 2px;
         }
 
-        /* ================= CASE CARDS (2 columns) ================= */
         .cases-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -107,7 +104,6 @@
         .badge.new { background: #ec4899; color: white; }
         .badge.free { background: #22c55e; color: white; }
         .badge.top { background: #f59e0b; color: #1a1a1a; }
-        .badge.soon { background: #4b5563; color: #d1d5db; }
 
         .case-card .case-image {
             flex: 1;
@@ -115,9 +111,9 @@
             min-height: 90px;
         }
         .case-card .case-image img {
-            max-width: 90%; max-height: 100px;
+            max-width: 100%; max-height: 120px;
             object-fit: contain;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
         }
         .case-card .case-image .case-emoji-big {
             font-size: 62px;
@@ -145,7 +141,6 @@
             color: #4ade80;
         }
 
-        /* ================= PROMO BLOCK ================= */
         .promo-block {
             background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
             border-radius: 18px;
@@ -183,8 +178,8 @@
             position: relative; z-index: 1;
         }
         .promo-right img { max-width: 100%; max-height: 110px; object-fit: contain; }
+        .promo-right .emoji-big { font-size: 72px; }
 
-        /* ================= QUESTS BANNER ================= */
         .quests-banner {
             display: flex; align-items: center; gap: 12px;
             background: linear-gradient(135deg, #3d2a1a, #2a1d12);
@@ -211,7 +206,6 @@
             font-size: 13px; font-weight: 800;
         }
 
-        /* ================= BOTTOM NAV ================= */
         #bottomNav {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
             background: rgba(15,12,25,0.98); backdrop-filter: blur(20px);
@@ -239,7 +233,6 @@
             background: #22c55e; border: 2px solid #0f0c19;
         }
 
-        /* ================= CASE PREVIEW (рулетка сверху + сетка) ================= */
         #casePreview {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(5,5,10,0.98); backdrop-filter: blur(20px);
@@ -254,6 +247,7 @@
         }
         #casePreview .preview-title-block { display: flex; align-items: center; gap: 12px; }
         #casePreview .preview-emoji { font-size: 38px; }
+        #casePreview .preview-emoji img { width: 50px; height: 50px; object-fit: contain; }
         #casePreview .preview-name { font-size: 19px; font-weight: 800; }
         #casePreview .preview-price { font-size: 13px; color: #f5a623; font-weight: 700; }
         #casePreview .close-x {
@@ -262,7 +256,6 @@
             cursor: pointer;
         }
 
-        /* РУЛЕТКА СВЕРХУ */
         #rouletteWindowInline {
             width: 100%; height: 110px;
             background: #12101f; border-radius: 14px;
@@ -296,7 +289,6 @@
             z-index: 5; box-shadow: 0 0 15px rgba(245,166,35,0.7);
         }
 
-        /* СЕТКА 5×5 */
         #casePreview .preview-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -340,11 +332,7 @@
         .preview-btn.open-btn:disabled {
             background: #333; color: #777; box-shadow: none;
         }
-        .preview-btn.close-btn {
-            background: rgba(255,255,255,0.08); color: white;
-        }
 
-        /* ================= INVENTORY ================= */
         #inventoryMenu {
             position: fixed; bottom: -100%; left: 0; width: 100%;
             background: rgba(15,12,25,0.99); backdrop-filter: blur(20px);
@@ -389,7 +377,6 @@
             font-size: 13px;
         }
 
-        /* ================= RESULT TOAST ================= */
         #resultToast {
             position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
             background: rgba(15,12,25,0.95); backdrop-filter: blur(20px);
@@ -407,7 +394,6 @@
         #resultToast .rt-name { font-size: 13px; font-weight: 700; }
         #resultToast .rt-rarity { font-size: 10px; opacity: 0.7; }
 
-        /* ================= STATUS ================= */
         #status {
             position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
             color: white; background: rgba(0,0,0,0.75); padding: 7px 18px;
@@ -423,6 +409,7 @@
             .case-card { min-height: 190px; padding: 12px; }
             .case-card .case-emoji-big { font-size: 52px; }
             .case-card .case-title { font-size: 12px; }
+            .case-card .case-image img { max-height: 100px; }
             .roulette-item { flex: 0 0 75px; height: 75px; }
             .roulette-item .item-image { width: 45px; height: 45px; }
             .roulette-item .item-emoji { font-size: 26px; }
@@ -436,7 +423,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <div id="header">
         <div id="logo">OXIDE <span>DROP</span></div>
         <div id="headerRight">
@@ -448,10 +434,8 @@
         </div>
     </div>
 
-    <!-- STATUS -->
     <div id="status"></div>
 
-    <!-- RESULT TOAST -->
     <div id="resultToast">
         <div class="rt-media"></div>
         <div class="rt-info">
@@ -460,13 +444,10 @@
         </div>
     </div>
 
-    <!-- CONTENT -->
     <div id="content">
-
         <div class="section-title with-line">Кейсы</div>
         <div class="cases-grid" id="casesGrid"></div>
 
-        <!-- PROMO -->
         <div class="promo-block">
             <div class="promo-left">
                 <div class="promo-title">OXIDE <span class="purple">DROP</span></div>
@@ -483,11 +464,10 @@
                 </div>
             </div>
             <div class="promo-right">
-                <div style="font-size:72px;">🎁</div>
+                <div class="emoji-big">🎁</div>
             </div>
         </div>
 
-        <!-- QUESTS BANNER -->
         <div class="quests-banner" id="questsBanner">
             <div class="quests-icon">💰</div>
             <div class="quests-text">
@@ -500,7 +480,6 @@
         <div style="height: 20px;"></div>
     </div>
 
-    <!-- BOTTOM NAV -->
     <div id="bottomNav">
         <div class="nav-item active" data-tab="cases">
             <span class="nav-icon">📦</span>
@@ -525,7 +504,6 @@
         </div>
     </div>
 
-    <!-- CASE PREVIEW -->
     <div id="casePreview">
         <div class="preview-header">
             <div class="preview-title-block">
@@ -550,7 +528,6 @@
         </div>
     </div>
 
-    <!-- INVENTORY -->
     <div id="inventoryMenu">
         <div class="menu-header">
             <h3>🎒 Инвентарь</h3>
@@ -588,7 +565,6 @@
             playSound(700, 0.15); setTimeout(() => playSound(900, 0.15), 100);
             setTimeout(() => playSound(1200, 0.2), 200); setTimeout(() => playSound(1600, 0.3), 300);
         }
-
         document.getElementById('soundBtn').onclick = () => {
             soundEnabled = !soundEnabled;
             document.getElementById('soundBtn').textContent = soundEnabled ? '🔊' : '🔇';
@@ -602,7 +578,7 @@
             legendary: { name: 'Легендарный',  color: '#f5a623' },
         };
 
-        // ================= СКИНЫ (твой кейс "Калаши") =================
+        // ================= СКИНЫ КЕЙСА "КАЛАШИ" =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -622,7 +598,7 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        // ================= НОВЫЕ КЕЙСЫ (для проверки, мои) =================
+        // ================= МОИ КЕЙСЫ =================
         const toolsItems = [
             { id: 't1', name: 'Кирка шахтёра', emoji: '⛏️', rarity: 'common', price: 20 },
             { id: 't2', name: 'Молот', emoji: '🔨', rarity: 'common', price: 25 },
@@ -631,7 +607,6 @@
             { id: 't5', name: 'Дрель', emoji: '🪚', rarity: 'epic', price: 180 },
             { id: 't6', name: 'Золотая пила', emoji: '🪚', rarity: 'legendary', price: 400 },
         ];
-
         const homeItems = [
             { id: 'h1', name: 'Кружка', emoji: '☕', rarity: 'common', price: 15 },
             { id: 'h2', name: 'Лампа', emoji: '💡', rarity: 'common', price: 20 },
@@ -640,7 +615,6 @@
             { id: 'h5', name: 'Сундук', emoji: '🧰', rarity: 'epic', price: 200 },
             { id: 'h6', name: 'Золотой ключ', emoji: '🗝️', rarity: 'legendary', price: 500 },
         ];
-
         const bonusItems = [
             { id: 'b1', name: 'Скидка 10%', emoji: '🎟️', rarity: 'common', price: 10 },
             { id: 'b2', name: 'Бонус монет', emoji: '💰', rarity: 'common', price: 15 },
@@ -654,7 +628,7 @@
                 id: 'kalash',
                 name: 'Калаши',
                 emoji: '🔫',
-                image: null,
+                image: 'kalash.png',   // <-- КАРТИНКА КЕЙСА
                 price: 1,
                 badge: 'new',
                 rarity: 'epic',
@@ -733,11 +707,9 @@
         function saveInventory() {
             try { localStorage.setItem('oxideInventory', JSON.stringify(inventory)); } catch(e) {}
         }
-
-        // Обновление статистики
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= ОТРИСОВКА КЕЙСОВ =================
+        // ================= ОТРИСОВКА =================
         function renderCases() {
             const grid = document.getElementById('casesGrid');
             grid.innerHTML = cases.map(c => {
@@ -775,7 +747,7 @@
             });
         }
 
-        // ================= ПОКАЗ СОДЕРЖИМОГО КЕЙСА =================
+        // ================= ПОКАЗ КЕЙСА =================
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -789,17 +761,21 @@
             }
             currentCase = c;
 
-            document.getElementById('previewEmoji').textContent = c.emoji;
+            // Заголовок кейса — если есть картинка, показываем её
+            const prevEmoji = document.getElementById('previewEmoji');
+            if (c.image) {
+                prevEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
+            } else {
+                prevEmoji.textContent = c.emoji;
+            }
             document.getElementById('previewName').textContent = c.name;
             document.getElementById('previewPrice').textContent = c.price === 0 ? 'Бесплатно' : c.price + ' монет';
 
-            // Очищаем рулетку
             const track = document.getElementById('rouletteTrackInline');
             track.innerHTML = '';
             track.style.transition = 'none';
             track.style.transform = 'translateX(0)';
 
-            // Сетка 5×5
             const sortedItems = [...c.items].sort((a, b) => b.price - a.price);
 
             const rarityChances = {
@@ -901,7 +877,6 @@
             track.style.transform = 'translateX(0)';
             void track.offsetWidth;
 
-            // Звук тиков
             let tickCount = 0;
             const tickInterval = setInterval(() => {
                 playSound(500 + Math.random() * 300, 0.04, 0.06);
@@ -918,9 +893,7 @@
 
             setTimeout(() => {
                 clearInterval(tickInterval);
-                const r = rarities[winningItem.rarity];
 
-                // Звук по редкости
                 if (winningItem.rarity === 'legendary' || winningItem.rarity === 'epic') {
                     playWinSound();
                 } else {
@@ -933,10 +906,8 @@
                 document.getElementById('statOpened').textContent = totalOpened;
                 try { localStorage.setItem('oxideOpened', totalOpened); } catch(e) {}
 
-                // Показать тост
                 showResultToast(winningItem);
 
-                // Разблокировать кнопку
                 openBtn.disabled = false;
                 if (c.price > 0 && coins < c.price) {
                     openBtn.disabled = true;
@@ -948,7 +919,7 @@
             }, 6200);
         }
 
-        // ================= RESULT TOAST =================
+        // ================= TOAST =================
         function showResultToast(item) {
             const toast = document.getElementById('resultToast');
             const mediaEl = toast.querySelector('.rt-media');
@@ -967,7 +938,6 @@
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
 
-        // ================= STATUS =================
         function showStatus(text) {
             const s = document.getElementById('status');
             s.textContent = text;
@@ -1015,13 +985,11 @@
             });
         }
 
-        // ================= МЕНЮ =================
         const invMenu = document.getElementById('inventoryMenu');
         document.getElementById('closeInventory').onclick = () => {
             invMenu.classList.remove('open');
         };
 
-        // Нижнее меню
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', () => {
                 const tab = item.dataset.tab;
@@ -1057,14 +1025,12 @@
             showStatus('🎁 Бонус +' + bonus + ' монет!');
             document.getElementById('questsBadge').style.display = 'none';
         }
-
         document.getElementById('questsBanner').onclick = claimBonus;
 
         // ================= СТАРТ =================
         renderCases();
         renderInventory();
 
-        // Обновляем доступность бонуса
         (function checkBonus() {
             const now = Date.now();
             const dayMs = 24 * 60 * 60 * 1000;
@@ -1075,7 +1041,7 @@
             }
         })();
 
-        console.log('🎰 Oxide Drop Style запущен!');
+        console.log('🎰 Игра запущена! kalash.png как картинка кейса');
     </script>
 </body>
 </html>
