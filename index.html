@@ -1056,7 +1056,7 @@
                 <div class="upgrade-block">
                     <div class="upgrade-block-title">Желаемый скин</div>
                     <div class="upgrade-slot" id="upgradeSlotTo">
-                        <div class="slot-empty-text">Нажми, чтобы выбрать из кейса «Калаши»</div>
+                        <div class="slot-empty-text">Нажми, чтобы выбрать скин</div>
                     </div>
                 </div>
                 <button class="upgrade-btn" id="upgradeBtn" disabled>Апгрейд</button>
@@ -1305,13 +1305,13 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        // ================= СКИНЫ ВИНТОВКИ =================
+        // ================= СКИНЫ ВИНТОВКИ (с картинками) =================
         const rifleItems = [
-            { id: 'r1', name: 'Кровавый шип', emoji: '🩸', rarity: 'legendary', price: 400 },
-            { id: 'r2', name: 'Наследие дракона', emoji: '🐉', rarity: 'legendary', price: 300 },
-            { id: 'r3', name: 'Пески времени', emoji: '⏳', rarity: 'legendary', price: 200 },
-            { id: 'r4', name: 'Морозный следопыт', emoji: '❄️', rarity: 'epic', price: 100 },
-            { id: 'r5', name: 'Громовая птица', emoji: '⚡', rarity: 'epic', price: 50 },
+            { id: 'r1', name: 'Кровавый шип', image: 'blood.png', rarity: 'legendary', price: 400 },
+            { id: 'r2', name: 'Наследие дракона', image: 'dragon.png', rarity: 'legendary', price: 300 },
+            { id: 'r3', name: 'Пески времени', image: 'sands.png', rarity: 'legendary', price: 200 },
+            { id: 'r4', name: 'Морозный следопыт', image: 'frost.png', rarity: 'epic', price: 100 },
+            { id: 'r5', name: 'Громовая птица', image: 'thunder.png', rarity: 'epic', price: 50 },
         ];
 
         const donateItems = [];
@@ -1778,7 +1778,7 @@
             document.getElementById('upgradeSlotFrom').classList.remove('filled');
             document.getElementById('upgradeSlotFrom').innerHTML = '<div class="slot-empty-text">Нажми, чтобы выбрать скин из инвентаря</div>';
             document.getElementById('upgradeSlotTo').classList.remove('filled');
-            document.getElementById('upgradeSlotTo').innerHTML = '<div class="slot-empty-text">Нажми, чтобы выбрать из кейса «Калаши»</div>';
+            document.getElementById('upgradeSlotTo').innerHTML = '<div class="slot-empty-text">Нажми, чтобы выбрать скин</div>';
             document.getElementById('upgradeChanceValue').textContent = '—';
             document.getElementById('upgradeChanceValue').className = 'wheel-chance-value';
             document.getElementById('greenArc').setAttribute('stroke-dasharray', '0 283');
@@ -2090,7 +2090,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Кейс Винтовки открыт с 5 скинами!');
+        console.log('🎰 Винтовки с картинками!');
     </script>
 </body>
 </html>
