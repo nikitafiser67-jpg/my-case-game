@@ -749,8 +749,8 @@
         ];
 
         // ================= ПУСТЫЕ КЕЙСЫ =================
-        const rifleItems = [];   // пустой
-        const donateItems = [];  // пустой
+        const rifleItems = [];
+        const donateItems = [];
 
         // ================= КЕЙСЫ =================
         const cases = [
@@ -848,18 +848,9 @@
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
-            if (c.locked) {
-                showStatus('🔒 Кейс скоро откроется!');
-                return;
-            }
-            if (!c.items || c.items.length === 0) {
-                showStatus('⚠️ В кейсе пока нет предметов');
-                return;
-            }
-            if (c.price > 0 && coins < c.price) {
-                showStatus('❌ Недостаточно монет!');
-                return;
-            }
+            if (c.locked) { showStatus('🔒 Кейс скоро откроется!'); return; }
+            if (!c.items || c.items.length === 0) { showStatus('⚠️ В кейсе пока нет предметов'); return; }
+            if (c.price > 0 && coins < c.price) { showStatus('❌ Недостаточно монет!'); return; }
             currentCase = c;
 
             document.getElementById('previewName').textContent = c.name.toUpperCase();
@@ -923,6 +914,7 @@
             document.getElementById('fastToggle').classList.toggle('on', fastMode);
         };
 
+        // ================= ОТКРЫТИЕ КЕЙСА =================
         document.getElementById('previewOpenBtn').onclick = () => {
             if (isSpinning) return;
             if (!currentCase) return;
@@ -931,6 +923,12 @@
             const c = currentCase;
             if (c.price > 0) { coins -= c.price; updateCoins(); }
             playCoinSound();
+
+            // СБРОС ПЕРЕД НОВЫМ ЗАПУСКОМ
+            const hero = document.getElementById('caseHero');
+            const winEl = document.getElementById('rouletteWindowInline');
+            hero.classList.remove('spinning');
+            winEl.classList.remove('active');
 
             const rarity = getRandomRarity(c.chances);
             let items = c.items.filter(i => i.rarity === rarity);
@@ -962,6 +960,7 @@
             openBtn.disabled = true;
             openBtn.textContent = '🎡 Крутится...';
 
+            // Прячем картинку, показываем рулетку
             hero.classList.add('spinning');
             winEl.classList.add('active');
 
@@ -1021,10 +1020,11 @@
                 }
                 isSpinning = false;
 
+                // Прячем рулетку через 1 секунду
                 setTimeout(() => {
                     winEl.classList.remove('active');
                     hero.classList.remove('spinning');
-                }, 2000);
+                }, 1000);
             }, spinTime * 1000 + 200);
         }
 
@@ -1132,7 +1132,7 @@
             else document.getElementById('questsBadge').style.display = 'none';
         })();
 
-        console.log('🎰 Запущено! 3 кейса, только "Калаши" работает');
+        console.log('🎰 Запущено!');
     </script>
 </body>
 </html>
