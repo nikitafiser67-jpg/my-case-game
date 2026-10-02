@@ -277,8 +277,8 @@
             border-radius: 10px; border: 2px solid rgba(255,255,255,0.08);
             overflow: hidden;
         }
-        .roulette-item .item-image { width: 55px; height: 55px; object-fit: contain; }
-        .roulette-item .item-emoji { font-size: 32px; }
+        .roulette-item .item-image { width: 75px; height: 75px; object-fit: contain; }
+        .roulette-item .item-emoji { font-size: 40px; }
         .roulette-item .item-name { font-size: 7px; text-align: center; padding: 0 2px; opacity: 0.7; }
         .roulette-item.rare { border-color: #3b82f6; background: rgba(59,130,246,0.08); }
         .roulette-item.epic { border-color: #a855f7; background: rgba(168,85,247,0.08); }
@@ -303,14 +303,15 @@
             border: 1.5px solid rgba(255,255,255,0.08);
             display: flex; align-items: center; justify-content: center;
             position: relative; overflow: hidden;
+            padding: 2px;
         }
         .grid-item.legendary { border-color: #f5a623; background: rgba(245,166,35,0.08); }
         .grid-item.epic { border-color: #a855f7; background: rgba(168,85,247,0.08); }
         .grid-item.rare { border-color: #3b82f6; background: rgba(59,130,246,0.08); }
-        .grid-item .item-img { width: 70%; height: 70%; object-fit: contain; }
-        .grid-item .item-emoji { font-size: 24px; }
+        .grid-item .item-img { width: 100%; height: 100%; object-fit: contain; }
+        .grid-item .item-emoji { font-size: 30px; }
         .grid-item .item-chance {
-            position: absolute; bottom: 2px; right: 3px;
+            position: absolute; bottom: 1px; right: 3px;
             font-size: 8px; font-weight: 800;
             color: #f5a623; background: rgba(0,0,0,0.7);
             padding: 1px 4px; border-radius: 5px;
@@ -364,7 +365,7 @@
         .inventory-item.legendary { border-left-color: #f5a623; }
         .inventory-item .info { display: flex; align-items: center; gap: 10px; }
         .inventory-item .emoji { font-size: 26px; }
-        .inventory-item .item-img { width: 34px; height: 34px; object-fit: contain; }
+        .inventory-item .item-img { width: 40px; height: 40px; object-fit: contain; }
         .inventory-item .name { font-size: 12px; }
         .inventory-item .rarity { font-size: 10px; opacity: 0.6; }
         .inventory-item .sell-btn {
@@ -388,7 +389,7 @@
             box-shadow: 0 10px 40px rgba(168,85,247,0.3);
         }
         #resultToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-        #resultToast .rt-img { width: 40px; height: 40px; object-fit: contain; }
+        #resultToast .rt-img { width: 50px; height: 50px; object-fit: contain; }
         #resultToast .rt-emoji { font-size: 32px; }
         #resultToast .rt-info { display: flex; flex-direction: column; }
         #resultToast .rt-name { font-size: 13px; font-weight: 700; }
@@ -411,11 +412,11 @@
             .case-card .case-title { font-size: 12px; }
             .case-card .case-image img { max-height: 100px; }
             .roulette-item { flex: 0 0 75px; height: 75px; }
-            .roulette-item .item-image { width: 45px; height: 45px; }
-            .roulette-item .item-emoji { font-size: 26px; }
+            .roulette-item .item-image { width: 60px; height: 60px; }
+            .roulette-item .item-emoji { font-size: 30px; }
             .roulette-item .item-name { font-size: 6px; }
             #rouletteWindowInline { height: 90px; }
-            .grid-item .item-emoji { font-size: 20px; }
+            .grid-item .item-emoji { font-size: 24px; }
             .grid-item .item-chance { font-size: 7px; }
             .preview-btn { padding: 12px 24px; font-size: 14px; }
         }
@@ -578,7 +579,7 @@
             legendary: { name: 'Легендарный',  color: '#f5a623' },
         };
 
-        // ================= СКИНЫ КЕЙСА "КАЛАШИ" =================
+        // ================= КЕЙС "КАЛАШИ" =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -598,7 +599,7 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        // ================= МОИ КЕЙСЫ =================
+        // ================= ДОП. КЕЙСЫ =================
         const toolsItems = [
             { id: 't1', name: 'Кирка шахтёра', emoji: '⛏️', rarity: 'common', price: 20 },
             { id: 't2', name: 'Молот', emoji: '🔨', rarity: 'common', price: 25 },
@@ -628,7 +629,7 @@
                 id: 'kalash',
                 name: 'Калаши',
                 emoji: '🔫',
-                image: 'kalash.png',   // <-- КАРТИНКА КЕЙСА
+                image: 'kalash.png',
                 price: 1,
                 badge: 'new',
                 rarity: 'epic',
@@ -709,7 +710,7 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= ОТРИСОВКА =================
+        // ================= ОТРИСОВКА КЕЙСОВ =================
         function renderCases() {
             const grid = document.getElementById('casesGrid');
             grid.innerHTML = cases.map(c => {
@@ -747,7 +748,7 @@
             });
         }
 
-        // ================= ПОКАЗ КЕЙСА =================
+        // ================= ОКНО КЕЙСА =================
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -761,7 +762,6 @@
             }
             currentCase = c;
 
-            // Заголовок кейса — если есть картинка, показываем её
             const prevEmoji = document.getElementById('previewEmoji');
             if (c.image) {
                 prevEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
@@ -1041,7 +1041,7 @@
             }
         })();
 
-        console.log('🎰 Игра запущена! kalash.png как картинка кейса');
+        console.log('🎰 Игра запущена!');
     </script>
 </body>
 </html>
