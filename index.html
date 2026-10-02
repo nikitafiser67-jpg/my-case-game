@@ -606,6 +606,10 @@
             border-color: #f5a623;
             background: radial-gradient(circle at center, rgba(245,166,35,0.5) 0%, rgba(245,166,35,0.1) 70%);
         }
+        .roulette-item.common {
+            border-color: #9ca3af;
+            background: radial-gradient(circle at center, rgba(156,163,175,0.4) 0%, rgba(156,163,175,0.1) 70%);
+        }
 
         .roulette-pointer {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -715,6 +719,10 @@
             background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
             border-color: rgba(59,130,246,0.4);
         }
+        .item-card.common {
+            background: linear-gradient(160deg, #2a2a2a 0%, #0f0f0f 100%);
+            border-color: rgba(156,163,175,0.4);
+        }
         .item-card .item-img-wrap {
             flex: 1; display: flex; align-items: center; justify-content: center;
             min-height: 70px;
@@ -799,6 +807,10 @@
             background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
             border-color: rgba(59,130,246,0.3);
         }
+        .picker-item.common {
+            background: linear-gradient(160deg, #2a2a2a 0%, #0f0f0f 100%);
+            border-color: rgba(156,163,175,0.3);
+        }
 
         #upgradeResult {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -869,6 +881,7 @@
         .multi-item.rare { border-left-color: #3b82f6; background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(0,0,0,0.2)); }
         .multi-item.epic { border-left-color: #a855f7; background: linear-gradient(90deg, rgba(168,85,247,0.15), rgba(0,0,0,0.2)); }
         .multi-item.legendary { border-left-color: #f5a623; background: linear-gradient(90deg, rgba(245,166,35,0.15), rgba(0,0,0,0.2)); }
+        .multi-item.common { border-left-color: #9ca3af; background: linear-gradient(90deg, rgba(156,163,175,0.15), rgba(0,0,0,0.2)); }
         .multi-item img {
             width: 50px; height: 50px; object-fit: contain;
             filter: brightness(1.5) drop-shadow(0 2px 6px rgba(0,0,0,0.6));
@@ -1272,7 +1285,7 @@
             legendary: { name: 'Легендарный', color: '#f5a623' },
         };
 
-        // ================= СКИНЫ =================
+        // ================= СКИНЫ КАЛАШИ =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', image: 'memento.png', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -1292,7 +1305,15 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        const rifleItems = [];
+        // ================= СКИНЫ ВИНТОВКИ =================
+        const rifleItems = [
+            { id: 'r1', name: 'Кровавый шип', emoji: '🩸', rarity: 'legendary', price: 400 },
+            { id: 'r2', name: 'Наследие дракона', emoji: '🐉', rarity: 'legendary', price: 300 },
+            { id: 'r3', name: 'Пески времени', emoji: '⏳', rarity: 'legendary', price: 200 },
+            { id: 'r4', name: 'Морозный следопыт', emoji: '❄️', rarity: 'epic', price: 100 },
+            { id: 'r5', name: 'Громовая птица', emoji: '⚡', rarity: 'epic', price: 50 },
+        ];
+
         const donateItems = [];
 
         const cases = [
@@ -1300,8 +1321,8 @@
               price: 600, badge: 'new', rarity: 'epic',
               chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: kalashItems },
             { id: 'rifle', name: 'Винтовки', emoji: '🎯', image: 'rifle.png',
-              price: 150, badge: 'soon', rarity: 'legendary',
-              chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: rifleItems, locked: true },
+              price: 150, badge: 'new', rarity: 'legendary',
+              chances: { common: 0, rare: 0, epic: 40, legendary: 60 }, items: rifleItems },
             { id: 'donate', name: 'Донат', emoji: '👑', image: null,
               price: 500, badge: 'top', rarity: 'legendary',
               chances: { common: 0, rare: 15, epic: 35, legendary: 50 }, items: donateItems, locked: true, isDonate: true },
@@ -1821,7 +1842,7 @@
             if (inventory.length === 0) { showStatus('⚠️ Инвентарь пуст'); return; }
             openPicker('inventory');
         };
-        document.getElementById('upgradeSlotTo').onclick = () => { openPicker('kalash'); };
+        document.getElementById('upgradeSlotTo').onclick = () => { openPicker('all'); };
 
         function openPicker(type) {
             const modal = document.getElementById('pickerModal');
@@ -1839,13 +1860,14 @@
                         '<div class="picker-price">₿ ' + item.price + '</div></div>';
                 }).join('');
             } else {
-                title.textContent = 'Выбор из кейса «Калаши»';
-                const sorted = [...kalashItems].sort((a, b) => b.price - a.price);
+                title.textContent = 'Выбор скина';
+                const allItems = [...kalashItems, ...rifleItems];
+                const sorted = allItems.sort((a, b) => b.price - a.price);
                 grid.innerHTML = sorted.map(item => {
                     const imgContent = item.image
                         ? '<img src="' + item.image + '" alt="' + item.name + '">'
                         : '<div class="picker-emoji">' + item.emoji + '</div>';
-                    return '<div class="picker-item ' + item.rarity + '" data-type="kalash" data-id="' + item.id + '">' +
+                    return '<div class="picker-item ' + item.rarity + '" data-type="all" data-id="' + item.id + '">' +
                         imgContent + '<div class="picker-name">' + item.name + '</div>' +
                         '<div class="picker-price">₿ ' + item.price + '</div></div>';
                 }).join('');
@@ -1854,7 +1876,10 @@
             grid.querySelectorAll('.picker-item').forEach(el => {
                 el.addEventListener('click', () => {
                     if (el.dataset.type === 'inv') upgradeFrom = parseInt(el.dataset.index);
-                    else upgradeTo = kalashItems.find(k => k.id === el.dataset.id);
+                    else {
+                        const allItems = [...kalashItems, ...rifleItems];
+                        upgradeTo = allItems.find(k => k.id === el.dataset.id);
+                    }
                     updateUpgrade();
                     modal.classList.remove('active');
                 });
@@ -2065,7 +2090,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Скины стали яркими!');
+        console.log('🎰 Кейс Винтовки открыт с 5 скинами!');
     </script>
 </body>
 </html>
