@@ -139,32 +139,23 @@
             border-color: rgba(245,166,35,0.6); color: #f5a623;
         }
 
-        /* ================= ИНВЕНТАРЬ (ЭКРАН) ================= */
+        /* ================= ИНВЕНТАРЬ ================= */
         .inventory-summary {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 10px; margin-bottom: 16px;
         }
         .inv-stat {
             background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
             border: 1px solid rgba(168,85,247,0.3);
-            border-radius: 14px;
-            padding: 14px;
-            text-align: center;
+            border-radius: 14px; padding: 14px; text-align: center;
         }
         .inv-stat-value {
-            font-size: 22px;
-            font-weight: 900;
-            color: #a855f7;
+            font-size: 22px; font-weight: 900; color: #a855f7;
         }
         .inv-stat-value.gold { color: #f5a623; }
         .inv-stat-label {
-            font-size: 10px;
-            color: #9ca3af;
-            margin-top: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 10px; color: #9ca3af; margin-top: 4px;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
 
         .inventory-item {
@@ -193,7 +184,6 @@
             font-size: 12px; font-weight: 700; cursor: pointer;
             white-space: nowrap;
         }
-        .inventory-item .sell-btn:active { transform: scale(0.95); }
         #emptyInventory {
             text-align: center; color: rgba(255,255,255,0.4); padding: 60px 30px;
             font-size: 14px; line-height: 1.6;
@@ -221,7 +211,6 @@
             cursor: pointer; background: rgba(0,0,0,0.2);
             padding: 10px; transition: border-color 0.2s;
         }
-        .upgrade-slot:active { border-color: rgba(168,85,247,0.6); }
         .upgrade-slot.filled {
             border-style: solid;
             border-color: rgba(168,85,247,0.5);
@@ -329,7 +318,6 @@
             background: #333; color: #777; box-shadow: none;
             cursor: not-allowed;
         }
-        .upgrade-btn:active:not(:disabled) { transform: scale(0.97); }
 
         /* ================= ПРОФИЛЬ ================= */
         .profile-header {
@@ -428,9 +416,7 @@
         .profile-row {
             display: flex; align-items: center; gap: 12px;
             padding: 14px 12px; cursor: pointer; border-radius: 12px;
-            transition: background 0.15s;
         }
-        .profile-row:active { background: rgba(255,255,255,0.05); }
         .profile-row .row-icon { font-size: 22px; }
         .profile-row .row-text { flex: 1; font-size: 14px; font-weight: 600; }
         .profile-row .row-value {
@@ -484,7 +470,8 @@
             background: rgba(0,0,0,0.35);
             border-radius: 10px; padding: 8px 10px; flex: 1;
         }
-        .promo-stat .value { font-size: 15px; font-weight: 800; }
+        .promo-stat .value { font-size: 15px; font-weight: 800; color: #22c55e; }
+        .promo-stat .value.purple-value { color: #a855f7; }
         .promo-stat .label { font-size: 9px; opacity: 0.6; margin-top: 1px; }
         .promo-right {
             width: 100px; display: flex; align-items: center; justify-content: center;
@@ -499,7 +486,6 @@
             border-radius: 16px; padding: 14px; margin-top: 14px;
             cursor: pointer;
         }
-        .quests-banner:active { transform: scale(0.98); }
         .quests-icon {
             width: 44px; height: 44px; border-radius: 12px;
             background: rgba(245,166,35,0.15);
@@ -666,7 +652,6 @@
             box-shadow: 0 8px 30px rgba(124,58,237,0.4);
             transition: transform 0.15s;
         }
-        #casePreview .open-btn-big:active { transform: scale(0.97); }
         #casePreview .open-btn-big:disabled {
             background: #333; color: #777; box-shadow: none;
         }
@@ -773,11 +758,8 @@
             cursor: pointer;
             display: flex; flex-direction: column; align-items: center;
             gap: 4px; min-height: 110px;
-            position: relative;
-            transition: border-color 0.15s;
         }
-        .picker-item:active { border-color: #a855f7; }
-        .picker-item img { max-width: 60px; max-height: 60px; object-fit: contain; brightness: 1.2; }
+        .picker-item img { max-width: 60px; max-height: 60px; object-fit: contain; filter: brightness(1.2); }
         .picker-item .picker-emoji { font-size: 40px; }
         .picker-item .picker-name {
             font-size: 10px; font-weight: 700; text-align: center;
@@ -811,18 +793,15 @@
         #upgradeResult.active { display: flex; }
         .result-status {
             font-size: 28px; font-weight: 900; letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            margin-bottom: 20px; text-transform: uppercase;
         }
         .result-status.success {
             background: linear-gradient(135deg, #22c55e, #16a34a);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         .result-status.fail {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         .result-img-wrap {
             width: 160px; height: 160px;
@@ -940,11 +919,11 @@
                     <div class="promo-desc">Открывай кейсы на монеты, забирай бонус каждый день.</div>
                     <div class="promo-stats">
                         <div class="promo-stat">
-                            <div class="value" id="statPlayers">1</div>
-                            <div class="label">игроков</div>
+                            <div class="value" id="statPlayers">1 000</div>
+                            <div class="label">онлайн</div>
                         </div>
                         <div class="promo-stat">
-                            <div class="value" id="statOpened">0</div>
+                            <div class="value purple-value" id="statOpened">0</div>
                             <div class="label">кейсов открыто</div>
                         </div>
                     </div>
@@ -1180,7 +1159,7 @@
         </div>
 
         <button class="open-btn-big" id="previewOpenBtn">
-            Открыть за <span class="coin-icon">₿</span> <span id="openPrice">1</span>
+            Открыть за <span class="coin-icon">₿</span> <span id="openPrice">600</span>
         </button>
 
         <div class="contents-title">Содержимое кейса</div>
@@ -1333,20 +1312,28 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= TELEGRAM USER =================
+        // ================= ОНЛАЙН (ФЕЙКОВЫЙ) =================
+        let onlineBase = 850 + Math.floor(Math.random() * 350);
+        function updateOnline() {
+            onlineBase += Math.floor(Math.random() * 7) - 3;
+            if (onlineBase < 700) onlineBase = 700;
+            if (onlineBase > 1400) onlineBase = 1400;
+            const el = document.getElementById('statPlayers');
+            if (el) el.textContent = onlineBase.toLocaleString('ru-RU');
+        }
+        updateOnline();
+        setInterval(updateOnline, 25000);
+
+        // ================= TELEGRAM =================
         let tgUser = null;
         try {
             if (window.Telegram && window.Telegram.WebApp) {
                 window.Telegram.WebApp.ready();
                 const u = window.Telegram.WebApp.initDataUnsafe?.user;
                 if (u) {
-                    tgUser = {
-                        id: u.id,
-                        firstName: u.first_name || 'Игрок',
-                        lastName: u.last_name || '',
-                        username: u.username || '',
-                        photoUrl: u.photo_url || ''
-                    };
+                    tgUser = { id: u.id, firstName: u.first_name || 'Игрок',
+                        lastName: u.last_name || '', username: u.username || '',
+                        photoUrl: u.photo_url || '' };
                 }
             }
         } catch(e) {}
@@ -1586,7 +1573,7 @@
             setTimeout(() => s.classList.remove('show'), 2000);
         }
 
-        // ================= ИНВЕНТАРЬ (ОТДЕЛЬНЫЙ ЭКРАН) =================
+        // ================= ИНВЕНТАРЬ =================
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (!list) return;
@@ -1663,10 +1650,7 @@
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', () => {
                 const tab = item.dataset.tab;
-                if (tab === 'quests') {
-                    claimBonus();
-                    return;
-                }
+                if (tab === 'quests') { claimBonus(); return; }
                 if (tab === 'cases' || tab === 'upgrade' || tab === 'inventory' || tab === 'profile') {
                     switchScreen(tab);
                     return;
@@ -1728,9 +1712,8 @@
                 const toPrice = upgradeTo.price;
 
                 let chance;
-                if (toPrice <= fromPrice) {
-                    chance = 100;
-                } else {
+                if (toPrice <= fromPrice) chance = 100;
+                else {
                     chance = Math.round((fromPrice / toPrice) * 100);
                     if (chance > 95) chance = 95;
                     if (chance < 1) chance = 1;
@@ -1755,10 +1738,7 @@
         }
 
         document.getElementById('upgradeSlotFrom').onclick = () => {
-            if (inventory.length === 0) {
-                showStatus('⚠️ Инвентарь пуст');
-                return;
-            }
+            if (inventory.length === 0) { showStatus('⚠️ Инвентарь пуст'); return; }
             openPicker('inventory');
         };
 
@@ -1800,11 +1780,8 @@
 
             grid.querySelectorAll('.picker-item').forEach(el => {
                 el.addEventListener('click', () => {
-                    if (el.dataset.type === 'inv') {
-                        upgradeFrom = parseInt(el.dataset.index);
-                    } else {
-                        upgradeTo = kalashItems.find(k => k.id === el.dataset.id);
-                    }
+                    if (el.dataset.type === 'inv') upgradeFrom = parseInt(el.dataset.index);
+                    else upgradeTo = kalashItems.find(k => k.id === el.dataset.id);
                     updateUpgrade();
                     modal.classList.remove('active');
                 });
@@ -1824,9 +1801,8 @@
             const toItem = upgradeTo;
 
             let chance;
-            if (toItem.price <= fromItem.price) {
-                chance = 100;
-            } else {
+            if (toItem.price <= fromItem.price) chance = 100;
+            else {
                 chance = Math.round((fromItem.price / toItem.price) * 100);
                 if (chance > 95) chance = 95;
                 if (chance < 1) chance = 1;
@@ -1864,7 +1840,6 @@
                 renderInventory();
                 resetUpgrade();
                 checkAchievements();
-
                 btn.textContent = 'Апгрейд';
             }, 4200);
         };
@@ -1875,19 +1850,11 @@
             const imgWrap = document.getElementById('resultImgWrap');
             const nameEl = document.getElementById('resultName');
 
-            if (success) {
-                statusEl.textContent = '✅ УСПЕХ!';
-                statusEl.className = 'result-status success';
-            } else {
-                statusEl.textContent = '❌ ПРОВАЛ';
-                statusEl.className = 'result-status fail';
-            }
+            if (success) { statusEl.textContent = '✅ УСПЕХ!'; statusEl.className = 'result-status success'; }
+            else { statusEl.textContent = '❌ ПРОВАЛ'; statusEl.className = 'result-status fail'; }
 
-            if (item.image) {
-                imgWrap.innerHTML = '<img src="' + item.image + '" alt="">';
-            } else {
-                imgWrap.innerHTML = '<div class="result-emoji">' + item.emoji + '</div>';
-            }
+            if (item.image) imgWrap.innerHTML = '<img src="' + item.image + '" alt="">';
+            else imgWrap.innerHTML = '<div class="result-emoji">' + item.emoji + '</div>';
             nameEl.textContent = item.name;
 
             modal.classList.add('active');
@@ -1905,11 +1872,8 @@
             const dateEl = document.getElementById('profileDate');
 
             if (tgUser) {
-                if (tgUser.photoUrl) {
-                    avatar.innerHTML = '<img src="' + tgUser.photoUrl + '" alt="">';
-                } else {
-                    avatar.textContent = tgUser.firstName.charAt(0).toUpperCase();
-                }
+                if (tgUser.photoUrl) avatar.innerHTML = '<img src="' + tgUser.photoUrl + '" alt="">';
+                else avatar.textContent = tgUser.firstName.charAt(0).toUpperCase();
                 nameEl.textContent = tgUser.firstName + (tgUser.lastName ? ' ' + tgUser.lastName : '');
                 idEl.textContent = '@' + (tgUser.username || 'id' + tgUser.id);
             } else {
@@ -1930,7 +1894,6 @@
             document.getElementById('statBalance').textContent = coins.toLocaleString('ru-RU');
             document.getElementById('statCases').textContent = totalOpened;
             document.getElementById('statInvSize').textContent = inventory.length;
-
             const totalValue = inventory.reduce((sum, item) => sum + item.price, 0);
             document.getElementById('statInvValue').textContent = totalValue.toLocaleString('ru-RU');
 
@@ -2001,12 +1964,8 @@
 
         document.getElementById('rowShare').onclick = () => {
             const text = 'Играю в Oxide Drop — открой свой кейс! ' + location.href;
-            if (navigator.share) {
-                navigator.share({ title: 'Oxide Drop', text: text, url: location.href });
-            } else if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-                showStatus('📤 Скопировано!');
-            }
+            if (navigator.share) navigator.share({ title: 'Oxide Drop', text: text, url: location.href });
+            else if (navigator.clipboard) { navigator.clipboard.writeText(text); showStatus('📤 Скопировано!'); }
         };
 
         document.getElementById('rowReset').onclick = () => {
@@ -2026,10 +1985,7 @@
 
         document.getElementById('refCopyBtn').onclick = () => {
             const text = document.getElementById('refText').textContent;
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-                showStatus('📋 Скопировано!');
-            }
+            if (navigator.clipboard) { navigator.clipboard.writeText(text); showStatus('📋 Скопировано!'); }
         };
 
         // ================= БОНУС =================
@@ -2070,12 +2026,10 @@
         })();
 
         try {
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.expand();
-            }
+            if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Инвентарь отдельным экраном!');
+        console.log('🎰 Онлайн + кейс за 600 монет!');
     </script>
 </body>
 </html>
