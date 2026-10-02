@@ -13,6 +13,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* ================= HEADER ================= */
         #header {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
             display: flex; align-items: center; justify-content: space-between;
@@ -45,6 +46,7 @@
             box-shadow: 0 0 10px rgba(245,166,35,0.5);
         }
 
+        /* ================= CONTENT ================= */
         #content {
             position: absolute; top: 60px; bottom: 70px; left: 0; right: 0;
             overflow-y: auto; overflow-x: hidden;
@@ -67,6 +69,7 @@
             border-radius: 2px;
         }
 
+        /* ================= CASES GRID ================= */
         .cases-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -81,12 +84,11 @@
             display: flex; flex-direction: column; gap: 10px;
             border: 1px solid rgba(255,255,255,0.06);
             cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.15s;
+            transition: transform 0.15s;
             overflow: hidden;
             min-height: 210px;
         }
         .case-card:active { transform: scale(0.97); }
-        .case-card.locked { opacity: 0.5; }
 
         .case-card .case-top {
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -99,7 +101,6 @@
         .case-card .badge {
             font-size: 9px; font-weight: 800; letter-spacing: 0.5px;
             padding: 3px 8px; border-radius: 8px; text-transform: uppercase;
-            white-space: nowrap;
         }
         .badge.new { background: #ec4899; color: white; }
         .badge.free { background: #22c55e; color: white; }
@@ -141,6 +142,7 @@
             color: #4ade80;
         }
 
+        /* ================= PROMO ================= */
         .promo-block {
             background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
             border-radius: 18px;
@@ -177,9 +179,9 @@
             width: 100px; display: flex; align-items: center; justify-content: center;
             position: relative; z-index: 1;
         }
-        .promo-right img { max-width: 100%; max-height: 110px; object-fit: contain; }
         .promo-right .emoji-big { font-size: 72px; }
 
+        /* ================= QUESTS ================= */
         .quests-banner {
             display: flex; align-items: center; gap: 12px;
             background: linear-gradient(135deg, #3d2a1a, #2a1d12);
@@ -206,6 +208,7 @@
             font-size: 13px; font-weight: 800;
         }
 
+        /* ================= BOTTOM NAV ================= */
         #bottomNav {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
             background: rgba(15,12,25,0.98); backdrop-filter: blur(20px);
@@ -233,36 +236,128 @@
             background: #22c55e; border: 2px solid #0f0c19;
         }
 
+        /* ================= CASE PREVIEW ================= */
         #casePreview {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5,5,10,0.98); backdrop-filter: blur(20px);
+            background: #0a0a0f;
             z-index: 100; display: none; flex-direction: column;
-            padding: 14px; overflow-y: auto;
+            overflow-y: auto;
         }
         #casePreview.active { display: flex; }
 
-        #casePreview .preview-header {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 12px; flex-shrink: 0;
+        /* БОЛЬШАЯ КАРТИНКА КЕЙСА СВЕРХУ */
+        #casePreview .case-hero {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at 50% 40%, rgba(124,58,237,0.25), transparent 70%);
+            flex-shrink: 0;
+            padding-top: 60px;
         }
-        #casePreview .preview-title-block { display: flex; align-items: center; gap: 12px; }
-        #casePreview .preview-emoji { font-size: 38px; }
-        #casePreview .preview-emoji img { width: 50px; height: 50px; object-fit: contain; }
-        #casePreview .preview-name { font-size: 19px; font-weight: 800; }
-        #casePreview .preview-price { font-size: 13px; color: #f5a623; font-weight: 700; }
-        #casePreview .close-x {
-            background: rgba(255,255,255,0.08); border: none; color: white;
-            width: 38px; height: 38px; border-radius: 50%; font-size: 20px;
-            cursor: pointer;
+        #casePreview .case-hero img {
+            max-width: 70%; max-height: 200px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+        }
+        #casePreview .case-hero .hero-emoji {
+            font-size: 120px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
         }
 
+        #casePreview .back-btn {
+            position: absolute; top: 15px; left: 15px;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-size: 20px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+        }
+
+        #casePreview .preview-name-top {
+            position: absolute; top: 22px; left: 0; right: 0;
+            text-align: center;
+            font-size: 18px; font-weight: 900; letter-spacing: 2px;
+            text-transform: uppercase; color: #fff;
+            pointer-events: none;
+        }
+
+        /* ОПЦИИ (x1/x2/x3 + быстро) */
+        #casePreview .case-options {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 20px;
+            margin-bottom: 12px;
+        }
+        .multi-btn-group {
+            display: flex; gap: 4px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px; padding: 4px;
+        }
+        .multi-btn {
+            padding: 8px 16px; border-radius: 8px;
+            background: transparent; border: none;
+            color: #9ca3af; font-weight: 700; font-size: 13px;
+            cursor: pointer;
+        }
+        .multi-btn.active {
+            background: rgba(124,58,237,0.4);
+            color: #fff;
+            border: 1px solid rgba(168,85,247,0.6);
+        }
+        .fast-toggle {
+            display: flex; align-items: center; gap: 8px;
+            color: #9ca3af; font-size: 13px; font-weight: 600;
+        }
+        .toggle-switch {
+            width: 44px; height: 24px; border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            position: relative; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle-switch.on { background: rgba(168,85,247,0.6); }
+        .toggle-switch::after {
+            content: ''; position: absolute; top: 3px; left: 3px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: #fff;
+            transition: left 0.2s;
+        }
+        .toggle-switch.on::after { left: 23px; }
+
+        /* КНОПКА ОТКРЫТЬ */
+        #casePreview .open-btn-big {
+            margin: 0 20px 16px 20px;
+            padding: 18px;
+            border-radius: 16px; border: none;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white; font-size: 17px; font-weight: 800;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+            transition: transform 0.15s;
+        }
+        #casePreview .open-btn-big:active { transform: scale(0.97); }
+        #casePreview .open-btn-big:disabled {
+            background: #333; color: #777; box-shadow: none;
+        }
+        #casePreview .open-btn-big .coin-icon {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffe066, #f5a623);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+        }
+
+        /* РУЛЕТКА (скрытая, пока крутится) */
         #rouletteWindowInline {
-            width: 100%; height: 110px;
+            width: calc(100% - 40px); margin: 0 20px 16px 20px;
+            height: 110px;
             background: #12101f; border-radius: 14px;
             border: 1px solid rgba(168,85,247,0.3);
             overflow: hidden; position: relative;
-            margin-bottom: 14px; flex-shrink: 0;
+            display: none;
         }
+        #rouletteWindowInline.active { display: block; }
+
         #rouletteTrackInline {
             display: flex; position: absolute; top: 0; left: 0;
             height: 100%; align-items: center;
@@ -289,51 +384,95 @@
             z-index: 5; box-shadow: 0 0 15px rgba(245,166,35,0.7);
         }
 
-        #casePreview .preview-grid {
+        /* СОДЕРЖИМОЕ КЕЙСА — ЗАГОЛОВОК */
+        #casePreview .contents-title {
+            padding: 0 20px 12px 20px;
+            font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+            color: #9ca3af;
+            text-transform: uppercase;
+        }
+
+        /* СЕТКА ПРЕДМЕТОВ — 3 КОЛОНКИ */
+        #casePreview .items-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 7px;
-            margin-bottom: 14px;
-            flex-shrink: 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 0 16px 20px 16px;
         }
-        .grid-item {
-            aspect-ratio: 1/1;
-            background: rgba(255,255,255,0.04);
-            border-radius: 9px;
-            border: 1.5px solid rgba(255,255,255,0.08);
+
+        .item-card {
+            position: relative;
+            border-radius: 14px;
+            padding: 10px;
+            display: flex; flex-direction: column;
+            overflow: hidden;
+            background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            min-height: 130px;
+        }
+
+        /* Цветной фон по редкости */
+        .item-card.legendary {
+            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
+            border-color: rgba(245,166,35,0.4);
+            box-shadow: 0 0 20px rgba(245,166,35,0.15);
+        }
+        .item-card.epic {
+            background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%);
+            border-color: rgba(168,85,247,0.4);
+            box-shadow: 0 0 20px rgba(168,85,247,0.15);
+        }
+        .item-card.rare {
+            background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
+            border-color: rgba(59,130,246,0.4);
+            box-shadow: 0 0 20px rgba(59,130,246,0.1);
+        }
+
+        .item-card .item-img-wrap {
+            flex: 1;
             display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
-            padding: 2px;
+            min-height: 70px;
         }
-        .grid-item.legendary { border-color: #f5a623; background: rgba(245,166,35,0.08); }
-        .grid-item.epic { border-color: #a855f7; background: rgba(168,85,247,0.08); }
-        .grid-item.rare { border-color: #3b82f6; background: rgba(59,130,246,0.08); }
-        .grid-item .item-img { width: 100%; height: 100%; object-fit: contain; }
-        .grid-item .item-emoji { font-size: 30px; }
-        .grid-item .item-chance {
-            position: absolute; bottom: 1px; right: 3px;
-            font-size: 8px; font-weight: 800;
-            color: #f5a623; background: rgba(0,0,0,0.7);
-            padding: 1px 4px; border-radius: 5px;
+        .item-card .item-img-wrap img {
+            max-width: 100%; max-height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
+        }
+        .item-card .item-img-wrap .item-emoji-big {
+            font-size: 48px;
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
         }
 
-        #casePreview .preview-buttons {
-            display: flex; gap: 10px; justify-content: center;
-            margin-top: auto; padding-bottom: 6px;
-        }
-        .preview-btn {
-            padding: 14px 34px; border-radius: 28px; border: none;
-            font-size: 16px; font-weight: 800; cursor: pointer;
-        }
-        .preview-btn.open-btn {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: white; flex: 1;
-            box-shadow: 0 8px 24px rgba(34,197,94,0.3);
-        }
-        .preview-btn.open-btn:disabled {
-            background: #333; color: #777; box-shadow: none;
+        .item-card .item-name {
+            font-size: 11px; font-weight: 700;
+            margin-top: 6px;
+            line-height: 1.2;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
+        .item-card .item-price {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 12px; font-weight: 800;
+            color: #f5a623;
+            margin-top: 4px;
+        }
+        .item-card .item-price .coin-icon {
+            width: 14px; height: 14px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffe066, #f5a623);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 8px;
+        }
+
+        .item-card .item-chance {
+            position: absolute; top: 6px; right: 6px;
+            font-size: 9px; font-weight: 800;
+            color: #fff;
+            background: rgba(0,0,0,0.6);
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+
+        /* ================= INVENTORY ================= */
         #inventoryMenu {
             position: fixed; bottom: -100%; left: 0; width: 100%;
             background: rgba(15,12,25,0.99); backdrop-filter: blur(20px);
@@ -378,6 +517,7 @@
             font-size: 13px;
         }
 
+        /* ================= TOAST & STATUS ================= */
         #resultToast {
             position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
             background: rgba(15,12,25,0.95); backdrop-filter: blur(20px);
@@ -400,7 +540,7 @@
             color: white; background: rgba(0,0,0,0.75); padding: 7px 18px;
             border-radius: 16px; font-size: 12px;
             border: 1px solid rgba(255,255,255,0.1);
-            pointer-events: none; z-index: 45;
+            pointer-events: none; z-index: 300;
             white-space: nowrap; opacity: 0;
             transition: opacity 0.3s;
         }
@@ -411,14 +551,17 @@
             .case-card .case-emoji-big { font-size: 52px; }
             .case-card .case-title { font-size: 12px; }
             .case-card .case-image img { max-height: 100px; }
+            #casePreview .case-hero { height: 220px; padding-top: 55px; }
+            #casePreview .case-hero img { max-height: 150px; }
+            #casePreview .case-hero .hero-emoji { font-size: 90px; }
+            .item-card { min-height: 115px; padding: 8px; }
+            .item-card .item-img-wrap img { max-height: 65px; }
+            .item-card .item-img-wrap .item-emoji-big { font-size: 38px; }
+            .item-card .item-name { font-size: 10px; }
+            .item-card .item-price { font-size: 11px; }
             .roulette-item { flex: 0 0 75px; height: 75px; }
             .roulette-item .item-image { width: 60px; height: 60px; }
             .roulette-item .item-emoji { font-size: 30px; }
-            .roulette-item .item-name { font-size: 6px; }
-            #rouletteWindowInline { height: 90px; }
-            .grid-item .item-emoji { font-size: 24px; }
-            .grid-item .item-chance { font-size: 7px; }
-            .preview-btn { padding: 12px 24px; font-size: 14px; }
         }
     </style>
 </head>
@@ -505,28 +648,38 @@
         </div>
     </div>
 
+    <!-- ОКНО КЕЙСА (новый дизайн как в Oxide Drop) -->
     <div id="casePreview">
-        <div class="preview-header">
-            <div class="preview-title-block">
-                <div class="preview-emoji" id="previewEmoji">🎁</div>
-                <div>
-                    <div class="preview-name" id="previewName">Кейс</div>
-                    <div class="preview-price" id="previewPrice">0 монет</div>
-                </div>
-            </div>
-            <button class="close-x" id="previewCloseBtn">✕</button>
+        <button class="back-btn" id="previewCloseBtn">←</button>
+        <div class="preview-name-top" id="previewName">КЕЙС</div>
+
+        <div class="case-hero">
+            <div id="previewEmoji">🎁</div>
         </div>
+
+        <div class="case-options">
+            <div class="multi-btn-group">
+                <button class="multi-btn active">x1</button>
+                <button class="multi-btn">x2</button>
+                <button class="multi-btn">x3</button>
+            </div>
+            <div class="fast-toggle">
+                <div class="toggle-switch" id="fastToggle"></div>
+                <span>Быстро</span>
+            </div>
+        </div>
+
+        <button class="open-btn-big" id="previewOpenBtn">
+            Открыть за <span class="coin-icon">₿</span> <span id="openPrice">1</span>
+        </button>
 
         <div id="rouletteWindowInline">
             <div id="roulettePointerInline"></div>
             <div id="rouletteTrackInline"></div>
         </div>
 
-        <div class="preview-grid" id="previewGrid"></div>
-
-        <div class="preview-buttons">
-            <button class="preview-btn open-btn" id="previewOpenBtn">Открыть</button>
-        </div>
+        <div class="contents-title">Содержимое кейса</div>
+        <div class="items-grid" id="previewGrid"></div>
     </div>
 
     <div id="inventoryMenu">
@@ -579,7 +732,7 @@
             legendary: { name: 'Легендарный',  color: '#f5a623' },
         };
 
-        // ================= КЕЙС "КАЛАШИ" =================
+        // ================= СКИНЫ КЕЙСА "КАЛАШИ" =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -626,46 +779,26 @@
         // ================= КЕЙСЫ =================
         const cases = [
             {
-                id: 'kalash',
-                name: 'Калаши',
-                emoji: '🔫',
-                image: 'kalash.png',
-                price: 1,
-                badge: 'new',
-                rarity: 'epic',
+                id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png',
+                price: 1, badge: 'new', rarity: 'epic',
                 chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
                 items: kalashItems
             },
             {
-                id: 'tools',
-                name: 'Кейс инструментов',
-                emoji: '⛏️',
-                image: null,
-                price: 100,
-                badge: 'new',
-                rarity: 'epic',
+                id: 'tools', name: 'Кейс инструментов', emoji: '⛏️', image: null,
+                price: 100, badge: 'new', rarity: 'epic',
                 chances: { common: 40, rare: 35, epic: 20, legendary: 5 },
                 items: toolsItems
             },
             {
-                id: 'home',
-                name: 'Всё для дома',
-                emoji: '🏠',
-                image: null,
-                price: 125,
-                badge: 'new',
-                rarity: 'rare',
+                id: 'home', name: 'Всё для дома', emoji: '🏠', image: null,
+                price: 125, badge: 'new', rarity: 'rare',
                 chances: { common: 35, rare: 40, epic: 20, legendary: 5 },
                 items: homeItems
             },
             {
-                id: 'bonus',
-                name: 'Бонус кейс',
-                emoji: '🎁',
-                image: null,
-                price: 0,
-                badge: 'free',
-                rarity: 'common',
+                id: 'bonus', name: 'Бонус кейс', emoji: '🎁', image: null,
+                price: 0, badge: 'free', rarity: 'common',
                 chances: { common: 50, rare: 35, epic: 12, legendary: 3 },
                 items: bonusItems
             },
@@ -679,6 +812,7 @@
         let isFirstTime = true;
         let currentCase = null;
         let isSpinning = false;
+        let fastMode = false;
 
         try {
             const savedCoins = localStorage.getItem('oxideCoins');
@@ -748,7 +882,7 @@
             });
         }
 
-        // ================= ОКНО КЕЙСА =================
+        // ================= ОКНО КЕЙСА (новый дизайн) =================
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -762,20 +896,27 @@
             }
             currentCase = c;
 
-            const prevEmoji = document.getElementById('previewEmoji');
-            if (c.image) {
-                prevEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
-            } else {
-                prevEmoji.textContent = c.emoji;
-            }
-            document.getElementById('previewName').textContent = c.name;
-            document.getElementById('previewPrice').textContent = c.price === 0 ? 'Бесплатно' : c.price + ' монет';
+            document.getElementById('previewName').textContent = c.name.toUpperCase();
 
+            // Большая картинка сверху
+            const heroEmoji = document.getElementById('previewEmoji');
+            if (c.image) {
+                heroEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
+            } else {
+                heroEmoji.innerHTML = '<div class="hero-emoji">' + c.emoji + '</div>';
+            }
+
+            // Цена на кнопке
+            document.getElementById('openPrice').textContent = c.price === 0 ? 'Бесплатно' : c.price;
+
+            // Очищаем рулетку
             const track = document.getElementById('rouletteTrackInline');
             track.innerHTML = '';
             track.style.transition = 'none';
             track.style.transform = 'translateX(0)';
+            document.getElementById('rouletteWindowInline').classList.remove('active');
 
+            // Сортировка предметов
             const sortedItems = [...c.items].sort((a, b) => b.price - a.price);
 
             const rarityChances = {
@@ -789,6 +930,7 @@
                 rarityCounts[item.rarity] = (rarityCounts[item.rarity] || 0) + 1;
             });
 
+            // Сетка 3 колонки — как в Oxide Drop
             const grid = document.getElementById('previewGrid');
             grid.innerHTML = sortedItems.map(item => {
                 const rarityChance = rarityChances[item.rarity] || 0;
@@ -796,24 +938,31 @@
                 const itemChance = (rarityChance / count).toFixed(1);
 
                 const imgContent = item.image 
-                    ? '<img class="item-img" src="' + item.image + '" alt="' + item.name + '">' 
-                    : '<span class="item-emoji">' + item.emoji + '</span>';
+                    ? '<img src="' + item.image + '" alt="' + item.name + '">' 
+                    : '<div class="item-emoji-big">' + item.emoji + '</div>';
 
-                return '<div class="grid-item ' + item.rarity + '">' +
-                    imgContent +
+                return '<div class="item-card ' + item.rarity + '">' +
                     '<div class="item-chance">' + itemChance + '%</div>' +
+                    '<div class="item-img-wrap">' + imgContent + '</div>' +
+                    '<div class="item-name">' + item.name + '</div>' +
+                    '<div class="item-price"><span class="coin-icon">₿</span> ' + item.price + '</div>' +
                 '</div>';
             }).join('');
 
             const openBtn = document.getElementById('previewOpenBtn');
             openBtn.disabled = false;
-            openBtn.textContent = c.price === 0 ? '🎁 Открыть бесплатно' : 'Открыть за ' + c.price + ' монет';
 
             document.getElementById('casePreview').classList.add('active');
         }
 
         document.getElementById('previewCloseBtn').onclick = () => {
             document.getElementById('casePreview').classList.remove('active');
+        };
+
+        // Быстрый режим
+        document.getElementById('fastToggle').onclick = () => {
+            fastMode = !fastMode;
+            document.getElementById('fastToggle').classList.toggle('on', fastMode);
         };
 
         // ================= ОТКРЫТИЕ =================
@@ -854,8 +1003,12 @@
             const track = document.getElementById('rouletteTrackInline');
             const winEl = document.getElementById('rouletteWindowInline');
             const openBtn = document.getElementById('previewOpenBtn');
+
             openBtn.disabled = true;
             openBtn.textContent = '🎡 Крутится...';
+
+            // Показываем рулетку
+            winEl.classList.add('active');
 
             const items = [];
             for (let i = 0; i < 30; i++) {
@@ -869,7 +1022,6 @@
                     : '<div class="item-emoji">' + item.emoji + '</div>';
                 return '<div class="roulette-item ' + item.rarity + '">' +
                     imgContent +
-                    '<div class="item-name">' + item.name + '</div>' +
                 '</div>';
             }).join('');
 
@@ -877,18 +1029,20 @@
             track.style.transform = 'translateX(0)';
             void track.offsetWidth;
 
+            const spinTime = fastMode ? 3 : 6;
+
             let tickCount = 0;
             const tickInterval = setInterval(() => {
                 playSound(500 + Math.random() * 300, 0.04, 0.06);
                 tickCount++;
-                if (tickCount > 25) clearInterval(tickInterval);
-            }, 220);
+                if (tickCount > (fastMode ? 15 : 25)) clearInterval(tickInterval);
+            }, fastMode ? 180 : 220);
 
             const itemWidth = 100;
             const winWidth = winEl.offsetWidth;
             const targetPos = -(20 * itemWidth) + (winWidth / 2) - (itemWidth / 2);
 
-            track.style.transition = 'transform 6s cubic-bezier(0.1, 0.8, 0.1, 1)';
+            track.style.transition = 'transform ' + spinTime + 's cubic-bezier(0.1, 0.8, 0.1, 1)';
             track.style.transform = 'translateX(' + targetPos + 'px)';
 
             setTimeout(() => {
@@ -911,12 +1065,17 @@
                 openBtn.disabled = false;
                 if (c.price > 0 && coins < c.price) {
                     openBtn.disabled = true;
-                    openBtn.textContent = '❌ Мало монет';
+                    openBtn.innerHTML = '❌ Мало монет';
                 } else {
-                    openBtn.textContent = c.price === 0 ? '🎁 Открыть бесплатно' : 'Открыть за ' + c.price + ' монет';
+                    openBtn.innerHTML = 'Открыть за <span class="coin-icon">₿</span> <span id="openPrice">' + c.price + '</span>';
                 }
                 isSpinning = false;
-            }, 6200);
+
+                // Прячем рулетку через 2 секунды
+                setTimeout(() => {
+                    winEl.classList.remove('active');
+                }, 2000);
+            }, spinTime * 1000 + 200);
         }
 
         // ================= TOAST =================
@@ -1041,7 +1200,7 @@
             }
         })();
 
-        console.log('🎰 Игра запущена!');
+        console.log('🎰 Oxide Drop Style запущен!');
     </script>
 </body>
 </html>
