@@ -53,6 +53,10 @@
         }
         #content::-webkit-scrollbar { display: none; }
 
+        /* Скрываем вкладки: кейсы и апгрейд — разные экраны */
+        .tab-screen { display: none; }
+        .tab-screen.active { display: block; }
+
         .section-title {
             font-size: 18px; font-weight: 800; letter-spacing: 1.5px;
             text-transform: uppercase; margin: 18px 0 12px 0;
@@ -136,6 +140,210 @@
             border-color: rgba(245,166,35,0.6); color: #f5a623;
         }
 
+        /* ================= АПГРЕЙД ================= */
+        .upgrade-container {
+            display: flex; flex-direction: column; gap: 16px;
+            padding-bottom: 20px;
+        }
+        .upgrade-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 14px;
+        }
+        .upgrade-block-title {
+            font-size: 12px; font-weight: 800; letter-spacing: 1px;
+            color: #9ca3af; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .upgrade-slot {
+            width: 100%;
+            min-height: 130px;
+            border: 2px dashed rgba(255,255,255,0.15);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            transition: border-color 0.2s;
+        }
+        .upgrade-slot:active { border-color: rgba(168,85,247,0.6); }
+        .upgrade-slot.filled {
+            border-style: solid;
+            border-color: rgba(168,85,247,0.5);
+            background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%);
+        }
+        .upgrade-slot .slot-empty-text {
+            color: #6b7280; font-size: 13px; text-align: center;
+        }
+        .upgrade-slot .slot-content {
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            width: 100%;
+        }
+        .upgrade-slot .slot-content img {
+            max-width: 70px; max-height: 70px; object-fit: contain;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+        }
+        .upgrade-slot .slot-content .slot-emoji { font-size: 50px; }
+        .upgrade-slot .slot-content .slot-name {
+            font-size: 12px; font-weight: 700; text-align: center;
+            line-height: 1.2;
+            max-width: 100%;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .upgrade-slot .slot-content .slot-price {
+            font-size: 12px; font-weight: 800; color: #f5a623;
+        }
+
+        .upgrade-arrow {
+            text-align: center; font-size: 28px;
+            color: #a855f7;
+        }
+
+        .upgrade-chance {
+            text-align: center; padding: 14px;
+            background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
+            border: 1px solid rgba(168,85,247,0.3);
+            border-radius: 16px;
+        }
+        .upgrade-chance .chance-label {
+            font-size: 11px; color: #9ca3af; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 4px;
+        }
+        .upgrade-chance .chance-value {
+            font-size: 36px; font-weight: 900;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .upgrade-chance .chance-value.low {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .upgrade-chance .chance-value.mid {
+            background: linear-gradient(135deg, #f59e0b, #f5a623);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .upgrade-btn {
+            padding: 18px;
+            border-radius: 16px; border: none;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white; font-size: 17px; font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+        }
+        .upgrade-btn:disabled {
+            background: #333; color: #777; box-shadow: none;
+            cursor: not-allowed;
+        }
+        .upgrade-btn:active:not(:disabled) { transform: scale(0.97); }
+
+        /* ОКНО ВЫБОРА ПРЕДМЕТА */
+        .picker-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5,5,10,0.98); backdrop-filter: blur(20px);
+            z-index: 200; display: none; flex-direction: column;
+            padding: 20px 16px;
+        }
+        .picker-modal.active { display: flex; }
+        .picker-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 16px;
+        }
+        .picker-header h3 { font-size: 18px; font-weight: 800; }
+        .picker-close {
+            background: rgba(255,255,255,0.08); border: none; color: white;
+            width: 38px; height: 38px; border-radius: 50%;
+            font-size: 20px; cursor: pointer;
+        }
+        .picker-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; overflow-y: auto; flex: 1;
+            padding-bottom: 20px;
+        }
+        .picker-item {
+            border-radius: 12px; padding: 8px;
+            background: rgba(255,255,255,0.04);
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 4px;
+            min-height: 110px;
+            position: relative;
+            transition: border-color 0.15s;
+        }
+        .picker-item:active { border-color: #a855f7; }
+        .picker-item img {
+            max-width: 60px; max-height: 60px; object-fit: contain;
+        }
+        .picker-item .picker-emoji { font-size: 40px; }
+        .picker-item .picker-name {
+            font-size: 10px; font-weight: 700; text-align: center;
+            line-height: 1.1;
+            overflow: hidden; text-overflow: ellipsis;
+            width: 100%; white-space: nowrap;
+        }
+        .picker-item .picker-price {
+            font-size: 11px; font-weight: 800; color: #f5a623;
+        }
+        .picker-item.legendary {
+            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
+            border-color: rgba(245,166,35,0.3);
+        }
+        .picker-item.epic {
+            background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%);
+            border-color: rgba(168,85,247,0.3);
+        }
+        .picker-item.rare {
+            background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
+            border-color: rgba(59,130,246,0.3);
+        }
+
+        /* ================= РЕЗУЛЬТАТ АПГРЕЙДА ================= */
+        #upgradeResult {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            z-index: 300; display: none;
+            flex-direction: column; align-items: center; justify-content: center;
+            padding: 30px;
+        }
+        #upgradeResult.active { display: flex; }
+        .result-status {
+            font-size: 28px; font-weight: 900; letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .result-status.success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .result-status.fail {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .result-img-wrap {
+            width: 160px; height: 160px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .result-img-wrap img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+        }
+        .result-img-wrap .result-emoji { font-size: 120px; }
+        .result-name {
+            font-size: 18px; font-weight: 800; text-align: center;
+            margin-bottom: 24px;
+        }
+        .result-btn {
+            padding: 16px 60px; border-radius: 30px; border: none;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white; font-size: 16px; font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* ================= ПРОЧЕЕ ================= */
         .promo-block {
             background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
             border-radius: 18px; padding: 18px; display: flex; gap: 14px;
@@ -264,15 +472,15 @@
             flex: 0 0 90px; height: 90px;
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 2px;
-            background: rgba(255,255,255,0.04); margin: 0 5px;
-            border-radius: 10px; border: 2px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.06); margin: 0 5px;
+            border-radius: 10px; border: 2px solid rgba(255,255,255,0.1);
             overflow: hidden;
         }
-        .roulette-item .item-image { width: 75px; height: 75px; object-fit: contain; }
+        .roulette-item .item-image { width: 75px; height: 75px; object-fit: contain; filter: brightness(1.4); }
         .roulette-item .item-emoji { font-size: 40px; }
-        .roulette-item.rare { border-color: #3b82f6; background: rgba(59,130,246,0.08); }
-        .roulette-item.epic { border-color: #a855f7; background: rgba(168,85,247,0.08); }
-        .roulette-item.legendary { border-color: #f5a623; background: rgba(245,166,35,0.08); }
+        .roulette-item.rare { border-color: #3b82f6; background: rgba(59,130,246,0.15); }
+        .roulette-item.epic { border-color: #a855f7; background: rgba(168,85,247,0.15); }
+        .roulette-item.legendary { border-color: #f5a623; background: rgba(245,166,35,0.15); }
         #roulettePointerInline {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             width: 3px; height: 100%; background: #f5a623;
@@ -486,7 +694,7 @@
             color: white; background: rgba(0,0,0,0.75); padding: 7px 18px;
             border-radius: 16px; font-size: 12px;
             border: 1px solid rgba(255,255,255,0.1);
-            pointer-events: none; z-index: 300;
+            pointer-events: none; z-index: 400;
             white-space: nowrap; opacity: 0; transition: opacity 0.3s;
         }
         #status.show { opacity: 1; }
@@ -507,6 +715,8 @@
             .roulette-item { flex: 0 0 75px; height: 75px; }
             .roulette-item .item-image { width: 60px; height: 60px; }
             .roulette-item .item-emoji { font-size: 30px; }
+            .picker-grid { grid-template-columns: repeat(3, 1fr); }
+            .upgrade-chance .chance-value { font-size: 30px; }
         }
     </style>
 </head>
@@ -534,39 +744,76 @@
     </div>
 
     <div id="content">
-        <div class="section-title with-line">Кейсы</div>
-        <div class="cases-grid" id="casesGrid"></div>
 
-        <div class="promo-block">
-            <div class="promo-left">
-                <div class="promo-title">OXIDE <span class="purple">DROP</span></div>
-                <div class="promo-desc">Открывай кейсы на монеты, забирай бонус каждый день.</div>
-                <div class="promo-stats">
-                    <div class="promo-stat">
-                        <div class="value" id="statPlayers">1</div>
-                        <div class="label">игроков</div>
-                    </div>
-                    <div class="promo-stat">
-                        <div class="value" id="statOpened">0</div>
-                        <div class="label">кейсов открыто</div>
+        <!-- ЭКРАН: КЕЙСЫ -->
+        <div class="tab-screen active" id="screen-cases">
+            <div class="section-title with-line">Кейсы</div>
+            <div class="cases-grid" id="casesGrid"></div>
+
+            <div class="promo-block">
+                <div class="promo-left">
+                    <div class="promo-title">OXIDE <span class="purple">DROP</span></div>
+                    <div class="promo-desc">Открывай кейсы на монеты, забирай бонус каждый день.</div>
+                    <div class="promo-stats">
+                        <div class="promo-stat">
+                            <div class="value" id="statPlayers">1</div>
+                            <div class="label">игроков</div>
+                        </div>
+                        <div class="promo-stat">
+                            <div class="value" id="statOpened">0</div>
+                            <div class="label">кейсов открыто</div>
+                        </div>
                     </div>
                 </div>
+                <div class="promo-right">
+                    <div class="emoji-big">🎁</div>
+                </div>
             </div>
-            <div class="promo-right">
-                <div class="emoji-big">🎁</div>
+
+            <div class="quests-banner" id="questsBanner">
+                <div class="quests-icon">💰</div>
+                <div class="quests-text">
+                    <div class="qt">Задания и бонусы</div>
+                    <div class="qs">Доступно +100 монет за бонус</div>
+                </div>
+                <div class="quests-badge" id="questsBadge">1</div>
+            </div>
+
+            <div style="height: 20px;"></div>
+        </div>
+
+        <!-- ЭКРАН: АПГРЕЙД -->
+        <div class="tab-screen" id="screen-upgrade">
+            <div class="section-title with-line">Апгрейд</div>
+
+            <div class="upgrade-container">
+                <div class="upgrade-block">
+                    <div class="upgrade-block-title">Твой скин</div>
+                    <div class="upgrade-slot" id="upgradeSlotFrom">
+                        <div class="slot-empty-text">Нажми, чтобы выбрать скин из инвентаря</div>
+                    </div>
+                </div>
+
+                <div class="upgrade-arrow">⬇️</div>
+
+                <div class="upgrade-block">
+                    <div class="upgrade-block-title">Желаемый скин</div>
+                    <div class="upgrade-slot" id="upgradeSlotTo">
+                        <div class="slot-empty-text">Нажми, чтобы выбрать из кейса «Калаши»</div>
+                    </div>
+                </div>
+
+                <div class="upgrade-chance" id="upgradeChanceBox">
+                    <div class="chance-label">Шанс успеха</div>
+                    <div class="chance-value" id="upgradeChanceValue">—</div>
+                </div>
+
+                <button class="upgrade-btn" id="upgradeBtn" disabled>Апгрейд</button>
+
+                <div style="height: 20px;"></div>
             </div>
         </div>
 
-        <div class="quests-banner" id="questsBanner">
-            <div class="quests-icon">💰</div>
-            <div class="quests-text">
-                <div class="qt">Задания и бонусы</div>
-                <div class="qs">Доступно +100 монет за бонус</div>
-            </div>
-            <div class="quests-badge" id="questsBadge">1</div>
-        </div>
-
-        <div style="height: 20px;"></div>
     </div>
 
     <div id="bottomNav">
@@ -628,6 +875,23 @@
         <div id="inventoryList"></div>
     </div>
 
+    <!-- ОКНО ВЫБОРА ПРЕДМЕТА -->
+    <div class="picker-modal" id="pickerModal">
+        <div class="picker-header">
+            <h3 id="pickerTitle">Выбор</h3>
+            <button class="picker-close" id="pickerClose">✕</button>
+        </div>
+        <div class="picker-grid" id="pickerGrid"></div>
+    </div>
+
+    <!-- РЕЗУЛЬТАТ АПГРЕЙДА -->
+    <div id="upgradeResult">
+        <div class="result-status" id="resultStatus">УСПЕХ</div>
+        <div class="result-img-wrap" id="resultImgWrap"></div>
+        <div class="result-name" id="resultName"></div>
+        <button class="result-btn" id="resultBtn">Продолжить</button>
+    </div>
+
     <script>
         // ================= ЗВУК =================
         let audioCtx = null;
@@ -655,6 +919,9 @@
             playSound(700, 0.15); setTimeout(() => playSound(900, 0.15), 100);
             setTimeout(() => playSound(1200, 0.2), 200); setTimeout(() => playSound(1600, 0.3), 300);
         }
+        function playFailSound() {
+            playSound(400, 0.2); setTimeout(() => playSound(300, 0.3), 150);
+        }
         document.getElementById('soundBtn').onclick = () => {
             soundEnabled = !soundEnabled;
             document.getElementById('soundBtn').textContent = soundEnabled ? '🔊' : '🔇';
@@ -668,7 +935,7 @@
             legendary: { name: 'Легендарный',  color: '#f5a623' },
         };
 
-        // ================= СКИНЫ КЕЙСА "КАЛАШИ" =================
+        // ================= СКИНЫ =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', image: 'memento.png', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -691,26 +958,16 @@
         const rifleItems = [];
         const donateItems = [];
 
-        // ================= КЕЙСЫ =================
         const cases = [
-            {
-                id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png',
-                price: 1, badge: 'new', rarity: 'epic',
-                chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
-                items: kalashItems
-            },
-            {
-                id: 'rifle', name: 'Винтовки', emoji: '🎯', image: 'rifle.png',
-                price: 150, badge: 'soon', rarity: 'legendary',
-                chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
-                items: rifleItems, locked: true
-            },
-            {
-                id: 'donate', name: 'Донат', emoji: '👑', image: null,
-                price: 500, badge: 'top', rarity: 'legendary',
-                chances: { common: 0, rare: 15, epic: 35, legendary: 50 },
-                items: donateItems, locked: true, isDonate: true
-            },
+            { id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png',
+              price: 1, badge: 'new', rarity: 'epic',
+              chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: kalashItems },
+            { id: 'rifle', name: 'Винтовки', emoji: '🎯', image: 'rifle.png',
+              price: 150, badge: 'soon', rarity: 'legendary',
+              chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: rifleItems, locked: true },
+            { id: 'donate', name: 'Донат', emoji: '👑', image: null,
+              price: 500, badge: 'top', rarity: 'legendary',
+              chances: { common: 0, rare: 15, epic: 35, legendary: 50 }, items: donateItems, locked: true, isDonate: true },
         ];
 
         // ================= СОСТОЯНИЕ =================
@@ -722,6 +979,8 @@
         let currentCase = null;
         let isSpinning = false;
         let fastMode = false;
+        let upgradeFrom = null;  // индекс в inventory
+        let upgradeTo = null;    // объект скина из кейса
 
         try {
             const savedCoins = localStorage.getItem('oxideCoins');
@@ -747,7 +1006,7 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= ОТРИСОВКА =================
+        // ================= ОТРИСОВКА КЕЙСОВ =================
         function renderCases() {
             const grid = document.getElementById('casesGrid');
             grid.innerHTML = cases.map(c => {
@@ -780,6 +1039,7 @@
             });
         }
 
+        // ================= ОКНО КЕЙСА =================
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -981,6 +1241,7 @@
             setTimeout(() => s.classList.remove('show'), 2000);
         }
 
+        // ================= ИНВЕНТАРЬ =================
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (inventory.length === 0) {
@@ -1020,16 +1281,241 @@
         const invMenu = document.getElementById('inventoryMenu');
         document.getElementById('closeInventory').onclick = () => { invMenu.classList.remove('open'); };
 
+        // ================= НАВИГАЦИЯ =================
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', () => {
                 const tab = item.dataset.tab;
-                if (tab === 'inventory') { invMenu.classList.add('open'); renderInventory(); return; }
-                if (tab === 'quests') { claimBonus(); return; }
-                if (tab === 'cases') return;
+                if (tab === 'inventory') {
+                    invMenu.classList.add('open');
+                    renderInventory();
+                    return;
+                }
+                if (tab === 'quests') {
+                    claimBonus();
+                    return;
+                }
+                if (tab === 'cases') {
+                    document.querySelectorAll('.tab-screen').forEach(s => s.classList.remove('active'));
+                    document.getElementById('screen-cases').classList.add('active');
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    item.classList.add('active');
+                    return;
+                }
+                if (tab === 'upgrade') {
+                    document.querySelectorAll('.tab-screen').forEach(s => s.classList.remove('active'));
+                    document.getElementById('screen-upgrade').classList.add('active');
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    item.classList.add('active');
+                    resetUpgrade();
+                    return;
+                }
                 showStatus('🚧 Раздел в разработке');
             });
         });
 
+        // ================= АПГРЕЙД =================
+        function resetUpgrade() {
+            upgradeFrom = null;
+            upgradeTo = null;
+            document.getElementById('upgradeSlotFrom').classList.remove('filled');
+            document.getElementById('upgradeSlotFrom').innerHTML = '<div class="slot-empty-text">Нажми, чтобы выбрать скин из инвентаря</div>';
+            document.getElementById('upgradeSlotTo').classList.remove('filled');
+            document.getElementById('upgradeSlotTo').innerHTML = '<div class="slot-empty-text">Нажми, чтобы выбрать из кейса «Калаши»</div>';
+            document.getElementById('upgradeChanceValue').textContent = '—';
+            document.getElementById('upgradeChanceValue').className = 'chance-value';
+            document.getElementById('upgradeBtn').disabled = true;
+        }
+
+        function updateUpgrade() {
+            // Слот "от"
+            const slotFrom = document.getElementById('upgradeSlotFrom');
+            if (upgradeFrom !== null) {
+                const item = inventory[upgradeFrom];
+                const imgContent = item.image
+                    ? '<img src="' + item.image + '" alt="' + item.name + '">'
+                    : '<div class="slot-emoji">' + item.emoji + '</div>';
+                slotFrom.classList.add('filled');
+                slotFrom.innerHTML = '<div class="slot-content">' + imgContent +
+                    '<div class="slot-name">' + item.name + '</div>' +
+                    '<div class="slot-price">₿ ' + item.price + '</div>' +
+                '</div>';
+            }
+
+            // Слот "к"
+            const slotTo = document.getElementById('upgradeSlotTo');
+            if (upgradeTo !== null) {
+                const imgContent = upgradeTo.image
+                    ? '<img src="' + upgradeTo.image + '" alt="' + upgradeTo.name + '">'
+                    : '<div class="slot-emoji">' + upgradeTo.emoji + '</div>';
+                slotTo.classList.add('filled');
+                slotTo.innerHTML = '<div class="slot-content">' + imgContent +
+                    '<div class="slot-name">' + upgradeTo.name + '</div>' +
+                    '<div class="slot-price">₿ ' + upgradeTo.price + '</div>' +
+                '</div>';
+            }
+
+            // Шанс
+            const chanceValue = document.getElementById('upgradeChanceValue');
+            const upgradeBtn = document.getElementById('upgradeBtn');
+
+            if (upgradeFrom !== null && upgradeTo !== null) {
+                const fromPrice = inventory[upgradeFrom].price;
+                const toPrice = upgradeTo.price;
+
+                if (toPrice <= fromPrice) {
+                    chanceValue.textContent = '100%';
+                    chanceValue.className = 'chance-value';
+                    upgradeBtn.disabled = false;
+                } else {
+                    let chance = Math.round((fromPrice / toPrice) * 100);
+                    if (chance > 95) chance = 95;
+                    if (chance < 1) chance = 1;
+                    chanceValue.textContent = chance + '%';
+
+                    if (chance < 20) chanceValue.className = 'chance-value low';
+                    else if (chance < 50) chanceValue.className = 'chance-value mid';
+                    else chanceValue.className = 'chance-value';
+
+                    upgradeBtn.disabled = false;
+                }
+            } else {
+                chanceValue.textContent = '—';
+                chanceValue.className = 'chance-value';
+                upgradeBtn.disabled = true;
+            }
+        }
+
+        // Клик по слоту "от" — выбор из инвентаря
+        document.getElementById('upgradeSlotFrom').onclick = () => {
+            if (inventory.length === 0) {
+                showStatus('⚠️ Инвентарь пуст');
+                return;
+            }
+            openPicker('inventory');
+        };
+
+        // Клик по слоту "к" — выбор из кейса Калаши
+        document.getElementById('upgradeSlotTo').onclick = () => {
+            openPicker('kalash');
+        };
+
+        // Открытие окна выбора
+        function openPicker(type) {
+            const modal = document.getElementById('pickerModal');
+            const grid = document.getElementById('pickerGrid');
+            const title = document.getElementById('pickerTitle');
+
+            if (type === 'inventory') {
+                title.textContent = 'Выбор из инвентаря';
+                grid.innerHTML = inventory.map((item, index) => {
+                    const imgContent = item.image
+                        ? '<img src="' + item.image + '" alt="' + item.name + '">'
+                        : '<div class="picker-emoji">' + item.emoji + '</div>';
+                    return '<div class="picker-item ' + item.rarity + '" data-type="inv" data-index="' + index + '">' +
+                        imgContent +
+                        '<div class="picker-name">' + item.name + '</div>' +
+                        '<div class="picker-price">₿ ' + item.price + '</div>' +
+                    '</div>';
+                }).join('');
+            } else {
+                title.textContent = 'Выбор из кейса «Калаши»';
+                const sorted = [...kalashItems].sort((a, b) => b.price - a.price);
+                grid.innerHTML = sorted.map((item, index) => {
+                    const imgContent = item.image
+                        ? '<img src="' + item.image + '" alt="' + item.name + '">'
+                        : '<div class="picker-emoji">' + item.emoji + '</div>';
+                    return '<div class="picker-item ' + item.rarity + '" data-type="kalash" data-id="' + item.id + '">' +
+                        imgContent +
+                        '<div class="picker-name">' + item.name + '</div>' +
+                        '<div class="picker-price">₿ ' + item.price + '</div>' +
+                    '</div>';
+                }).join('');
+            }
+
+            grid.querySelectorAll('.picker-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    if (el.dataset.type === 'inv') {
+                        upgradeFrom = parseInt(el.dataset.index);
+                    } else {
+                        upgradeTo = kalashItems.find(k => k.id === el.dataset.id);
+                    }
+                    updateUpgrade();
+                    modal.classList.remove('active');
+                });
+            });
+
+            modal.classList.add('active');
+        }
+
+        document.getElementById('pickerClose').onclick = () => {
+            document.getElementById('pickerModal').classList.remove('active');
+        };
+
+        // ================= АПГРЕЙД ДЕЙСТВИЕ =================
+        document.getElementById('upgradeBtn').onclick = () => {
+            if (upgradeFrom === null || upgradeTo === null) return;
+
+            const fromItem = inventory[upgradeFrom];
+            const toItem = upgradeTo;
+
+            let chance;
+            if (toItem.price <= fromItem.price) {
+                chance = 100;
+            } else {
+                chance = Math.round((fromItem.price / toItem.price) * 100);
+                if (chance > 95) chance = 95;
+                if (chance < 1) chance = 1;
+            }
+
+            const success = Math.random() * 100 < chance;
+
+            // Убираем старый скин
+            inventory.splice(upgradeFrom, 1);
+
+            if (success) {
+                inventory.push(toItem);
+                saveInventory();
+                playWinSound();
+                showUpgradeResult(true, toItem);
+            } else {
+                saveInventory();
+                playFailSound();
+                showUpgradeResult(false, fromItem);
+            }
+
+            renderInventory();
+            resetUpgrade();
+        };
+
+        function showUpgradeResult(success, item) {
+            const modal = document.getElementById('upgradeResult');
+            const statusEl = document.getElementById('resultStatus');
+            const imgWrap = document.getElementById('resultImgWrap');
+            const nameEl = document.getElementById('resultName');
+
+            if (success) {
+                statusEl.textContent = '✅ УСПЕХ!';
+                statusEl.className = 'result-status success';
+            } else {
+                statusEl.textContent = '❌ ПРОВАЛ';
+                statusEl.className = 'result-status fail';
+            }
+
+            if (item.image) {
+                imgWrap.innerHTML = '<img src="' + item.image + '" alt="">';
+            } else {
+                imgWrap.innerHTML = '<div class="result-emoji">' + item.emoji + '</div>';
+            }
+            nameEl.textContent = item.name;
+
+            modal.classList.add('active');
+        }
+
+        document.getElementById('resultBtn').onclick = () => {
+            document.getElementById('upgradeResult').classList.remove('active');
+        };
+
+        // ================= БОНУС =================
         function claimBonus() {
             const now = Date.now();
             const dayMs = 24 * 60 * 60 * 1000;
@@ -1049,6 +1535,7 @@
         }
         document.getElementById('questsBanner').onclick = claimBonus;
 
+        // ================= СТАРТ =================
         renderCases();
         renderInventory();
 
@@ -1059,7 +1546,7 @@
             else document.getElementById('questsBadge').style.display = 'none';
         })();
 
-        console.log('🎰 Запущено!');
+        console.log('🎰 Апгрейд добавлен!');
     </script>
 </body>
 </html>
