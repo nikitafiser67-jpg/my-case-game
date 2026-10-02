@@ -59,6 +59,8 @@
         .case .case-name { font-size: 14px; font-weight: bold; text-align: center; }
         .case .case-price { font-size: 17px; color: #ffd700; font-weight: bold; }
         .case .case-rarity { font-size: 11px; opacity: 0.6; }
+        .case.locked { opacity: 0.5; }
+        .case.locked .case-price { color: #95a5a6; }
 
         #rouletteContainer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -270,7 +272,7 @@
             setTimeout(() => playSound(1600, 0.1), 50);
         }
 
-        // ---- ДАННЫЕ ----
+        // ---- РЕДКОСТИ ----
         const rarities = {
             common: { name: 'Обычный', color: '#95a5a6' },
             rare: { name: 'Редкий', color: '#3498db' },
@@ -278,36 +280,54 @@
             legendary: { name: 'Легендарный', color: '#ffd700' },
         };
 
-        // ---- 16 ПРЕДМЕТОВ (твои названия) ----
-        const allItems = [
-            { id: 'l1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
-            { id: 'l2', name: 'Штурмовая винтовка (Ледяной раскол)', emoji: '❄️', rarity: 'legendary', price: 1500 },
-            { id: 'l3', name: 'Штурмовая винтовка (Удар яда)', emoji: '☠️', rarity: 'legendary', price: 1000 },
-            { id: 'l4', name: 'Штурмовая винтовка (Цифровой потрошитель)', emoji: '💻', rarity: 'legendary', price: 850 },
-            { id: 'l5', name: 'Штурмовая винтовка (Рука мертвеца)', emoji: '💀', rarity: 'legendary', price: 800 },
-            { id: 'l6', name: 'Штурмовая винтовка (Спект)', emoji: '👻', rarity: 'legendary', price: 750 },
-            { id: 'l7', name: 'Штурмовая винтовка (Щупальца Кракена)', emoji: '🐙', rarity: 'legendary', price: 580 },
-            { id: 'l8', name: 'Штурмовая винтовка (Гроза района)', emoji: '⚡', rarity: 'legendary', price: 550 },
-            { id: 'l9', name: 'Штурмовая винтовка (Великолепная пятёрка)', emoji: '⭐', rarity: 'legendary', price: 500 },
-            { id: 'l10', name: 'Штурмовая винтовка (Страж Вальхаллы)', emoji: '🛡️', rarity: 'legendary', price: 500 },
-            { id: 'l11', name: 'Штурмовая винтовка (Ветер смерти)', emoji: '🌪️', rarity: 'legendary', price: 450 },
-            { id: 'l12', name: 'Штурмовая винтовка (Шёпот предков)', emoji: '🗣️', rarity: 'legendary', price: 450 },
-            { id: 'e1', name: 'Штурмовая винтовка (Золотой феникс)', emoji: '🔥', rarity: 'epic', price: 300 },
-            { id: 'e2', name: 'Штурмовая винтовка (Кислотный автомат)', emoji: '🧪', rarity: 'epic', price: 250 },
-            { id: 'r1', name: 'Штурмовая винтовка (Огненная лента)', emoji: '🎗️', rarity: 'rare', price: 150 },
-            { id: 'r2', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
+        // ---- ПРЕДМЕТЫ ДЛЯ КЕЙСА "КАЛАШИ" ----
+        const kalashItems = [
+            { id: 'k1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
+            { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', emoji: '❄️', rarity: 'legendary', price: 1500 },
+            { id: 'k3', name: 'Штурмовая винтовка (Удар яда)', emoji: '☠️', rarity: 'legendary', price: 1000 },
+            { id: 'k4', name: 'Штурмовая винтовка (Цифровой потрошитель)', emoji: '💻', rarity: 'legendary', price: 850 },
+            { id: 'k5', name: 'Штурмовая винтовка (Рука мертвеца)', emoji: '💀', rarity: 'legendary', price: 800 },
+            { id: 'k6', name: 'Штурмовая винтовка (Спект)', emoji: '👻', rarity: 'legendary', price: 750 },
+            { id: 'k7', name: 'Штурмовая винтовка (Щупальца Кракена)', emoji: '🐙', rarity: 'legendary', price: 580 },
+            { id: 'k8', name: 'Штурмовая винтовка (Гроза района)', emoji: '⚡', rarity: 'legendary', price: 550 },
+            { id: 'k9', name: 'Штурмовая винтовка (Великолепная пятёрка)', emoji: '⭐', rarity: 'legendary', price: 500 },
+            { id: 'k10', name: 'Штурмовая винтовка (Страж Вальхаллы)', emoji: '🛡️', rarity: 'legendary', price: 500 },
+            { id: 'k11', name: 'Штурмовая винтовка (Ветер смерти)', emoji: '🌪️', rarity: 'legendary', price: 450 },
+            { id: 'k12', name: 'Штурмовая винтовка (Шёпот предков)', emoji: '🗣️', rarity: 'legendary', price: 450 },
+            { id: 'k13', name: 'Штурмовая винтовка (Золотой феникс)', emoji: '🔥', rarity: 'epic', price: 300 },
+            { id: 'k14', name: 'Штурмовая винтовка (Кислотный автомат)', emoji: '🧪', rarity: 'epic', price: 250 },
+            { id: 'k15', name: 'Штурмовая винтовка (Огненная лента)', emoji: '🎗️', rarity: 'rare', price: 150 },
+            { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
+
+        // ---- ПРЕДМЕТЫ ДЛЯ КЕЙСА "ВИНТОВКИ" (пока пусто) ----
+        const rifleItems = [];
 
         // ---- КЕЙСЫ ----
         const cases = [
-            { id: 'case1', name: 'Бронзовый', emoji: '📦', price: 10, rarity: 'common', chances: { common: 70, rare: 25, epic: 4, legendary: 1 } },
-            { id: 'case2', name: 'Серебряный', emoji: '🎁', price: 30, rarity: 'rare', chances: { common: 40, rare: 40, epic: 15, legendary: 5 } },
-            { id: 'case3', name: 'Золотой', emoji: '🏆', price: 100, rarity: 'epic', chances: { common: 10, rare: 30, epic: 45, legendary: 15 } },
-            { id: 'case4', name: 'Алмазный', emoji: '💎', price: 250, rarity: 'legendary', chances: { common: 0, rare: 15, epic: 50, legendary: 35 } },
+            {
+                id: 'case_kalash',
+                name: 'Калаши',
+                emoji: '🔫',
+                price: 600,
+                rarity: 'epic',
+                chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
+                items: kalashItems
+            },
+            {
+                id: 'case_rifle',
+                name: 'Винтовки',
+                emoji: '🎯',
+                price: 150,
+                rarity: 'legendary',
+                chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
+                items: rifleItems,
+                locked: true
+            },
         ];
 
         // ---- СОСТОЯНИЕ ----
-        let coins = 100;
+        let coins = 1000;
         let inventory = [];
         let lastBonus = 0;
 
@@ -335,10 +355,10 @@
         function renderCases() {
             const container = document.getElementById('cases');
             container.innerHTML = cases.map(c => 
-                '<div class="case" data-id="' + c.id + '">' +
+                '<div class="case' + (c.locked ? ' locked' : '') + '" data-id="' + c.id + '">' +
                     '<div class="case-emoji">' + c.emoji + '</div>' +
                     '<div class="case-name">' + c.name + '</div>' +
-                    '<div class="case-price">🪙 ' + c.price + '</div>' +
+                    '<div class="case-price">' + (c.locked ? '🔒 Скоро' : '🪙 ' + c.price) + '</div>' +
                     '<div class="case-rarity">' + rarities[c.rarity].name + '</div>' +
                 '</div>'
             ).join('');
@@ -351,6 +371,16 @@
         function openCase(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
+            if (c.locked) {
+                document.getElementById('status').textContent = '🔒 Кейс скоро откроется!';
+                setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 1500);
+                return;
+            }
+            if (!c.items || c.items.length === 0) {
+                document.getElementById('status').textContent = '⚠️ В кейсе пока нет предметов';
+                setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 1500);
+                return;
+            }
             if (coins < c.price) {
                 document.getElementById('status').textContent = '❌ Недостаточно монет!';
                 setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 1500);
@@ -361,10 +391,9 @@
             playCoinSound();
 
             const rarity = getRandomRarity(c.chances);
-            const items = allItems.filter(i => i.rarity === rarity);
+            let items = c.items.filter(i => i.rarity === rarity);
             if (items.length === 0) {
-                const fallback = allItems.filter(i => i.rarity === 'legendary');
-                items.push(...fallback);
+                items = c.items;
             }
             const item = items[Math.floor(Math.random() * items.length)];
 
@@ -392,7 +421,7 @@
 
             const items = [];
             for (let i = 0; i < 30; i++) {
-                items.push(allItems[Math.floor(Math.random() * allItems.length)]);
+                items.push(c.items[Math.floor(Math.random() * c.items.length)]);
             }
             items[20] = winningItem;
 
@@ -504,7 +533,7 @@
                 setTimeout(() => document.getElementById('status').textContent = '🎰 Выбери кейс', 2000);
                 return;
             }
-            const bonus = 50;
+            const bonus = 100;
             coins += bonus;
             lastBonus = now;
             try { localStorage.setItem('lastBonus', lastBonus); } catch(e) {}
@@ -521,7 +550,7 @@
         renderCases();
         renderInventory();
 
-        console.log('🎰 Игра запущена! Предметов:', allItems.length);
+        console.log('🎰 Игра запущена! Кейсов:', cases.length);
     </script>
 </body>
 </html>
