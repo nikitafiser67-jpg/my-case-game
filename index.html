@@ -328,17 +328,26 @@
 
         // ---- СОСТОЯНИЕ ----
         let coins = 1000;
-        let inventory = [];
-        let lastBonus = 0;
+let inventory = [];
+let lastBonus = 0;
+let isFirstTime = true;
 
-        try {
-            const savedCoins = localStorage.getItem('caseCoins');
-            if (savedCoins !== null) coins = parseInt(savedCoins) || 0;
-            const savedInv = localStorage.getItem('caseInventory');
-            if (savedInv) inventory = JSON.parse(savedInv);
-            const savedBonus = localStorage.getItem('lastBonus');
-            if (savedBonus) lastBonus = parseInt(savedBonus) || 0;
-        } catch(e) {}
+try {
+    const savedCoins = localStorage.getItem('caseCoins');
+    if (savedCoins !== null) {
+        coins = parseInt(savedCoins) || 0;
+        isFirstTime = false;
+    }
+    const savedInv = localStorage.getItem('caseInventory');
+    if (savedInv) inventory = JSON.parse(savedInv);
+    const savedBonus = localStorage.getItem('lastBonus');
+    if (savedBonus) lastBonus = parseInt(savedBonus) || 0;
+} catch(e) {}
+
+// Если первый раз — сохраняем 1000 монет
+if (isFirstTime) {
+    try { localStorage.setItem('caseCoins', 1000); } catch(e) {}
+}
 
         const coinDisplay = document.getElementById('coinCount');
         function updateCoins() {
