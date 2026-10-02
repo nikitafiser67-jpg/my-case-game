@@ -13,6 +13,65 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* ================= ПРЕЛОАДЕР ================= */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #0a0a0f;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .preloader-logo {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulseLogo 1.5s ease-in-out infinite;
+        }
+        .preloader-logo span {
+            color: #fff;
+            -webkit-text-fill-color: #fff;
+        }
+        @keyframes pulseLogo {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.98); }
+        }
+        .preloader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(168,85,247,0.2);
+            border-top: 4px solid #a855f7;
+            border-right: 4px solid #a855f7;
+            border-radius: 50%;
+            animation: spinPreloader 1s linear infinite;
+        }
+        @keyframes spinPreloader {
+            to { transform: rotate(360deg); }
+        }
+        .preloader-text {
+            font-size: 14px;
+            color: #9ca3af;
+            letter-spacing: 1px;
+            animation: pulseText 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
         #header {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
             display: flex; align-items: center; justify-content: space-between;
@@ -965,6 +1024,13 @@
 </head>
 <body>
 
+    <!-- ПРЕЛОАДЕР -->
+    <div id="preloader">
+        <div class="preloader-logo">OXIDE <span>DROP</span></div>
+        <div class="preloader-spinner"></div>
+        <div class="preloader-text">Загрузка...</div>
+    </div>
+
     <div id="header">
         <div id="logo">OXIDE <span>DROP</span></div>
         <div id="headerRight">
@@ -1243,6 +1309,14 @@
     </div>
 
     <script>
+        // ================= ПРЕЛОАДЕР =================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (preloader) preloader.classList.add('hidden');
+            }, 1500);
+        });
+
         // ================= ЗВУК =================
         let audioCtx = null;
         let soundEnabled = true;
@@ -1277,7 +1351,6 @@
             if (s) s.textContent = soundEnabled ? 'ВКЛ' : 'ВЫКЛ';
         };
 
-        // ================= РЕДКОСТИ =================
         const rarities = {
             common: { name: 'Обычный', color: '#9ca3af' },
             rare: { name: 'Редкий', color: '#3b82f6' },
@@ -1285,7 +1358,6 @@
             legendary: { name: 'Легендарный', color: '#f5a623' },
         };
 
-        // ================= СКИНЫ КАЛАШИ =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', image: 'memento.png', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -1305,7 +1377,6 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        // ================= СКИНЫ ВИНТОВКИ (с картинками) =================
         const rifleItems = [
             { id: 'r1', name: 'Кровавый шип', image: 'blood.png', rarity: 'legendary', price: 400 },
             { id: 'r2', name: 'Наследие дракона', image: 'dragon.png', rarity: 'legendary', price: 300 },
@@ -1378,7 +1449,6 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= ОНЛАЙН =================
         let onlineBase = 850 + Math.floor(Math.random() * 350);
         function updateOnline() {
             onlineBase += Math.floor(Math.random() * 7) - 3;
@@ -1390,7 +1460,6 @@
         updateOnline();
         setInterval(updateOnline, 25000);
 
-        // ================= TELEGRAM =================
         let tgUser = null;
         try {
             if (window.Telegram && window.Telegram.WebApp) {
@@ -1404,7 +1473,6 @@
             }
         } catch(e) {}
 
-        // ================= КЕЙСЫ =================
         function renderCases() {
             const grid = document.getElementById('casesGrid');
             grid.innerHTML = cases.map(c => {
@@ -1686,7 +1754,6 @@
             setTimeout(() => s.classList.remove('show'), 2000);
         }
 
-        // ================= ИНВЕНТАРЬ =================
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (!list) return;
@@ -1736,7 +1803,6 @@
             });
         }
 
-        // ================= НАВИГАЦИЯ =================
         function switchScreen(tab) {
             document.querySelectorAll('.tab-screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1771,7 +1837,6 @@
             });
         });
 
-        // ================= АПГРЕЙД =================
         function resetUpgrade() {
             upgradeFrom = null;
             upgradeTo = null;
@@ -1946,7 +2011,6 @@
 
         document.getElementById('resultBtn').onclick = () => { document.getElementById('upgradeResult').classList.remove('active'); };
 
-        // ================= ПРОФИЛЬ =================
         function renderProfile() {
             const avatar = document.getElementById('profileAvatar');
             const nameEl = document.getElementById('profileName');
@@ -2051,7 +2115,6 @@
             if (navigator.clipboard) { navigator.clipboard.writeText(text); showStatus('📋 Скопировано!'); }
         };
 
-        // ================= БОНУС =================
         function claimBonus() {
             const now = Date.now();
             const dayMs = 24 * 60 * 60 * 1000;
@@ -2075,7 +2138,6 @@
         }
         document.getElementById('questsBanner').onclick = claimBonus;
 
-        // ================= СТАРТ =================
         renderCases();
         renderInventory();
 
@@ -2090,7 +2152,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Винтовки с картинками!');
+        console.log('🎰 Прелоадер добавлен!');
     </script>
 </body>
 </html>
