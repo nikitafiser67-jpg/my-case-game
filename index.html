@@ -513,7 +513,6 @@
             background: #22c55e; border: 2px solid #0f0c19;
         }
 
-        /* ================= ОКНО КЕЙСА ================= */
         #casePreview {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #0a0a0f; z-index: 100;
@@ -544,7 +543,7 @@
             opacity: 0; pointer-events: none;
         }
 
-        /* ================= РУЛЕТКИ (x1/x2/x3) ================= */
+        /* ================= РУЛЕТКИ ================= */
         #roulettesContainer {
             position: absolute;
             top: 50%; left: 0;
@@ -581,19 +580,32 @@
             flex: 0 0 100px; height: 100px;
             display: flex; flex-direction: column; align-items: center;
             justify-content: center; gap: 2px;
-            background: rgba(255,255,255,0.1); margin: 0 5px;
-            border-radius: 10px; border: 2px solid rgba(255,255,255,0.15);
+            background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 70%);
+            margin: 0 5px;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
             overflow: hidden;
         }
         .roulette-item .item-image {
             width: 85px; height: 85px;
             object-fit: contain;
-            filter: brightness(2.5) contrast(1.4) drop-shadow(0 0 12px rgba(255,255,255,0.6));
+            filter: brightness(3) contrast(1.5)
+                    drop-shadow(0 0 12px #fff)
+                    drop-shadow(0 0 22px rgba(255,255,255,0.9));
         }
         .roulette-item .item-emoji { font-size: 48px; }
-        .roulette-item.rare { border-color: #3b82f6; background: linear-gradient(160deg, #1a3a5d 0%, #0b162e 100%); }
-        .roulette-item.epic { border-color: #a855f7; background: linear-gradient(160deg, #3a2a5d 0%, #1a0f2e 100%); }
-        .roulette-item.legendary { border-color: #f5a623; background: linear-gradient(160deg, #4a3410 0%, #2a1a08 100%); }
+        .roulette-item.rare {
+            border-color: #3b82f6;
+            background: radial-gradient(circle at center, rgba(59,130,246,0.5) 0%, rgba(59,130,246,0.1) 70%);
+        }
+        .roulette-item.epic {
+            border-color: #a855f7;
+            background: radial-gradient(circle at center, rgba(168,85,247,0.5) 0%, rgba(168,85,247,0.1) 70%);
+        }
+        .roulette-item.legendary {
+            border-color: #f5a623;
+            background: radial-gradient(circle at center, rgba(245,166,35,0.5) 0%, rgba(245,166,35,0.1) 70%);
+        }
 
         .roulette-pointer {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -815,7 +827,7 @@
         }
         .result-img-wrap img {
             max-width: 100%; max-height: 100%; object-fit: contain;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)) brightness(1.4);
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)) brightness(1.5);
         }
         .result-img-wrap .result-emoji { font-size: 120px; }
         .result-name {
@@ -890,7 +902,7 @@
             box-shadow: 0 10px 40px rgba(168,85,247,0.3);
         }
         #resultToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-        #resultToast .rt-img { width: 50px; height: 50px; object-fit: contain; brightness: 1.4; }
+        #resultToast .rt-img { width: 50px; height: 50px; object-fit: contain; brightness: 1.5; }
         #resultToast .rt-emoji { font-size: 32px; }
         #resultToast .rt-info { display: flex; flex-direction: column; }
         #resultToast .rt-name { font-size: 13px; font-weight: 700; }
@@ -1529,7 +1541,6 @@
             openBtn.textContent = '🎡 Крутится...';
             hero.classList.add('spinning');
 
-            // Увеличиваем высоту hero под количество рулеток
             let heroHeight = 260;
             if (wins.length === 2) heroHeight = 340;
             if (wins.length === 3) heroHeight = 420;
@@ -1567,7 +1578,6 @@
                 row.appendChild(track);
                 container.appendChild(row);
 
-                // Запуск анимации
                 setTimeout(() => {
                     const spinTime = fastMode ? 3 : 6;
                     const itemWidth = 110;
@@ -2055,7 +2065,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 x2/x3 — исправлено!');
+        console.log('🎰 Скины стали яркими!');
     </script>
 </body>
 </html>
