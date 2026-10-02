@@ -86,6 +86,7 @@
             min-height: 210px;
         }
         .case-card:active { transform: scale(0.97); }
+        .case-card.locked { opacity: 0.55; }
 
         .case-card .case-top {
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -100,7 +101,7 @@
             padding: 3px 8px; border-radius: 8px; text-transform: uppercase;
         }
         .badge.new { background: #ec4899; color: white; }
-        .badge.free { background: #22c55e; color: white; }
+        .badge.soon { background: #4b5563; color: #d1d5db; }
         .badge.top { background: #f59e0b; color: #1a1a1a; }
 
         .case-card .case-image {
@@ -133,10 +134,21 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 10px;
         }
-        .case-card .case-price-btn.free {
-            background: rgba(34,197,94,0.18);
-            border-color: rgba(34,197,94,0.5);
-            color: #4ade80;
+        .case-card.locked .case-price-btn {
+            background: rgba(100,100,100,0.15);
+            border-color: rgba(150,150,150,0.3);
+            color: #9ca3af;
+        }
+
+        .case-card.donate {
+            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
+            border-color: rgba(245,166,35,0.5);
+            box-shadow: 0 0 30px rgba(245,166,35,0.15);
+        }
+        .case-card.donate .case-price-btn {
+            background: rgba(245,166,35,0.2);
+            border-color: rgba(245,166,35,0.6);
+            color: #f5a623;
         }
 
         .promo-block {
@@ -230,7 +242,6 @@
             background: #22c55e; border: 2px solid #0f0c19;
         }
 
-        /* ================= ОКНО КЕЙСА ================= */
         #casePreview {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #0a0a0f;
@@ -239,7 +250,6 @@
         }
         #casePreview.active { display: flex; }
 
-        /* ВЕРХНИЙ БЛОК — КАРТИНКА КЕЙСА ИЛИ РУЛЕТКА */
         #casePreview .case-hero {
             position: relative;
             width: 100%;
@@ -261,22 +271,17 @@
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
             transition: opacity 0.3s;
         }
-
-        /* Скрываем картинку, когда крутится */
         #casePreview .case-hero.spinning img,
         #casePreview .case-hero.spinning .hero-emoji {
             opacity: 0;
             pointer-events: none;
         }
 
-        /* РУЛЕТКА — ПОЯВЛЯЕТСЯ НА МЕСТЕ КАРТИНКИ */
         #rouletteWindowInline {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 100%;
-            height: 110px;
+            width: 100%; height: 110px;
             background: #12101f;
             border-top: 1px solid rgba(168,85,247,0.3);
             border-bottom: 1px solid rgba(168,85,247,0.3);
@@ -649,8 +654,6 @@
 
         <div class="case-hero" id="caseHero">
             <div id="previewEmoji">🎁</div>
-
-            <!-- РУЛЕТКА ВНУТРИ HERO -->
             <div id="rouletteWindowInline">
                 <div id="roulettePointerInline"></div>
                 <div id="rouletteTrackInline"></div>
@@ -690,9 +693,7 @@
         let audioCtx = null;
         let soundEnabled = true;
         function getAudioCtx() {
-            if (!audioCtx) {
-                try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
-            }
+            if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} }
             return audioCtx;
         }
         function playSound(freq, duration, vol) {
@@ -727,7 +728,7 @@
             legendary: { name: 'Легендарный',  color: '#f5a623' },
         };
 
-        // ================= СКИНЫ =================
+        // ================= СКИНЫ КЕЙСА "КАЛАШИ" =================
         const kalashItems = [
             { id: 'k1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
@@ -747,42 +748,33 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        const toolsItems = [
-            { id: 't1', name: 'Кирка шахтёра', emoji: '⛏️', rarity: 'common', price: 20 },
-            { id: 't2', name: 'Молот', emoji: '🔨', rarity: 'common', price: 25 },
-            { id: 't3', name: 'Гаечный ключ', emoji: '🔧', rarity: 'rare', price: 60 },
-            { id: 't4', name: 'Отвёртка', emoji: '🪛', rarity: 'rare', price: 70 },
-            { id: 't5', name: 'Дрель', emoji: '🪚', rarity: 'epic', price: 180 },
-            { id: 't6', name: 'Золотая пила', emoji: '🪚', rarity: 'legendary', price: 400 },
-        ];
-        const homeItems = [
-            { id: 'h1', name: 'Кружка', emoji: '☕', rarity: 'common', price: 15 },
-            { id: 'h2', name: 'Лампа', emoji: '💡', rarity: 'common', price: 20 },
-            { id: 'h3', name: 'Кресло', emoji: '🪑', rarity: 'rare', price: 50 },
-            { id: 'h4', name: 'Телевизор', emoji: '📺', rarity: 'rare', price: 80 },
-            { id: 'h5', name: 'Сундук', emoji: '🧰', rarity: 'epic', price: 200 },
-            { id: 'h6', name: 'Золотой ключ', emoji: '🗝️', rarity: 'legendary', price: 500 },
-        ];
-        const bonusItems = [
-            { id: 'b1', name: 'Скидка 10%', emoji: '🎟️', rarity: 'common', price: 10 },
-            { id: 'b2', name: 'Бонус монет', emoji: '💰', rarity: 'common', price: 15 },
-            { id: 'b3', name: 'Кристалл', emoji: '💎', rarity: 'rare', price: 50 },
-            { id: 'b4', name: 'Мешок удачи', emoji: '🎁', rarity: 'epic', price: 150 },
-        ];
+        // ================= ПУСТЫЕ КЕЙСЫ =================
+        const rifleItems = [];   // пустой
+        const donateItems = [];  // пустой
 
+        // ================= КЕЙСЫ =================
         const cases = [
-            { id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png',
-              price: 1, badge: 'new', rarity: 'epic',
-              chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: kalashItems },
-            { id: 'tools', name: 'Кейс инструментов', emoji: '⛏️', image: null,
-              price: 100, badge: 'new', rarity: 'epic',
-              chances: { common: 40, rare: 35, epic: 20, legendary: 5 }, items: toolsItems },
-            { id: 'home', name: 'Всё для дома', emoji: '🏠', image: null,
-              price: 125, badge: 'new', rarity: 'rare',
-              chances: { common: 35, rare: 40, epic: 20, legendary: 5 }, items: homeItems },
-            { id: 'bonus', name: 'Бонус кейс', emoji: '🎁', image: null,
-              price: 0, badge: 'free', rarity: 'common',
-              chances: { common: 50, rare: 35, epic: 12, legendary: 3 }, items: bonusItems },
+            {
+                id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png',
+                price: 1, badge: 'new', rarity: 'epic',
+                chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
+                items: kalashItems
+            },
+            {
+                id: 'rifle', name: 'Винтовки', emoji: '🎯', image: null,
+                price: 150, badge: 'soon', rarity: 'legendary',
+                chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
+                items: rifleItems,
+                locked: true
+            },
+            {
+                id: 'donate', name: 'Донат', emoji: '👑', image: null,
+                price: 500, badge: 'top', rarity: 'legendary',
+                chances: { common: 0, rare: 15, epic: 35, legendary: 50 },
+                items: donateItems,
+                locked: true,
+                isDonate: true
+            },
         ];
 
         // ================= СОСТОЯНИЕ =================
@@ -819,23 +811,28 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
+        // ================= ОТРИСОВКА КЕЙСОВ =================
         function renderCases() {
             const grid = document.getElementById('casesGrid');
             grid.innerHTML = cases.map(c => {
                 let badgeHTML = '';
                 if (c.badge === 'new') badgeHTML = '<div class="badge new">NEW</div>';
-                else if (c.badge === 'free') badgeHTML = '<div class="badge free">FREE</div>';
+                else if (c.badge === 'soon') badgeHTML = '<div class="badge soon">СКОРО</div>';
                 else if (c.badge === 'top') badgeHTML = '<div class="badge top">ТОП</div>';
 
                 let imageHTML = c.image
                     ? '<img src="' + c.image + '" alt="' + c.name + '">'
                     : '<div class="case-emoji-big">' + c.emoji + '</div>';
 
-                let priceHTML = c.price === 0
-                    ? '<div class="case-price-btn free">Бесплатно</div>'
+                let priceHTML = c.locked
+                    ? '<div class="case-price-btn">🔒 Скоро</div>'
                     : '<div class="case-price-btn"><span class="coin-icon">₿</span> ' + c.price + '</div>';
 
-                return '<div class="case-card" data-id="' + c.id + '">' +
+                let cardClass = 'case-card';
+                if (c.locked) cardClass += ' locked';
+                if (c.isDonate) cardClass += ' donate';
+
+                return '<div class="' + cardClass + '" data-id="' + c.id + '">' +
                     '<div class="case-top"><div class="case-title">' + c.name + '</div>' + badgeHTML + '</div>' +
                     '<div class="case-image">' + imageHTML + '</div>' +
                     priceHTML +
@@ -847,11 +844,22 @@
             });
         }
 
+        // ================= ОКНО КЕЙСА =================
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
-            if (!c.items || c.items.length === 0) { showStatus('⚠️ В кейсе пока нет предметов'); return; }
-            if (c.price > 0 && coins < c.price) { showStatus('❌ Недостаточно монет!'); return; }
+            if (c.locked) {
+                showStatus('🔒 Кейс скоро откроется!');
+                return;
+            }
+            if (!c.items || c.items.length === 0) {
+                showStatus('⚠️ В кейсе пока нет предметов');
+                return;
+            }
+            if (c.price > 0 && coins < c.price) {
+                showStatus('❌ Недостаточно монет!');
+                return;
+            }
             currentCase = c;
 
             document.getElementById('previewName').textContent = c.name.toUpperCase();
@@ -944,6 +952,7 @@
             return 'legendary';
         }
 
+        // ================= РУЛЕТКА =================
         function spinInlineRoulette(c, winningItem) {
             const track = document.getElementById('rouletteTrackInline');
             const winEl = document.getElementById('rouletteWindowInline');
@@ -953,7 +962,6 @@
             openBtn.disabled = true;
             openBtn.textContent = '🎡 Крутится...';
 
-            // Прячем картинку кейса, показываем рулетку
             hero.classList.add('spinning');
             winEl.classList.add('active');
 
@@ -1013,7 +1021,6 @@
                 }
                 isSpinning = false;
 
-                // Прячем рулетку, возвращаем картинку через 2 секунды
                 setTimeout(() => {
                     winEl.classList.remove('active');
                     hero.classList.remove('spinning');
@@ -1044,6 +1051,7 @@
             setTimeout(() => s.classList.remove('show'), 2000);
         }
 
+        // ================= ИНВЕНТАРЬ =================
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (inventory.length === 0) {
@@ -1093,6 +1101,7 @@
             });
         });
 
+        // ================= БОНУС =================
         function claimBonus() {
             const now = Date.now();
             const dayMs = 24 * 60 * 60 * 1000;
@@ -1112,6 +1121,7 @@
         }
         document.getElementById('questsBanner').onclick = claimBonus;
 
+        // ================= СТАРТ =================
         renderCases();
         renderInventory();
 
@@ -1122,7 +1132,7 @@
             else document.getElementById('questsBadge').style.display = 'none';
         })();
 
-        console.log('🎰 Запущено!');
+        console.log('🎰 Запущено! 3 кейса, только "Калаши" работает');
     </script>
 </body>
 </html>
