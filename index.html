@@ -58,9 +58,7 @@
             text-transform: uppercase; margin: 18px 0 12px 0;
             color: #fff;
         }
-        .section-title.with-line {
-            display: flex; align-items: center; gap: 12px;
-        }
+        .section-title.with-line { display: flex; align-items: center; gap: 12px; }
         .section-title.with-line::after {
             content: ''; flex: 1; height: 2px;
             background: linear-gradient(to right, rgba(124,58,237,0.6), transparent);
@@ -68,22 +66,17 @@
         }
 
         .cases-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
         }
 
         .case-card {
             position: relative;
             background: linear-gradient(160deg, #1a1430 0%, #15102a 60%, #0f0b1e 100%);
-            border-radius: 18px;
-            padding: 14px;
+            border-radius: 18px; padding: 14px;
             display: flex; flex-direction: column; gap: 10px;
             border: 1px solid rgba(255,255,255,0.06);
-            cursor: pointer;
-            transition: transform 0.15s;
-            overflow: hidden;
-            min-height: 210px;
+            cursor: pointer; transition: transform 0.15s;
+            overflow: hidden; min-height: 210px;
         }
         .case-card:active { transform: scale(0.97); }
         .case-card.locked { opacity: 0.55; }
@@ -93,8 +86,7 @@
             min-height: 22px;
         }
         .case-card .case-title {
-            font-size: 13px; font-weight: 700; line-height: 1.2;
-            max-width: 70%;
+            font-size: 13px; font-weight: 700; line-height: 1.2; max-width: 70%;
         }
         .case-card .badge {
             font-size: 9px; font-weight: 800; letter-spacing: 0.5px;
@@ -105,13 +97,11 @@
         .badge.top { background: #f59e0b; color: #1a1a1a; }
 
         .case-card .case-image {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center;
+            flex: 1; display: flex; align-items: center; justify-content: center;
             min-height: 90px;
         }
         .case-card .case-image img {
-            max-width: 100%; max-height: 120px;
-            object-fit: contain;
+            max-width: 100%; max-height: 120px; object-fit: contain;
             filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
         }
         .case-card .case-image .case-emoji-big {
@@ -122,11 +112,9 @@
         .case-card .case-price-btn {
             background: rgba(124,58,237,0.18);
             border: 1px solid rgba(124,58,237,0.4);
-            border-radius: 12px;
-            padding: 9px 12px;
+            border-radius: 12px; padding: 9px 12px;
             display: flex; align-items: center; justify-content: center; gap: 6px;
-            font-weight: 800; font-size: 14px;
-            color: #fff;
+            font-weight: 800; font-size: 14px; color: #fff;
         }
         .case-card .case-price-btn .coin-icon {
             width: 18px; height: 18px; border-radius: 50%;
@@ -136,10 +124,8 @@
         }
         .case-card.locked .case-price-btn {
             background: rgba(100,100,100,0.15);
-            border-color: rgba(150,150,150,0.3);
-            color: #9ca3af;
+            border-color: rgba(150,150,150,0.3); color: #9ca3af;
         }
-
         .case-card.donate {
             background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
             border-color: rgba(245,166,35,0.5);
@@ -147,19 +133,14 @@
         }
         .case-card.donate .case-price-btn {
             background: rgba(245,166,35,0.2);
-            border-color: rgba(245,166,35,0.6);
-            color: #f5a623;
+            border-color: rgba(245,166,35,0.6); color: #f5a623;
         }
 
         .promo-block {
             background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
-            border-radius: 18px;
-            padding: 18px;
-            display: flex; gap: 14px;
+            border-radius: 18px; padding: 18px; display: flex; gap: 14px;
             border: 1px solid rgba(124,58,237,0.2);
-            margin-top: 16px;
-            position: relative;
-            overflow: hidden;
+            margin-top: 16px; position: relative; overflow: hidden;
         }
         .promo-block::before {
             content: ''; position: absolute; top: -50%; right: -20%;
@@ -173,9 +154,7 @@
             line-height: 1.1; margin-bottom: 8px;
         }
         .promo-title .purple { color: #a855f7; }
-        .promo-desc {
-            font-size: 11px; opacity: 0.7; line-height: 1.4; margin-bottom: 12px;
-        }
+        .promo-desc { font-size: 11px; opacity: 0.7; line-height: 1.4; margin-bottom: 12px; }
         .promo-stats { display: flex; gap: 10px; }
         .promo-stat {
             background: rgba(0,0,0,0.35);
@@ -193,9 +172,7 @@
             display: flex; align-items: center; gap: 12px;
             background: linear-gradient(135deg, #3d2a1a, #2a1d12);
             border: 1px solid rgba(245,166,35,0.25);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 14px;
+            border-radius: 16px; padding: 14px; margin-top: 14px;
             cursor: pointer;
         }
         .quests-banner:active { transform: scale(0.98); }
@@ -225,15 +202,13 @@
             flex: 1; display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 3px;
             color: #6b7280; font-size: 10px; font-weight: 600;
-            cursor: pointer; position: relative;
-            transition: color 0.2s;
+            cursor: pointer; position: relative; transition: color 0.2s;
         }
         .nav-item .nav-icon { font-size: 20px; line-height: 1; }
         .nav-item.active { color: #a855f7; }
         .nav-item.active::before {
             content: ''; position: absolute; top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 40px; height: 3px;
+            transform: translateX(-50%); width: 40px; height: 3px;
             background: #a855f7; border-radius: 0 0 3px 3px;
         }
         .nav-item .nav-dot {
@@ -244,25 +219,19 @@
 
         #casePreview {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0a0a0f;
-            z-index: 100; display: none; flex-direction: column;
-            overflow-y: auto;
+            background: #0a0a0f; z-index: 100;
+            display: none; flex-direction: column; overflow-y: auto;
         }
         #casePreview.active { display: flex; }
 
         #casePreview .case-hero {
-            position: relative;
-            width: 100%;
-            height: 260px;
+            position: relative; width: 100%; height: 260px;
             display: flex; align-items: center; justify-content: center;
             background: radial-gradient(circle at 50% 40%, rgba(124,58,237,0.25), transparent 70%);
-            flex-shrink: 0;
-            padding-top: 55px;
-            overflow: hidden;
+            flex-shrink: 0; padding-top: 55px; overflow: hidden;
         }
         #casePreview .case-hero img {
-            max-width: 70%; max-height: 190px;
-            object-fit: contain;
+            max-width: 70%; max-height: 190px; object-fit: contain;
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
             transition: opacity 0.3s;
         }
@@ -273,21 +242,17 @@
         }
         #casePreview .case-hero.spinning img,
         #casePreview .case-hero.spinning .hero-emoji {
-            opacity: 0;
-            pointer-events: none;
+            opacity: 0; pointer-events: none;
         }
 
         #rouletteWindowInline {
-            position: absolute;
-            top: 50%; left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: 100%; height: 110px;
             background: #12101f;
             border-top: 1px solid rgba(168,85,247,0.3);
             border-bottom: 1px solid rgba(168,85,247,0.3);
-            overflow: hidden;
-            display: none;
-            z-index: 5;
+            overflow: hidden; display: none; z-index: 5;
         }
         #rouletteWindowInline.active { display: block; }
 
@@ -325,17 +290,14 @@
         }
         #casePreview .preview-name-top {
             position: absolute; top: 22px; left: 0; right: 0;
-            text-align: center;
-            font-size: 18px; font-weight: 900; letter-spacing: 2px;
-            text-transform: uppercase; color: #fff;
+            text-align: center; font-size: 18px; font-weight: 900;
+            letter-spacing: 2px; text-transform: uppercase; color: #fff;
             pointer-events: none;
         }
 
         #casePreview .case-options {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 20px;
-            margin-top: 12px;
-            margin-bottom: 12px;
+            padding: 0 20px; margin-top: 12px; margin-bottom: 12px;
         }
         .multi-btn-group {
             display: flex; gap: 4px;
@@ -350,8 +312,7 @@
         }
         .multi-btn.active {
             background: rgba(124,58,237,0.4);
-            color: #fff;
-            border: 1px solid rgba(168,85,247,0.6);
+            color: #fff; border: 1px solid rgba(168,85,247,0.6);
         }
         .fast-toggle {
             display: flex; align-items: center; gap: 8px;
@@ -367,14 +328,12 @@
         .toggle-switch::after {
             content: ''; position: absolute; top: 3px; left: 3px;
             width: 18px; height: 18px; border-radius: 50%;
-            background: #fff;
-            transition: left 0.2s;
+            background: #fff; transition: left 0.2s;
         }
         .toggle-switch.on::after { left: 23px; }
 
         #casePreview .open-btn-big {
-            margin: 0 20px 16px 20px;
-            padding: 18px;
+            margin: 0 20px 16px 20px; padding: 18px;
             border-radius: 16px; border: none;
             background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: white; font-size: 17px; font-weight: 800;
@@ -397,23 +356,17 @@
         #casePreview .contents-title {
             padding: 0 20px 12px 20px;
             font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
-            color: #9ca3af;
-            text-transform: uppercase;
+            color: #9ca3af; text-transform: uppercase;
         }
 
         #casePreview .items-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 0 16px 20px 16px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; padding: 0 16px 20px 16px;
         }
 
         .item-card {
-            position: relative;
-            border-radius: 14px;
-            padding: 10px;
-            display: flex; flex-direction: column;
-            overflow: hidden;
+            position: relative; border-radius: 14px; padding: 10px;
+            display: flex; flex-direction: column; overflow: hidden;
             background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%);
             border: 1px solid rgba(255,255,255,0.06);
             min-height: 130px;
@@ -434,13 +387,11 @@
             box-shadow: 0 0 20px rgba(59,130,246,0.1);
         }
         .item-card .item-img-wrap {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center;
+            flex: 1; display: flex; align-items: center; justify-content: center;
             min-height: 70px;
         }
         .item-card .item-img-wrap img {
-            max-width: 100%; max-height: 80px;
-            object-fit: contain;
+            max-width: 100%; max-height: 80px; object-fit: contain;
             filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
         }
         .item-card .item-img-wrap .item-emoji-big {
@@ -448,16 +399,14 @@
             filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
         }
         .item-card .item-name {
-            font-size: 11px; font-weight: 700;
-            margin-top: 6px;
+            font-size: 11px; font-weight: 700; margin-top: 6px;
             line-height: 1.2;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .item-card .item-price {
             display: flex; align-items: center; gap: 4px;
             font-size: 12px; font-weight: 800;
-            color: #f5a623;
-            margin-top: 4px;
+            color: #f5a623; margin-top: 4px;
         }
         .item-card .item-price .coin-icon {
             width: 14px; height: 14px; border-radius: 50%;
@@ -467,11 +416,8 @@
         }
         .item-card .item-chance {
             position: absolute; top: 6px; right: 6px;
-            font-size: 9px; font-weight: 800;
-            color: #fff;
-            background: rgba(0,0,0,0.6);
-            padding: 2px 6px;
-            border-radius: 6px;
+            font-size: 9px; font-weight: 800; color: #fff;
+            background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 6px;
         }
 
         #inventoryMenu {
@@ -541,8 +487,7 @@
             border-radius: 16px; font-size: 12px;
             border: 1px solid rgba(255,255,255,0.1);
             pointer-events: none; z-index: 300;
-            white-space: nowrap; opacity: 0;
-            transition: opacity 0.3s;
+            white-space: nowrap; opacity: 0; transition: opacity 0.3s;
         }
         #status.show { opacity: 1; }
 
@@ -626,25 +571,20 @@
 
     <div id="bottomNav">
         <div class="nav-item active" data-tab="cases">
-            <span class="nav-icon">📦</span>
-            <span>Кейсы</span>
+            <span class="nav-icon">📦</span><span>Кейсы</span>
         </div>
         <div class="nav-item" data-tab="upgrade">
-            <span class="nav-icon">⬆️</span>
-            <span>Апгрейд</span>
+            <span class="nav-icon">⬆️</span><span>Апгрейд</span>
         </div>
         <div class="nav-item" data-tab="quests">
             <span class="nav-dot"></span>
-            <span class="nav-icon">📋</span>
-            <span>Задания</span>
+            <span class="nav-icon">📋</span><span>Задания</span>
         </div>
         <div class="nav-item" data-tab="inventory">
-            <span class="nav-icon">🎒</span>
-            <span>Инвентарь</span>
+            <span class="nav-icon">🎒</span><span>Инвентарь</span>
         </div>
         <div class="nav-item" data-tab="profile">
-            <span class="nav-icon">👤</span>
-            <span>Профиль</span>
+            <span class="nav-icon">👤</span><span>Профиль</span>
         </div>
     </div>
 
@@ -730,9 +670,9 @@
 
         // ================= СКИНЫ КЕЙСА "КАЛАШИ" =================
         const kalashItems = [
-            { id: 'k1', name: 'Штурмовая винтовка (Memento More)', emoji: '🔫', rarity: 'legendary', price: 2500 },
+            { id: 'k1', name: 'Штурмовая винтовка (Memento More)', image: 'memento.png', rarity: 'legendary', price: 2500 },
             { id: 'k2', name: 'Штурмовая винтовка (Ледяной раскол)', image: 'ice.png', rarity: 'legendary', price: 1500 },
-            { id: 'k3', name: 'Штурмовая винтовка (Удар яда)', emoji: '☠️', rarity: 'legendary', price: 1000 },
+            { id: 'k3', name: 'Штурмовая винтовка (Удар яда)', image: 'poison.png', rarity: 'legendary', price: 1000 },
             { id: 'k4', name: 'Штурмовая винтовка (Цифровой потрошитель)', emoji: '💻', rarity: 'legendary', price: 850 },
             { id: 'k5', name: 'Штурмовая винтовка (Рука мертвеца)', emoji: '💀', rarity: 'legendary', price: 800 },
             { id: 'k6', name: 'Штурмовая винтовка (Спект)', emoji: '👻', rarity: 'legendary', price: 750 },
@@ -748,7 +688,6 @@
             { id: 'k16', name: 'Штурмовая винтовка (Нагретая сталь)', emoji: '🔩', rarity: 'rare', price: 150 },
         ];
 
-        // ================= ПУСТЫЕ КЕЙСЫ =================
         const rifleItems = [];
         const donateItems = [];
 
@@ -764,16 +703,13 @@
                 id: 'rifle', name: 'Винтовки', emoji: '🎯', image: null,
                 price: 150, badge: 'soon', rarity: 'legendary',
                 chances: { common: 0, rare: 20, epic: 35, legendary: 45 },
-                items: rifleItems,
-                locked: true
+                items: rifleItems, locked: true
             },
             {
                 id: 'donate', name: 'Донат', emoji: '👑', image: null,
                 price: 500, badge: 'top', rarity: 'legendary',
                 chances: { common: 0, rare: 15, epic: 35, legendary: 50 },
-                items: donateItems,
-                locked: true,
-                isDonate: true
+                items: donateItems, locked: true, isDonate: true
             },
         ];
 
@@ -811,7 +747,7 @@
         }
         document.getElementById('statOpened').textContent = totalOpened;
 
-        // ================= ОТРИСОВКА КЕЙСОВ =================
+        // ================= ОТРИСОВКА =================
         function renderCases() {
             const grid = document.getElementById('casesGrid');
             grid.innerHTML = cases.map(c => {
@@ -844,7 +780,6 @@
             });
         }
 
-        // ================= ОКНО КЕЙСА =================
         function showCasePreview(id) {
             const c = cases.find(x => x.id === id);
             if (!c) return;
@@ -914,7 +849,6 @@
             document.getElementById('fastToggle').classList.toggle('on', fastMode);
         };
 
-        // ================= ОТКРЫТИЕ КЕЙСА =================
         document.getElementById('previewOpenBtn').onclick = () => {
             if (isSpinning) return;
             if (!currentCase) return;
@@ -924,7 +858,6 @@
             if (c.price > 0) { coins -= c.price; updateCoins(); }
             playCoinSound();
 
-            // СБРОС ПЕРЕД НОВЫМ ЗАПУСКОМ
             const hero = document.getElementById('caseHero');
             const winEl = document.getElementById('rouletteWindowInline');
             hero.classList.remove('spinning');
@@ -950,7 +883,6 @@
             return 'legendary';
         }
 
-        // ================= РУЛЕТКА =================
         function spinInlineRoulette(c, winningItem) {
             const track = document.getElementById('rouletteTrackInline');
             const winEl = document.getElementById('rouletteWindowInline');
@@ -960,7 +892,6 @@
             openBtn.disabled = true;
             openBtn.textContent = '🎡 Крутится...';
 
-            // Прячем картинку, показываем рулетку
             hero.classList.add('spinning');
             winEl.classList.add('active');
 
@@ -1020,7 +951,6 @@
                 }
                 isSpinning = false;
 
-                // Прячем рулетку через 1 секунду
                 setTimeout(() => {
                     winEl.classList.remove('active');
                     hero.classList.remove('spinning');
@@ -1051,7 +981,6 @@
             setTimeout(() => s.classList.remove('show'), 2000);
         }
 
-        // ================= ИНВЕНТАРЬ =================
         function renderInventory() {
             const list = document.getElementById('inventoryList');
             if (inventory.length === 0) {
@@ -1101,7 +1030,6 @@
             });
         });
 
-        // ================= БОНУС =================
         function claimBonus() {
             const now = Date.now();
             const dayMs = 24 * 60 * 60 * 1000;
@@ -1121,7 +1049,6 @@
         }
         document.getElementById('questsBanner').onclick = claimBonus;
 
-        // ================= СТАРТ =================
         renderCases();
         renderInventory();
 
