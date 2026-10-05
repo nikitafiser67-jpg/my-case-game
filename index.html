@@ -13,7 +13,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ================= ПРЕЛОАДЕР ================= */
         #preloader {
             position: fixed;
             top: 0; left: 0;
@@ -41,30 +40,22 @@
             background-clip: text;
             animation: pulseLogo 1.5s ease-in-out infinite;
         }
-        .preloader-logo span {
-            color: #fff;
-            -webkit-text-fill-color: #fff;
-        }
+        .preloader-logo span { color: #fff; -webkit-text-fill-color: #fff; }
         @keyframes pulseLogo {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(0.98); }
         }
         .preloader-spinner {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border: 4px solid rgba(168,85,247,0.2);
             border-top: 4px solid #a855f7;
             border-right: 4px solid #a855f7;
             border-radius: 50%;
             animation: spinPreloader 1s linear infinite;
         }
-        @keyframes spinPreloader {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spinPreloader { to { transform: rotate(360deg); } }
         .preloader-text {
-            font-size: 14px;
-            color: #9ca3af;
-            letter-spacing: 1px;
+            font-size: 14px; color: #9ca3af; letter-spacing: 1px;
             animation: pulseText 1.5s ease-in-out infinite;
         }
         @keyframes pulseText {
@@ -197,6 +188,139 @@
             background: rgba(245,166,35,0.2);
             border-color: rgba(245,166,35,0.6); color: #f5a623;
         }
+
+        /* ================= CRASH ================= */
+        .crash-container {
+            display: flex; flex-direction: column; gap: 12px;
+            padding-bottom: 20px;
+        }
+        .crash-history {
+            display: flex; gap: 6px; overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .crash-history::-webkit-scrollbar { display: none; }
+        .crash-history-item {
+            flex: 0 0 auto;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            background: rgba(255,255,255,0.05);
+        }
+        .crash-history-item.low { color: #ef4444; background: rgba(239,68,68,0.15); }
+        .crash-history-item.mid { color: #f59e0b; background: rgba(245,158,11,0.15); }
+        .crash-history-item.high { color: #22c55e; background: rgba(34,197,94,0.15); }
+
+        .crash-graph-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(180deg, #0f0b1e 0%, #1a1430 100%);
+            border: 1px solid rgba(168,85,247,0.3);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        #crashCanvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        .crash-multiplier {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 56px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(168,85,247,0.7);
+            pointer-events: none;
+            z-index: 3;
+        }
+        .crash-multiplier.green { color: #22c55e; text-shadow: 0 0 30px rgba(34,197,94,0.7); }
+        .crash-multiplier.red { color: #ef4444; text-shadow: 0 0 30px rgba(239,68,68,0.7); }
+        .crash-status {
+            position: absolute;
+            bottom: 15px; left: 0; right: 0;
+            text-align: center;
+            font-size: 13px;
+            color: #9ca3af;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .crash-controls {
+            display: flex; flex-direction: column; gap: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 14px;
+        }
+        .crash-bet-block {
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .crash-bet-block label {
+            font-size: 11px; color: #9ca3af; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .crash-bet-block input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(168,85,247,0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 800;
+            outline: none;
+        }
+        .crash-quick-bets {
+            display: flex; gap: 6px; flex-wrap: wrap;
+        }
+        .crash-quick-bets button {
+            flex: 1;
+            padding: 8px 6px;
+            background: rgba(124,58,237,0.2);
+            border: 1px solid rgba(124,58,237,0.4);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .crash-quick-bets button:active {
+            transform: scale(0.95);
+            background: rgba(124,58,237,0.4);
+        }
+
+        .crash-btn {
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            border: none;
+            font-size: 17px;
+            font-weight: 900;
+            cursor: pointer;
+            color: #fff;
+        }
+        .crash-btn-start {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            box-shadow: 0 8px 30px rgba(34,197,94,0.3);
+        }
+        .crash-btn-start:active { transform: scale(0.97); }
+        .crash-btn-start:disabled {
+            background: #333; color: #777; box-shadow: none;
+        }
+        .crash-btn-cashout {
+            background: linear-gradient(135deg, #f59e0b, #f5a623);
+            box-shadow: 0 8px 30px rgba(245,166,35,0.4);
+            animation: cashPulse 0.6s ease-in-out infinite;
+        }
+        @keyframes cashPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .crash-btn-cashout:active { transform: scale(0.97); }
 
         /* ================= ИНВЕНТАРЬ ================= */
         .inventory-summary {
@@ -602,7 +726,6 @@
             opacity: 0; pointer-events: none;
         }
 
-        /* ================= РУЛЕТКИ ================= */
         #roulettesContainer {
             position: absolute;
             top: 50%; left: 0;
@@ -1019,12 +1142,14 @@
             .achievement .ach-icon { font-size: 20px; }
             .achievement .ach-name { font-size: 7px; }
             .inventory-item .item-img { width: 38px; height: 38px; }
+            .crash-graph-wrapper { height: 260px; }
+            .crash-multiplier { font-size: 42px; }
+            .crash-quick-bets button { font-size: 11px; padding: 6px 4px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ПРЕЛОАДЕР -->
     <div id="preloader">
         <div class="preloader-logo">OXIDE <span>DROP</span></div>
         <div class="preloader-spinner"></div>
@@ -1085,6 +1210,38 @@
                     <div class="qs">Доступно +100 монет за бонус</div>
                 </div>
                 <div class="quests-badge" id="questsBadge">1</div>
+            </div>
+
+            <div style="height: 20px;"></div>
+        </div>
+
+        <div class="tab-screen" id="screen-crash">
+            <div class="section-title with-line">Crash</div>
+
+            <div class="crash-container">
+                <div class="crash-history" id="crashHistory"></div>
+
+                <div class="crash-graph-wrapper">
+                    <canvas id="crashCanvas"></canvas>
+                    <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
+                    <div class="crash-status" id="crashStatus">Сделайте ставку</div>
+                </div>
+
+                <div class="crash-controls">
+                    <div class="crash-bet-block">
+                        <label>Ставка</label>
+                        <input type="number" id="crashBet" value="50" min="10" step="10">
+                        <div class="crash-quick-bets">
+                            <button data-bet="10">10</button>
+                            <button data-bet="50">50</button>
+                            <button data-bet="100">100</button>
+                            <button data-bet="500">500</button>
+                            <button data-bet="1000">1000</button>
+                        </div>
+                    </div>
+                    <button class="crash-btn crash-btn-start" id="crashStartBtn">✈️ Взлёт</button>
+                    <button class="crash-btn crash-btn-cashout" id="crashCashoutBtn" style="display: none;">💰 Забрать</button>
+                </div>
             </div>
 
             <div style="height: 20px;"></div>
@@ -1242,6 +1399,9 @@
     <div id="bottomNav">
         <div class="nav-item active" data-tab="cases">
             <span class="nav-icon">📦</span><span>Кейсы</span>
+        </div>
+        <div class="nav-item" data-tab="crash">
+            <span class="nav-icon">✈️</span><span>Crash</span>
         </div>
         <div class="nav-item" data-tab="upgrade">
             <span class="nav-icon">⬆️</span><span>Апгрейд</span>
@@ -1810,6 +1970,10 @@
             if (tab === 'cases') {
                 document.getElementById('screen-cases').classList.add('active');
                 document.querySelector('.nav-item[data-tab="cases"]').classList.add('active');
+            } else if (tab === 'crash') {
+                document.getElementById('screen-crash').classList.add('active');
+                document.querySelector('.nav-item[data-tab="crash"]').classList.add('active');
+                setTimeout(initCrash, 50);
             } else if (tab === 'upgrade') {
                 document.getElementById('screen-upgrade').classList.add('active');
                 document.querySelector('.nav-item[data-tab="upgrade"]').classList.add('active');
@@ -1829,7 +1993,7 @@
             item.addEventListener('click', () => {
                 const tab = item.dataset.tab;
                 if (tab === 'quests') { claimBonus(); return; }
-                if (tab === 'cases' || tab === 'upgrade' || tab === 'inventory' || tab === 'profile') {
+                if (tab === 'cases' || tab === 'crash' || tab === 'upgrade' || tab === 'inventory' || tab === 'profile') {
                     switchScreen(tab);
                     return;
                 }
@@ -2138,6 +2302,353 @@
         }
         document.getElementById('questsBanner').onclick = claimBonus;
 
+        // ================= CRASH ИГРА =================
+        let crashState = {
+            playing: false,
+            cashouted: false,
+            bet: 0,
+            multiplier: 1.00,
+            crashAt: 0,
+            startTime: 0,
+            rafId: null,
+            history: [],
+            particles: [],
+            explosion: false,
+            planeX: 0,
+            planeY: 0,
+            planeAngle: -10,
+            smokeTimer: 0
+        };
+
+        const crashCanvas = document.getElementById('crashCanvas');
+        let crashCtx = null;
+        let crashPoints = [];
+
+        function initCrash() {
+            const canvas = crashCanvas;
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width === 0) return;
+            canvas.width = rect.width * 2;
+            canvas.height = rect.height * 2;
+            crashCtx = canvas.getContext('2d');
+            crashPoints = [];
+            crashState.particles = [];
+            crashState.explosion = false;
+            drawCrashGraph();
+        }
+
+        function drawCrashGraph() {
+            if (!crashCtx) return;
+            const w = crashCanvas.width;
+            const h = crashCanvas.height;
+            crashCtx.clearRect(0, 0, w, h);
+
+            crashCtx.strokeStyle = 'rgba(168,85,247,0.08)';
+            crashCtx.lineWidth = 2;
+            for (let i = 0; i <= 4; i++) {
+                const y = (h / 4) * i;
+                crashCtx.beginPath();
+                crashCtx.moveTo(0, y);
+                crashCtx.lineTo(w, y);
+                crashCtx.stroke();
+            }
+            for (let i = 0; i <= 6; i++) {
+                const x = (w / 6) * i;
+                crashCtx.beginPath();
+                crashCtx.moveTo(x, 0);
+                crashCtx.lineTo(x, h);
+                crashCtx.stroke();
+            }
+
+            crashCtx.fillStyle = 'rgba(255,255,255,0.15)';
+            for (let i = 0; i < 30; i++) {
+                const sx = ((i * 137) % w);
+                const sy = ((i * 89) % h);
+                crashCtx.fillRect(sx, sy, 2, 2);
+            }
+
+            if (crashPoints.length < 2 && !crashState.explosion) return;
+
+            if (crashPoints.length >= 2) {
+                const maxX = crashPoints[crashPoints.length - 1].x;
+                const maxY = Math.max(...crashPoints.map(p => p.y), 1);
+                const scaleX = (w - 80) / Math.max(maxX, 1);
+                const scaleY = (h - 100) / Math.max(maxY, 1);
+
+                crashCtx.fillStyle = crashState.cashouted ? 'rgba(34,197,94,0.15)' : 'rgba(168,85,247,0.15)';
+                crashCtx.beginPath();
+                crashCtx.moveTo(40, h - 40);
+                crashPoints.forEach(p => {
+                    crashCtx.lineTo(40 + p.x * scaleX, h - 40 - p.y * scaleY);
+                });
+                crashCtx.lineTo(40 + maxX * scaleX, h - 40);
+                crashCtx.closePath();
+                crashCtx.fill();
+
+                crashCtx.strokeStyle = crashState.cashouted ? '#22c55e' : (crashState.explosion ? '#ef4444' : '#a855f7');
+                crashCtx.lineWidth = 6;
+                crashCtx.lineCap = 'round';
+                crashCtx.lineJoin = 'round';
+                crashCtx.shadowColor = crashState.cashouted ? '#22c55e' : (crashState.explosion ? '#ef4444' : '#a855f7');
+                crashCtx.shadowBlur = 20;
+                crashCtx.beginPath();
+                crashPoints.forEach((p, i) => {
+                    const x = 40 + p.x * scaleX;
+                    const y = h - 40 - p.y * scaleY;
+                    if (i === 0) crashCtx.moveTo(x, y);
+                    else crashCtx.lineTo(x, y);
+                });
+                crashCtx.stroke();
+                crashCtx.shadowBlur = 0;
+
+                const lastP = crashPoints[crashPoints.length - 1];
+                crashState.planeX = 40 + lastP.x * scaleX;
+                crashState.planeY = h - 40 - lastP.y * scaleY;
+                crashState.planeAngle = Math.atan2(
+                    -((crashPoints[crashPoints.length-1].y - crashPoints[Math.max(crashPoints.length-2, 0)].y) * scaleY),
+                    ((crashPoints[crashPoints.length-1].x - crashPoints[Math.max(crashPoints.length-2, 0)].x) * scaleX)
+                ) * 180 / Math.PI;
+
+                if (crashState.playing && !crashState.explosion && Math.random() < 0.6) {
+                    crashState.particles.push({
+                        x: crashState.planeX,
+                        y: crashState.planeY,
+                        vx: -1 - Math.random() * 2,
+                        vy: -0.5 - Math.random() * 1,
+                        life: 1,
+                        size: 6 + Math.random() * 8,
+                        color: '255,255,255'
+                    });
+                }
+
+                if (!crashState.explosion) {
+                    crashCtx.save();
+                    crashCtx.translate(crashState.planeX, crashState.planeY);
+                    crashCtx.rotate(crashState.planeAngle * Math.PI / 180);
+                    crashCtx.font = '60px Arial';
+                    crashCtx.textAlign = 'center';
+                    crashCtx.textBaseline = 'middle';
+                    crashCtx.shadowColor = '#fff';
+                    crashCtx.shadowBlur = 15;
+                    crashCtx.fillText('✈️', 0, 0);
+                    crashCtx.restore();
+                }
+            }
+
+            for (let i = crashState.particles.length - 1; i >= 0; i--) {
+                const p = crashState.particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= 0.02;
+                p.size *= 0.98;
+
+                if (p.life <= 0 || p.size < 1) {
+                    crashState.particles.splice(i, 1);
+                    continue;
+                }
+
+                crashCtx.beginPath();
+                crashCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                crashCtx.fillStyle = 'rgba(' + p.color + ',' + (p.life * 0.8) + ')';
+                crashCtx.fill();
+            }
+
+            if (crashState.explosion) {
+                crashCtx.font = '120px Arial';
+                crashCtx.textAlign = 'center';
+                crashCtx.textBaseline = 'middle';
+                crashCtx.shadowColor = '#ef4444';
+                crashCtx.shadowBlur = 40;
+                crashCtx.fillText('💥', crashState.planeX, crashState.planeY);
+                crashCtx.shadowBlur = 0;
+            }
+        }
+
+        document.getElementById('crashStartBtn').onclick = startCrash;
+
+        function startCrash() {
+            if (crashState.playing) return;
+
+            const bet = parseInt(document.getElementById('crashBet').value) || 0;
+            if (bet < 10) { showStatus('⚠️ Минимальная ставка 10 монет'); return; }
+            if (bet > coins) { showStatus('❌ Недостаточно монет!'); return; }
+
+            coins -= bet;
+            updateCoins();
+            playCoinSound();
+
+            crashState.playing = true;
+            crashState.cashouted = false;
+            crashState.explosion = false;
+            crashState.bet = bet;
+            crashState.multiplier = 1.00;
+            crashState.startTime = performance.now();
+            crashPoints = [{ x: 0, y: 0 }];
+            crashState.particles = [];
+
+            const r = Math.random();
+            let crashAt;
+            if (r < 0.5) crashAt = 1 + Math.random() * 0.5;
+            else if (r < 0.8) crashAt = 1.5 + Math.random() * 1.0;
+            else if (r < 0.95) crashAt = 2.5 + Math.random() * 2.5;
+            else crashAt = 5 + Math.random() * 10;
+            crashState.crashAt = crashAt;
+
+            document.getElementById('crashStartBtn').disabled = true;
+            document.getElementById('crashStartBtn').style.display = 'none';
+            document.getElementById('crashCashoutBtn').style.display = 'block';
+            document.getElementById('crashStatus').textContent = '✈️ Летит! Успей забрать';
+            document.getElementById('crashMultiplier').className = 'crash-multiplier green';
+
+            crashState.rafId = requestAnimationFrame(crashTick);
+        }
+
+        function crashTick(now) {
+            if (!crashState.playing) {
+                drawCrashGraph();
+                return;
+            }
+
+            const elapsed = (now - crashState.startTime) / 1000;
+            const newMultiplier = 1.00 * Math.pow(1.15, elapsed);
+            crashState.multiplier = Math.min(newMultiplier, crashState.crashAt);
+
+            const multEl = document.getElementById('crashMultiplier');
+            multEl.textContent = crashState.multiplier.toFixed(2) + 'x';
+
+            const lastPoint = crashPoints[crashPoints.length - 1];
+            crashPoints.push({
+                x: lastPoint.x + 0.4,
+                y: crashState.multiplier - 1
+            });
+
+            if (crashPoints.length > 120) crashPoints.shift();
+
+            drawCrashGraph();
+
+            if (Math.random() < 0.15) playSound(600 + crashState.multiplier * 40, 0.05, 0.04);
+
+            if (crashState.multiplier >= crashState.crashAt - 0.005) {
+                endCrash(false);
+                return;
+            }
+
+            crashState.rafId = requestAnimationFrame(crashTick);
+        }
+
+        document.getElementById('crashCashoutBtn').onclick = () => {
+            if (!crashState.playing || crashState.cashouted) return;
+            crashState.cashouted = true;
+            endCrash(true);
+        };
+
+        function endCrash(success) {
+            crashState.playing = false;
+            if (crashState.rafId) cancelAnimationFrame(crashState.rafId);
+
+            const multEl = document.getElementById('crashMultiplier');
+            const statusEl = document.getElementById('crashStatus');
+
+            if (success) {
+                const winAmount = Math.floor(crashState.bet * crashState.multiplier);
+                coins += winAmount;
+                updateCoins();
+                playWinSound();
+                multEl.className = 'crash-multiplier green';
+                statusEl.textContent = '💰 Забрано: +' + winAmount + ' монет (' + crashState.multiplier.toFixed(2) + 'x)';
+                crashState.history.unshift({ value: crashState.multiplier, won: true });
+
+                for (let i = 0; i < 20; i++) {
+                    crashState.particles.push({
+                        x: crashState.planeX,
+                        y: crashState.planeY,
+                        vx: (Math.random() - 0.5) * 10,
+                        vy: (Math.random() - 0.5) * 10,
+                        life: 1, size: 8 + Math.random() * 6,
+                        color: '34,197,94'
+                    });
+                }
+
+                setTimeout(() => {
+                    document.getElementById('crashStartBtn').disabled = false;
+                    document.getElementById('crashStartBtn').style.display = 'block';
+                    document.getElementById('crashCashoutBtn').style.display = 'none';
+                    document.getElementById('crashMultiplier').textContent = '1.00x';
+                    document.getElementById('crashMultiplier').className = 'crash-multiplier';
+                    statusEl.textContent = 'Сделайте ставку';
+                    crashPoints = [];
+                    drawCrashGraph();
+                    checkAchievements();
+                }, 2000);
+
+            } else {
+                crashState.explosion = true;
+                playFailSound();
+                multEl.className = 'crash-multiplier red';
+                statusEl.textContent = '💥 Крах на ' + crashState.crashAt.toFixed(2) + 'x — ставка сгорела';
+                crashState.history.unshift({ value: crashState.crashAt, won: false });
+
+                for (let i = 0; i < 60; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 3 + Math.random() * 12;
+                    crashState.particles.push({
+                        x: crashState.planeX,
+                        y: crashState.planeY,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        life: 1,
+                        size: 8 + Math.random() * 12,
+                        color: Math.random() < 0.5 ? '239,68,68' : (Math.random() < 0.5 ? '245,158,11' : '255,255,255')
+                    });
+                }
+
+                setTimeout(() => {
+                    crashState.explosion = false;
+                    document.getElementById('crashStartBtn').disabled = false;
+                    document.getElementById('crashStartBtn').style.display = 'block';
+                    document.getElementById('crashCashoutBtn').style.display = 'none';
+                    document.getElementById('crashMultiplier').textContent = '1.00x';
+                    document.getElementById('crashMultiplier').className = 'crash-multiplier';
+                    statusEl.textContent = 'Сделайте ставку';
+                    crashPoints = [];
+                    drawCrashGraph();
+                    checkAchievements();
+                }, 1800);
+            }
+
+            if (crashState.history.length > 10) crashState.history.pop();
+            renderCrashHistory();
+
+            animateParticles();
+        }
+
+        function animateParticles() {
+            const loop = () => {
+                drawCrashGraph();
+                if (crashState.particles.length > 0 || crashState.explosion) {
+                    requestAnimationFrame(loop);
+                }
+            };
+            loop();
+        }
+
+        function renderCrashHistory() {
+            const container = document.getElementById('crashHistory');
+            if (!container) return;
+            container.innerHTML = crashState.history.map(h => {
+                let cls = 'low';
+                if (h.value >= 5) cls = 'high';
+                else if (h.value >= 2) cls = 'mid';
+                return '<div class="crash-history-item ' + cls + '">' + h.value.toFixed(2) + 'x</div>';
+            }).join('');
+        }
+
+        document.querySelectorAll('.crash-quick-bets button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('crashBet').value = btn.dataset.bet;
+            });
+        });
+
         renderCases();
         renderInventory();
 
@@ -2152,7 +2663,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Прелоадер добавлен!');
+        console.log('🎰 Игра с Crash запущена!');
     </script>
 </body>
 </html>
