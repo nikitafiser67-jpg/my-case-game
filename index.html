@@ -14,54 +14,31 @@
         }
 
         #preloader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #0a0a0f;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0a0f; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        #preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
         .preloader-logo {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: 2px;
+            font-size: 32px; font-weight: 900; letter-spacing: 2px;
             background: linear-gradient(135deg, #a855f7, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: pulseLogo 1.5s ease-in-out infinite;
         }
         .preloader-logo span { color: #fff; -webkit-text-fill-color: #fff; }
-        @keyframes pulseLogo {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(0.98); }
-        }
+        @keyframes pulseLogo { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(0.98); } }
         .preloader-spinner {
             width: 60px; height: 60px;
             border: 4px solid rgba(168,85,247,0.2);
-            border-top: 4px solid #a855f7;
-            border-right: 4px solid #a855f7;
+            border-top: 4px solid #a855f7; border-right: 4px solid #a855f7;
             border-radius: 50%;
             animation: spinPreloader 1s linear infinite;
         }
         @keyframes spinPreloader { to { transform: rotate(360deg); } }
-        .preloader-text {
-            font-size: 14px; color: #9ca3af; letter-spacing: 1px;
-            animation: pulseText 1.5s ease-in-out infinite;
-        }
-        @keyframes pulseText {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
+        .preloader-text { font-size: 14px; color: #9ca3af; letter-spacing: 1px; animation: pulseText 1.5s ease-in-out infinite; }
+        @keyframes pulseText { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
         #header {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
@@ -118,9 +95,7 @@
             border-radius: 2px;
         }
 
-        .cases-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-        }
+        .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
         .case-card {
             position: relative;
@@ -133,35 +108,15 @@
         }
         .case-card:active { transform: scale(0.97); }
         .case-card.locked { opacity: 0.55; }
-
-        .case-card .case-top {
-            display: flex; justify-content: space-between; align-items: flex-start;
-            min-height: 22px;
-        }
-        .case-card .case-title {
-            font-size: 13px; font-weight: 700; line-height: 1.2; max-width: 70%;
-        }
-        .case-card .badge {
-            font-size: 9px; font-weight: 800; letter-spacing: 0.5px;
-            padding: 3px 8px; border-radius: 8px; text-transform: uppercase;
-        }
+        .case-card .case-top { display: flex; justify-content: space-between; align-items: flex-start; min-height: 22px; }
+        .case-card .case-title { font-size: 13px; font-weight: 700; line-height: 1.2; max-width: 70%; }
+        .case-card .badge { font-size: 9px; font-weight: 800; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 8px; text-transform: uppercase; }
         .badge.new { background: #ec4899; color: white; }
         .badge.soon { background: #4b5563; color: #d1d5db; }
         .badge.top { background: #f59e0b; color: #1a1a1a; }
-
-        .case-card .case-image {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            min-height: 90px;
-        }
-        .case-card .case-image img {
-            max-width: 100%; max-height: 120px; object-fit: contain;
-            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
-        }
-        .case-card .case-image .case-emoji-big {
-            font-size: 62px;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6));
-        }
-
+        .case-card .case-image { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 90px; }
+        .case-card .case-image img { max-width: 100%; max-height: 120px; object-fit: contain; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7)); }
+        .case-card .case-image .case-emoji-big { font-size: 62px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)); }
         .case-card .case-price-btn {
             background: rgba(124,58,237,0.18);
             border: 1px solid rgba(124,58,237,0.4);
@@ -175,169 +130,89 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 10px;
         }
-        .case-card.locked .case-price-btn {
-            background: rgba(100,100,100,0.15);
-            border-color: rgba(150,150,150,0.3); color: #9ca3af;
-        }
-        .case-card.donate {
-            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
-            border-color: rgba(245,166,35,0.5);
-            box-shadow: 0 0 30px rgba(245,166,35,0.15);
-        }
-        .case-card.donate .case-price-btn {
-            background: rgba(245,166,35,0.2);
-            border-color: rgba(245,166,35,0.6); color: #f5a623;
-        }
+        .case-card.locked .case-price-btn { background: rgba(100,100,100,0.15); border-color: rgba(150,150,150,0.3); color: #9ca3af; }
+        .case-card.donate { background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%); border-color: rgba(245,166,35,0.5); box-shadow: 0 0 30px rgba(245,166,35,0.15); }
+        .case-card.donate .case-price-btn { background: rgba(245,166,35,0.2); border-color: rgba(245,166,35,0.6); color: #f5a623; }
 
-        /* ================= CRASH ================= */
-        .crash-container {
-            display: flex; flex-direction: column; gap: 12px;
-            padding-bottom: 20px;
-        }
-        .crash-history {
-            display: flex; gap: 6px; overflow-x: auto;
-            padding-bottom: 4px;
-        }
+        /* CRASH */
+        .crash-container { display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px; }
+        .crash-history { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
         .crash-history::-webkit-scrollbar { display: none; }
-        .crash-history-item {
-            flex: 0 0 auto;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 800;
-            background: rgba(255,255,255,0.05);
-        }
+        .crash-history-item { flex: 0 0 auto; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; background: rgba(255,255,255,0.05); }
         .crash-history-item.low { color: #ef4444; background: rgba(239,68,68,0.15); }
         .crash-history-item.mid { color: #f59e0b; background: rgba(245,158,11,0.15); }
         .crash-history-item.high { color: #22c55e; background: rgba(34,197,94,0.15); }
 
         .crash-graph-wrapper {
-            position: relative;
-            width: 100%;
-            height: 300px;
+            position: relative; width: 100%; height: 300px;
             background: linear-gradient(180deg, #0f0b1e 0%, #1a1430 100%);
             border: 1px solid rgba(168,85,247,0.3);
-            border-radius: 18px;
-            overflow: hidden;
+            border-radius: 18px; overflow: hidden;
         }
-        #crashCanvas {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-        }
+        #crashCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .crash-multiplier {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 56px;
-            font-weight: 900;
-            color: #fff;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 56px; font-weight: 900; color: #fff;
             text-shadow: 0 0 30px rgba(168,85,247,0.7);
-            pointer-events: none;
-            z-index: 3;
+            pointer-events: none; z-index: 3;
         }
         .crash-multiplier.green { color: #22c55e; text-shadow: 0 0 30px rgba(34,197,94,0.7); }
         .crash-multiplier.red { color: #ef4444; text-shadow: 0 0 30px rgba(239,68,68,0.7); }
         .crash-status {
-            position: absolute;
-            bottom: 15px; left: 0; right: 0;
-            text-align: center;
-            font-size: 13px;
-            color: #9ca3af;
-            pointer-events: none;
-            z-index: 3;
+            position: absolute; bottom: 15px; left: 0; right: 0;
+            text-align: center; font-size: 13px; color: #9ca3af;
+            pointer-events: none; z-index: 3;
+            padding: 0 10px;
         }
 
         .crash-controls {
             display: flex; flex-direction: column; gap: 12px;
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px;
-            padding: 14px;
+            border-radius: 16px; padding: 14px;
         }
-        .crash-bet-block {
-            display: flex; flex-direction: column; gap: 6px;
-        }
-        .crash-bet-block label {
-            font-size: 11px; color: #9ca3af; text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .crash-bet-block { display: flex; flex-direction: column; gap: 6px; }
+        .crash-bet-block label { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
         .crash-bet-block input {
-            width: 100%;
-            padding: 12px;
+            width: 100%; padding: 12px;
             background: rgba(0,0,0,0.35);
             border: 1px solid rgba(168,85,247,0.3);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 800;
+            border-radius: 12px; color: #fff; font-size: 18px; font-weight: 800;
             outline: none;
         }
-        .crash-quick-bets {
-            display: flex; gap: 6px; flex-wrap: wrap;
-        }
+        .crash-quick-bets { display: flex; gap: 6px; flex-wrap: wrap; }
         .crash-quick-bets button {
-            flex: 1;
-            padding: 8px 6px;
+            flex: 1; padding: 8px 6px;
             background: rgba(124,58,237,0.2);
             border: 1px solid rgba(124,58,237,0.4);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            touch-action: manipulation;
+            border-radius: 10px; color: #fff; font-size: 12px; font-weight: 700;
+            cursor: pointer; touch-action: manipulation;
         }
-        .crash-quick-bets button:active {
-            transform: scale(0.95);
-            background: rgba(124,58,237,0.4);
-        }
+        .crash-quick-bets button:active { transform: scale(0.95); background: rgba(124,58,237,0.4); }
+        .crash-quick-bets button.crash-max-btn { background: rgba(245,166,35,0.25); border-color: rgba(245,166,35,0.6); color: #f5a623; }
+        .crash-quick-bets button.crash-max-btn:active { background: rgba(245,166,35,0.5); }
 
         .crash-btn {
-            width: 100%;
-            padding: 18px;
-            border-radius: 14px;
-            border: none;
-            font-size: 17px;
-            font-weight: 900;
-            cursor: pointer;
-            color: #fff;
+            width: 100%; padding: 18px; border-radius: 14px; border: none;
+            font-size: 17px; font-weight: 900; cursor: pointer; color: #fff;
         }
-        .crash-btn-start {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            box-shadow: 0 8px 30px rgba(34,197,94,0.3);
-        }
+        .crash-btn-start { background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 8px 30px rgba(34,197,94,0.3); }
         .crash-btn-start:active { transform: scale(0.97); }
-        .crash-btn-start:disabled {
-            background: #333; color: #777; box-shadow: none;
-        }
+        .crash-btn-start:disabled { background: #333; color: #777; box-shadow: none; }
         .crash-btn-cashout {
             background: linear-gradient(135deg, #f59e0b, #f5a623);
             box-shadow: 0 8px 30px rgba(245,166,35,0.4);
             animation: cashPulse 0.6s ease-in-out infinite;
         }
-        @keyframes cashPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
+        @keyframes cashPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
         .crash-btn-cashout:active { transform: scale(0.97); }
 
-        /* ================= ИНВЕНТАРЬ ================= */
-        .inventory-summary {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 10px; margin-bottom: 16px;
-        }
-        .inv-stat {
-            background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
-            border: 1px solid rgba(168,85,247,0.3);
-            border-radius: 14px; padding: 14px; text-align: center;
-        }
+        /* INVENTORY */
+        .inventory-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .inv-stat { background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%); border: 1px solid rgba(168,85,247,0.3); border-radius: 14px; padding: 14px; text-align: center; }
         .inv-stat-value { font-size: 22px; font-weight: 900; color: #a855f7; }
         .inv-stat-value.gold { color: #f5a623; }
-        .inv-stat-label {
-            font-size: 10px; color: #9ca3af; margin-top: 4px;
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
+        .inv-stat-label { font-size: 10px; color: #9ca3af; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .inventory-item {
             display: flex; justify-content: space-between; align-items: center;
@@ -350,244 +225,73 @@
         .inventory-item.legendary { border-left-color: #f5a623; }
         .inventory-item .info { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
         .inventory-item .emoji { font-size: 28px; }
-        .inventory-item .item-img {
-            width: 44px; height: 44px; object-fit: contain;
-            filter: brightness(1.6) drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
-        .inventory-item .name {
-            font-size: 13px; font-weight: 700;
-            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
+        .inventory-item .item-img { width: 44px; height: 44px; object-fit: contain; filter: brightness(1.6) drop-shadow(0 2px 6px rgba(0,0,0,0.6)); }
+        .inventory-item .name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .inventory-item .rarity { font-size: 11px; opacity: 0.7; margin-top: 2px; }
-        .inventory-item .sell-btn {
-            background: rgba(34,197,94,0.2); border: 1px solid #22c55e;
-            color: white; padding: 8px 14px; border-radius: 20px;
-            font-size: 12px; font-weight: 700; cursor: pointer;
-            white-space: nowrap;
-        }
-        #emptyInventory {
-            text-align: center; color: rgba(255,255,255,0.4); padding: 60px 30px;
-            font-size: 14px; line-height: 1.6;
-        }
+        .inventory-item .sell-btn { background: rgba(34,197,94,0.2); border: 1px solid #22c55e; color: white; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+        #emptyInventory { text-align: center; color: rgba(255,255,255,0.4); padding: 60px 30px; font-size: 14px; line-height: 1.6; }
 
-        /* ================= АПГРЕЙД ================= */
-        .upgrade-container {
-            display: flex; flex-direction: column; gap: 16px;
-            padding-bottom: 20px;
-        }
-        .upgrade-block {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 14px;
-        }
-        .upgrade-block-title {
-            font-size: 12px; font-weight: 800; letter-spacing: 1px;
-            color: #9ca3af; text-transform: uppercase; margin-bottom: 10px;
-        }
-        .upgrade-slot {
-            width: 100%; min-height: 130px;
-            border: 2px dashed rgba(255,255,255,0.15);
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; background: rgba(0,0,0,0.2);
-            padding: 10px;
-        }
-        .upgrade-slot.filled {
-            border-style: solid;
-            border-color: rgba(168,85,247,0.5);
-            background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%);
-        }
-        .upgrade-slot .slot-empty-text {
-            color: #6b7280; font-size: 13px; text-align: center;
-        }
-        .upgrade-slot .slot-content {
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
-            width: 100%;
-        }
-        .upgrade-slot .slot-content img {
-            max-width: 70px; max-height: 70px; object-fit: contain;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8)) brightness(1.6);
-        }
+        /* UPGRADE */
+        .upgrade-container { display: flex; flex-direction: column; gap: 16px; padding-bottom: 20px; }
+        .upgrade-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 14px; }
+        .upgrade-block-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
+        .upgrade-slot { width: 100%; min-height: 130px; border: 2px dashed rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; background: rgba(0,0,0,0.2); padding: 10px; }
+        .upgrade-slot.filled { border-style: solid; border-color: rgba(168,85,247,0.5); background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%); }
+        .upgrade-slot .slot-empty-text { color: #6b7280; font-size: 13px; text-align: center; }
+        .upgrade-slot .slot-content { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+        .upgrade-slot .slot-content img { max-width: 70px; max-height: 70px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8)) brightness(1.6); }
         .upgrade-slot .slot-content .slot-emoji { font-size: 50px; }
-        .upgrade-slot .slot-content .slot-name {
-            font-size: 12px; font-weight: 700; text-align: center;
-            line-height: 1.2; max-width: 100%;
-            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
-        .upgrade-slot .slot-content .slot-price {
-            font-size: 12px; font-weight: 800; color: #f5a623;
-        }
+        .upgrade-slot .slot-content .slot-name { font-size: 12px; font-weight: 700; text-align: center; line-height: 1.2; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .upgrade-slot .slot-content .slot-price { font-size: 12px; font-weight: 800; color: #f5a623; }
 
-        .upgrade-wheel-container {
-            display: flex; justify-content: center; align-items: center;
-            padding: 10px 0; position: relative;
-        }
+        .upgrade-wheel-container { display: flex; justify-content: center; align-items: center; padding: 10px 0; position: relative; }
         .upgrade-wheel { position: relative; width: 220px; height: 220px; }
-        .upgrade-wheel svg {
-            width: 100%; height: 100%; transform: rotate(-90deg);
-            filter: drop-shadow(0 0 20px rgba(168,85,247,0.3));
-        }
-        .wheel-center {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110px; height: 110px; border-radius: 50%;
-            background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%);
-            border: 2px solid rgba(168,85,247,0.4);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            z-index: 3; box-shadow: 0 0 30px rgba(124,58,237,0.4);
-        }
-        .wheel-chance-label {
-            font-size: 9px; color: #9ca3af; text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .wheel-chance-value {
-            font-size: 28px; font-weight: 900;
-            color: #fff; margin-top: 2px;
-        }
+        .upgrade-wheel svg { width: 100%; height: 100%; transform: rotate(-90deg); filter: drop-shadow(0 0 20px rgba(168,85,247,0.3)); }
+        .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 110px; height: 110px; border-radius: 50%; background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%); border: 2px solid rgba(168,85,247,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3; box-shadow: 0 0 30px rgba(124,58,237,0.4); }
+        .wheel-chance-label { font-size: 9px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
+        .wheel-chance-value { font-size: 28px; font-weight: 900; color: #fff; margin-top: 2px; }
         .wheel-chance-value.green { color: #22c55e; }
         .wheel-chance-value.red { color: #ef4444; }
         .wheel-chance-value.mid { color: #f59e0b; }
 
-        .wheel-pointer {
-            position: absolute; top: 0; left: 50%;
-            transform: translateX(-50%) rotate(0deg);
-            transform-origin: 50% 110px;
-            width: 4px; height: 110px;
-            z-index: 4; pointer-events: none;
-        }
-        .wheel-pointer.spinning {
-            transition: transform 4s cubic-bezier(0.15, 0.85, 0.3, 1);
-        }
-        .wheel-pointer-inner {
-            width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #fff 0%, #f5a623 60%, #f5a623 100%);
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(245,166,35,0.8);
-            position: relative;
-        }
-        .wheel-pointer-inner::before {
-            content: ''; position: absolute;
-            top: -8px; left: 50%; transform: translateX(-50%);
-            width: 16px; height: 16px;
-            background: #f5a623; border-radius: 50%;
-            box-shadow: 0 0 12px rgba(245,166,35,0.9);
-        }
+        .wheel-pointer { position: absolute; top: 0; left: 50%; transform: translateX(-50%) rotate(0deg); transform-origin: 50% 110px; width: 4px; height: 110px; z-index: 4; pointer-events: none; }
+        .wheel-pointer.spinning { transition: transform 4s cubic-bezier(0.15, 0.85, 0.3, 1); }
+        .wheel-pointer-inner { width: 100%; height: 100%; background: linear-gradient(to bottom, #fff 0%, #f5a623 60%, #f5a623 100%); border-radius: 2px; box-shadow: 0 0 10px rgba(245,166,35,0.8); position: relative; }
+        .wheel-pointer-inner::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: #f5a623; border-radius: 50%; box-shadow: 0 0 12px rgba(245,166,35,0.9); }
 
-        .upgrade-chance-legend {
-            display: flex; justify-content: center; gap: 20px;
-            margin-top: 10px; font-size: 11px; color: #9ca3af;
-        }
-        .upgrade-chance-legend .dot {
-            display: inline-block; width: 10px; height: 10px;
-            border-radius: 50%; margin-right: 6px; vertical-align: middle;
-        }
+        .upgrade-chance-legend { display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-size: 11px; color: #9ca3af; }
+        .upgrade-chance-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
         .upgrade-chance-legend .dot.green { background: #22c55e; }
         .upgrade-chance-legend .dot.red { background: #ef4444; }
 
-        .upgrade-btn {
-            padding: 18px; border-radius: 16px; border: none;
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white; font-size: 17px; font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(124,58,237,0.4);
-        }
-        .upgrade-btn:disabled {
-            background: #333; color: #777; box-shadow: none;
-            cursor: not-allowed;
-        }
+        .upgrade-btn { padding: 18px; border-radius: 16px; border: none; background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; font-size: 17px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 30px rgba(124,58,237,0.4); }
+        .upgrade-btn:disabled { background: #333; color: #777; box-shadow: none; cursor: not-allowed; }
 
-        /* ================= ПРОФИЛЬ ================= */
-        .profile-header {
-            display: flex; align-items: center; gap: 16px;
-            padding: 20px;
-            background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
-            border: 1px solid rgba(168,85,247,0.3);
-            border-radius: 20px; margin-bottom: 16px;
-            position: relative; overflow: hidden;
-        }
-        .profile-header::before {
-            content: ''; position: absolute;
-            top: -50%; right: -30%;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%);
-            pointer-events: none;
-        }
-        .profile-avatar {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: linear-gradient(135deg, #a855f7, #7c3aed);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 40px;
-            border: 3px solid rgba(255,255,255,0.15);
-            flex-shrink: 0; position: relative; z-index: 1;
-            overflow: hidden;
-        }
+        /* PROFILE */
+        .profile-header { display: flex; align-items: center; gap: 16px; padding: 20px; background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%); border: 1px solid rgba(168,85,247,0.3); border-radius: 20px; margin-bottom: 16px; position: relative; overflow: hidden; }
+        .profile-header::before { content: ''; position: absolute; top: -50%; right: -30%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%); pointer-events: none; }
+        .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #7c3aed); display: flex; align-items: center; justify-content: center; font-size: 40px; border: 3px solid rgba(255,255,255,0.15); flex-shrink: 0; position: relative; z-index: 1; overflow: hidden; }
         .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .profile-info { flex: 1; position: relative; z-index: 1; }
         .profile-name { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
         .profile-id { font-size: 12px; color: #a855f7; font-weight: 700; margin-bottom: 4px; }
         .profile-date { font-size: 11px; color: #9ca3af; }
 
-        .stats-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-            margin-bottom: 16px;
-        }
-        .stat-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px; padding: 14px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .stat-card .stat-icon {
-            width: 40px; height: 40px; border-radius: 12px;
-            background: rgba(124,58,237,0.15);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; flex-shrink: 0;
-        }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 14px; display: flex; align-items: center; gap: 10px; }
+        .stat-card .stat-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(124,58,237,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
         .stat-card .stat-info { flex: 1; min-width: 0; }
-        .stat-card .stat-value {
-            font-size: 18px; font-weight: 900;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .stat-card .stat-label {
-            font-size: 10px; color: #9ca3af; text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .stat-card .stat-value { font-size: 18px; font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .stat-card .stat-label { font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .achievements-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
-            margin-bottom: 16px;
-        }
-        .achievement {
-            aspect-ratio: 1;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: 4px; position: relative; opacity: 0.4;
-        }
-        .achievement.unlocked {
-            opacity: 1;
-            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
-            border-color: rgba(245,166,35,0.5);
-            box-shadow: 0 0 15px rgba(245,166,35,0.2);
-        }
+        .achievements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+        .achievement { aspect-ratio: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px; position: relative; opacity: 0.4; }
+        .achievement.unlocked { opacity: 1; background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%); border-color: rgba(245,166,35,0.5); box-shadow: 0 0 15px rgba(245,166,35,0.2); }
         .achievement .ach-icon { font-size: 24px; }
-        .achievement .ach-name {
-            font-size: 8px; text-align: center; margin-top: 2px;
-            line-height: 1.1;
-        }
+        .achievement .ach-name { font-size: 8px; text-align: center; margin-top: 2px; line-height: 1.1; }
 
-        .profile-section {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 4px; margin-bottom: 16px;
-        }
-        .profile-row {
-            display: flex; align-items: center; gap: 12px;
-            padding: 14px 12px; cursor: pointer; border-radius: 12px;
-        }
+        .profile-section { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 4px; margin-bottom: 16px; }
+        .profile-row { display: flex; align-items: center; gap: 12px; padding: 14px 12px; cursor: pointer; border-radius: 12px; }
         .profile-row .row-icon { font-size: 22px; }
         .profile-row .row-text { flex: 1; font-size: 14px; font-weight: 600; }
         .profile-row .row-value { font-size: 13px; color: #9ca3af; margin-right: 6px; }
@@ -595,81 +299,31 @@
         .profile-row.danger .row-text { color: #ef4444; }
         .profile-row.danger .row-icon { color: #ef4444; }
 
-        .ref-link-box {
-            background: rgba(34,197,94,0.08);
-            border: 1px solid rgba(34,197,94,0.3);
-            border-radius: 12px; padding: 12px;
-            display: flex; align-items: center; gap: 10px;
-            margin-top: 10px;
-        }
-        .ref-link-box .ref-text {
-            flex: 1; font-size: 12px; color: #22c55e;
-            word-break: break-all;
-        }
-        .ref-link-box .ref-copy-btn {
-            background: rgba(34,197,94,0.2);
-            border: 1px solid #22c55e;
-            color: #22c55e; padding: 6px 12px;
-            border-radius: 10px; font-size: 11px; font-weight: 700;
-            cursor: pointer; white-space: nowrap;
-        }
+        .ref-link-box { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.3); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+        .ref-link-box .ref-text { flex: 1; font-size: 12px; color: #22c55e; word-break: break-all; }
+        .ref-link-box .ref-copy-btn { background: rgba(34,197,94,0.2); border: 1px solid #22c55e; color: #22c55e; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
 
-        /* ================= ПРОЧИЕ ================= */
-        .promo-block {
-            background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%);
-            border-radius: 18px; padding: 18px; display: flex; gap: 14px;
-            border: 1px solid rgba(124,58,237,0.2);
-            margin-top: 16px; position: relative; overflow: hidden;
-        }
-        .promo-block::before {
-            content: ''; position: absolute; top: -50%; right: -20%;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%);
-            pointer-events: none;
-        }
+        /* PROMO */
+        .promo-block { background: linear-gradient(135deg, #2a1a4d 0%, #1a1235 100%); border-radius: 18px; padding: 18px; display: flex; gap: 14px; border: 1px solid rgba(124,58,237,0.2); margin-top: 16px; position: relative; overflow: hidden; }
+        .promo-block::before { content: ''; position: absolute; top: -50%; right: -20%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%); pointer-events: none; }
         .promo-left { flex: 1; position: relative; z-index: 1; }
-        .promo-title {
-            font-size: 20px; font-weight: 900; letter-spacing: 0.5px;
-            line-height: 1.1; margin-bottom: 8px;
-        }
+        .promo-title { font-size: 20px; font-weight: 900; letter-spacing: 0.5px; line-height: 1.1; margin-bottom: 8px; }
         .promo-title .purple { color: #a855f7; }
         .promo-desc { font-size: 11px; opacity: 0.7; line-height: 1.4; margin-bottom: 12px; }
         .promo-stats { display: flex; gap: 10px; }
-        .promo-stat {
-            background: rgba(0,0,0,0.35);
-            border-radius: 10px; padding: 8px 10px; flex: 1;
-        }
+        .promo-stat { background: rgba(0,0,0,0.35); border-radius: 10px; padding: 8px 10px; flex: 1; }
         .promo-stat .value { font-size: 15px; font-weight: 800; color: #22c55e; }
         .promo-stat .value.purple-value { color: #a855f7; }
         .promo-stat .label { font-size: 9px; opacity: 0.6; margin-top: 1px; }
-        .promo-right {
-            width: 100px; display: flex; align-items: center; justify-content: center;
-            position: relative; z-index: 1;
-        }
+        .promo-right { width: 100px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
         .promo-right .emoji-big { font-size: 72px; }
 
-        .quests-banner {
-            display: flex; align-items: center; gap: 12px;
-            background: linear-gradient(135deg, #3d2a1a, #2a1d12);
-            border: 1px solid rgba(245,166,35,0.25);
-            border-radius: 16px; padding: 14px; margin-top: 14px;
-            cursor: pointer;
-        }
-        .quests-icon {
-            width: 44px; height: 44px; border-radius: 12px;
-            background: rgba(245,166,35,0.15);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px;
-        }
+        .quests-banner { display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #3d2a1a, #2a1d12); border: 1px solid rgba(245,166,35,0.25); border-radius: 16px; padding: 14px; margin-top: 14px; cursor: pointer; }
+        .quests-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(245,166,35,0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; }
         .quests-text { flex: 1; }
         .quests-text .qt { font-size: 14px; font-weight: 700; }
         .quests-text .qs { font-size: 11px; opacity: 0.6; margin-top: 2px; }
-        .quests-badge {
-            width: 26px; height: 26px; border-radius: 50%;
-            background: #a855f7; color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 13px; font-weight: 800;
-        }
+        .quests-badge { width: 26px; height: 26px; border-radius: 50%; background: #a855f7; color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; }
 
         #bottomNav {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
@@ -677,425 +331,108 @@
             border-top: 1px solid rgba(255,255,255,0.06);
             display: flex; z-index: 50;
         }
-        .nav-item {
-            flex: 1; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 3px;
-            color: #6b7280; font-size: 10px; font-weight: 600;
-            cursor: pointer; position: relative; transition: color 0.2s;
-        }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #6b7280; font-size: 10px; font-weight: 600; cursor: pointer; position: relative; transition: color 0.2s; }
         .nav-item .nav-icon { font-size: 20px; line-height: 1; }
         .nav-item.active { color: #a855f7; }
-        .nav-item.active::before {
-            content: ''; position: absolute; top: 0; left: 50%;
-            transform: translateX(-50%); width: 40px; height: 3px;
-            background: #a855f7; border-radius: 0 0 3px 3px;
-        }
-        .nav-item .nav-dot {
-            position: absolute; top: 8px; right: calc(50% - 20px);
-            width: 8px; height: 8px; border-radius: 50%;
-            background: #22c55e; border: 2px solid #0f0c19;
-        }
+        .nav-item.active::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: #a855f7; border-radius: 0 0 3px 3px; }
+        .nav-item .nav-dot { position: absolute; top: 8px; right: calc(50% - 20px); width: 8px; height: 8px; border-radius: 50%; background: #22c55e; border: 2px solid #0f0c19; }
 
-        #casePreview {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0a0a0f; z-index: 100;
-            display: none; flex-direction: column; overflow-y: auto;
-        }
+        #casePreview { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0f; z-index: 100; display: none; flex-direction: column; overflow-y: auto; }
         #casePreview.active { display: flex; }
+        #casePreview .case-hero { position: relative; width: 100%; min-height: 260px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(124,58,237,0.25), transparent 70%); flex-shrink: 0; padding-top: 55px; padding-bottom: 20px; overflow: hidden; transition: min-height 0.3s; }
+        #casePreview .case-hero img { max-width: 70%; max-height: 190px; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)); transition: opacity 0.3s; }
+        #casePreview .case-hero .hero-emoji { font-size: 110px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)); transition: opacity 0.3s; }
+        #casePreview .case-hero.spinning img, #casePreview .case-hero.spinning .hero-emoji { opacity: 0; pointer-events: none; }
 
-        #casePreview .case-hero {
-            position: relative; width: 100%; min-height: 260px;
-            display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(circle at 50% 40%, rgba(124,58,237,0.25), transparent 70%);
-            flex-shrink: 0; padding-top: 55px; padding-bottom: 20px;
-            overflow: hidden;
-            transition: min-height 0.3s;
-        }
-        #casePreview .case-hero img {
-            max-width: 70%; max-height: 190px; object-fit: contain;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
-            transition: opacity 0.3s;
-        }
-        #casePreview .case-hero .hero-emoji {
-            font-size: 110px;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
-            transition: opacity 0.3s;
-        }
-        #casePreview .case-hero.spinning img,
-        #casePreview .case-hero.spinning .hero-emoji {
-            opacity: 0; pointer-events: none;
-        }
-
-        #roulettesContainer {
-            position: absolute;
-            top: 50%; left: 0;
-            transform: translateY(-50%);
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            padding: 0 8px;
-            z-index: 5;
-            box-sizing: border-box;
-        }
+        #roulettesContainer { position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 100%; display: none; flex-direction: column; gap: 10px; padding: 0 8px; z-index: 5; box-sizing: border-box; }
         #roulettesContainer.active { display: flex; }
 
-        .roulette-row {
-            width: 100%;
-            height: 110px;
-            background: #12101f;
-            border-top: 2px solid rgba(168,85,247,0.4);
-            border-bottom: 2px solid rgba(168,85,247,0.4);
-            overflow: hidden;
-            position: relative;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(124,58,237,0.2);
-        }
-        .roulette-track {
-            display: flex;
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            align-items: center;
-        }
-        .roulette-item {
-            flex: 0 0 100px; height: 100px;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; gap: 2px;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 70%);
-            margin: 0 5px;
-            border-radius: 10px;
-            border: 2px solid rgba(255,255,255,0.2);
-            overflow: hidden;
-        }
-        .roulette-item .item-image {
-            width: 85px; height: 85px;
-            object-fit: contain;
-            filter: brightness(3) contrast(1.5)
-                    drop-shadow(0 0 12px #fff)
-                    drop-shadow(0 0 22px rgba(255,255,255,0.9));
-        }
+        .roulette-row { width: 100%; height: 110px; background: #12101f; border-top: 2px solid rgba(168,85,247,0.4); border-bottom: 2px solid rgba(168,85,247,0.4); overflow: hidden; position: relative; border-radius: 12px; box-shadow: 0 0 20px rgba(124,58,237,0.2); }
+        .roulette-track { display: flex; position: absolute; top: 0; left: 0; height: 100%; align-items: center; }
+        .roulette-item { flex: 0 0 100px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 70%); margin: 0 5px; border-radius: 10px; border: 2px solid rgba(255,255,255,0.2); overflow: hidden; }
+        .roulette-item .item-image { width: 85px; height: 85px; object-fit: contain; filter: brightness(3) contrast(1.5) drop-shadow(0 0 12px #fff) drop-shadow(0 0 22px rgba(255,255,255,0.9)); }
         .roulette-item .item-emoji { font-size: 48px; }
-        .roulette-item.rare {
-            border-color: #3b82f6;
-            background: radial-gradient(circle at center, rgba(59,130,246,0.5) 0%, rgba(59,130,246,0.1) 70%);
-        }
-        .roulette-item.epic {
-            border-color: #a855f7;
-            background: radial-gradient(circle at center, rgba(168,85,247,0.5) 0%, rgba(168,85,247,0.1) 70%);
-        }
-        .roulette-item.legendary {
-            border-color: #f5a623;
-            background: radial-gradient(circle at center, rgba(245,166,35,0.5) 0%, rgba(245,166,35,0.1) 70%);
-        }
-        .roulette-item.common {
-            border-color: #9ca3af;
-            background: radial-gradient(circle at center, rgba(156,163,175,0.4) 0%, rgba(156,163,175,0.1) 70%);
-        }
+        .roulette-item.rare { border-color: #3b82f6; background: radial-gradient(circle at center, rgba(59,130,246,0.5) 0%, rgba(59,130,246,0.1) 70%); }
+        .roulette-item.epic { border-color: #a855f7; background: radial-gradient(circle at center, rgba(168,85,247,0.5) 0%, rgba(168,85,247,0.1) 70%); }
+        .roulette-item.legendary { border-color: #f5a623; background: radial-gradient(circle at center, rgba(245,166,35,0.5) 0%, rgba(245,166,35,0.1) 70%); }
+        .roulette-item.common { border-color: #9ca3af; background: radial-gradient(circle at center, rgba(156,163,175,0.4) 0%, rgba(156,163,175,0.1) 70%); }
 
-        .roulette-pointer {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 3px; height: 100%; background: #f5a623;
-            z-index: 5; box-shadow: 0 0 15px rgba(245,166,35,0.7);
-        }
+        .roulette-pointer { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 3px; height: 100%; background: #f5a623; z-index: 5; box-shadow: 0 0 15px rgba(245,166,35,0.7); }
 
-        #casePreview .back-btn {
-            position: absolute; top: 15px; left: 15px;
-            width: 42px; height: 42px; border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white; font-size: 20px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10;
-        }
-        #casePreview .preview-name-top {
-            position: absolute; top: 22px; left: 0; right: 0;
-            text-align: center; font-size: 18px; font-weight: 900;
-            letter-spacing: 2px; text-transform: uppercase; color: #fff;
-            pointer-events: none;
-        }
-
-        #casePreview .case-options {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 20px; margin-top: 12px; margin-bottom: 12px;
-        }
-        .multi-btn-group {
-            display: flex; gap: 4px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px; padding: 4px;
-        }
-        .multi-btn {
-            padding: 8px 16px; border-radius: 8px;
-            background: transparent; border: none;
-            color: #9ca3af; font-weight: 700; font-size: 13px;
-            cursor: pointer;
-        }
-        .multi-btn.active {
-            background: rgba(124,58,237,0.4);
-            color: #fff; border: 1px solid rgba(168,85,247,0.6);
-        }
-        .fast-toggle {
-            display: flex; align-items: center; gap: 8px;
-            color: #9ca3af; font-size: 13px; font-weight: 600;
-        }
-        .toggle-switch {
-            width: 44px; height: 24px; border-radius: 12px;
-            background: rgba(255,255,255,0.1);
-            position: relative; cursor: pointer;
-            transition: background 0.2s;
-        }
+        #casePreview .back-btn { position: absolute; top: 15px; left: 15px; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
+        #casePreview .preview-name-top { position: absolute; top: 22px; left: 0; right: 0; text-align: center; font-size: 18px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; pointer-events: none; }
+        #casePreview .case-options { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; margin-top: 12px; margin-bottom: 12px; }
+        .multi-btn-group { display: flex; gap: 4px; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 4px; }
+        .multi-btn { padding: 8px 16px; border-radius: 8px; background: transparent; border: none; color: #9ca3af; font-weight: 700; font-size: 13px; cursor: pointer; }
+        .multi-btn.active { background: rgba(124,58,237,0.4); color: #fff; border: 1px solid rgba(168,85,247,0.6); }
+        .fast-toggle { display: flex; align-items: center; gap: 8px; color: #9ca3af; font-size: 13px; font-weight: 600; }
+        .toggle-switch { width: 44px; height: 24px; border-radius: 12px; background: rgba(255,255,255,0.1); position: relative; cursor: pointer; transition: background 0.2s; }
         .toggle-switch.on { background: rgba(168,85,247,0.6); }
-        .toggle-switch::after {
-            content: ''; position: absolute; top: 3px; left: 3px;
-            width: 18px; height: 18px; border-radius: 50%;
-            background: #fff; transition: left 0.2s;
-        }
+        .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left 0.2s; }
         .toggle-switch.on::after { left: 23px; }
+        #casePreview .open-btn-big { margin: 0 20px 16px 20px; padding: 18px; border-radius: 16px; border: none; background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; font-size: 17px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 30px rgba(124,58,237,0.4); }
+        #casePreview .open-btn-big:disabled { background: #333; color: #777; box-shadow: none; }
+        #casePreview .open-btn-big .coin-icon { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffe066, #f5a623); display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        #casePreview .contents-title { padding: 0 20px 12px 20px; font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #9ca3af; text-transform: uppercase; }
+        #casePreview .items-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 16px 20px 16px; }
 
-        #casePreview .open-btn-big {
-            margin: 0 20px 16px 20px; padding: 18px;
-            border-radius: 16px; border: none;
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white; font-size: 17px; font-weight: 800;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            box-shadow: 0 8px 30px rgba(124,58,237,0.4);
-        }
-        #casePreview .open-btn-big:disabled {
-            background: #333; color: #777; box-shadow: none;
-        }
-        #casePreview .open-btn-big .coin-icon {
-            width: 22px; height: 22px; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ffe066, #f5a623);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px;
-        }
-
-        #casePreview .contents-title {
-            padding: 0 20px 12px 20px;
-            font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
-            color: #9ca3af; text-transform: uppercase;
-        }
-
-        #casePreview .items-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; padding: 0 16px 20px 16px;
-        }
-
-        .item-card {
-            position: relative; border-radius: 14px; padding: 10px;
-            display: flex; flex-direction: column; overflow: hidden;
-            background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%);
-            border: 1px solid rgba(255,255,255,0.06);
-            min-height: 130px;
-        }
-        .item-card.legendary {
-            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
-            border-color: rgba(245,166,35,0.4);
-        }
-        .item-card.epic {
-            background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%);
-            border-color: rgba(168,85,247,0.4);
-        }
-        .item-card.rare {
-            background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
-            border-color: rgba(59,130,246,0.4);
-        }
-        .item-card.common {
-            background: linear-gradient(160deg, #2a2a2a 0%, #0f0f0f 100%);
-            border-color: rgba(156,163,175,0.4);
-        }
-        .item-card .item-img-wrap {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            min-height: 70px;
-        }
-        .item-card .item-img-wrap img {
-            max-width: 100%; max-height: 80px; object-fit: contain;
-            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7)) brightness(1.5);
-        }
+        .item-card { position: relative; border-radius: 14px; padding: 10px; display: flex; flex-direction: column; overflow: hidden; background: linear-gradient(160deg, #1a1430 0%, #0f0b1e 100%); border: 1px solid rgba(255,255,255,0.06); min-height: 130px; }
+        .item-card.legendary { background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%); border-color: rgba(245,166,35,0.4); }
+        .item-card.epic { background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%); border-color: rgba(168,85,247,0.4); }
+        .item-card.rare { background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%); border-color: rgba(59,130,246,0.4); }
+        .item-card.common { background: linear-gradient(160deg, #2a2a2a 0%, #0f0f0f 100%); border-color: rgba(156,163,175,0.4); }
+        .item-card .item-img-wrap { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 70px; }
+        .item-card .item-img-wrap img { max-width: 100%; max-height: 80px; object-fit: contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7)) brightness(1.5); }
         .item-card .item-img-wrap .item-emoji-big { font-size: 48px; }
-        .item-card .item-name {
-            font-size: 11px; font-weight: 700; margin-top: 6px;
-            line-height: 1.2;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .item-card .item-price {
-            display: flex; align-items: center; gap: 4px;
-            font-size: 12px; font-weight: 800;
-            color: #f5a623; margin-top: 4px;
-        }
-        .item-card .item-price .coin-icon {
-            width: 14px; height: 14px; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ffe066, #f5a623);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 8px;
-        }
-        .item-card .item-chance {
-            position: absolute; top: 6px; right: 6px;
-            font-size: 9px; font-weight: 800; color: #fff;
-            background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 6px;
-        }
+        .item-card .item-name { font-size: 11px; font-weight: 700; margin-top: 6px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .item-card .item-price { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 800; color: #f5a623; margin-top: 4px; }
+        .item-card .item-price .coin-icon { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffe066, #f5a623); display: flex; align-items: center; justify-content: center; font-size: 8px; }
+        .item-card .item-chance { position: absolute; top: 6px; right: 6px; font-size: 9px; font-weight: 800; color: #fff; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 6px; }
 
-        .picker-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5,5,10,0.98); backdrop-filter: blur(20px);
-            z-index: 200; display: none; flex-direction: column;
-            padding: 20px 16px;
-        }
+        .picker-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,10,0.98); backdrop-filter: blur(20px); z-index: 200; display: none; flex-direction: column; padding: 20px 16px; }
         .picker-modal.active { display: flex; }
-        .picker-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 16px;
-        }
+        .picker-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .picker-header h3 { font-size: 18px; font-weight: 800; }
-        .picker-close {
-            background: rgba(255,255,255,0.08); border: none; color: white;
-            width: 38px; height: 38px; border-radius: 50%;
-            font-size: 20px; cursor: pointer;
-        }
-        .picker-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; overflow-y: auto; flex: 1;
-            padding-bottom: 20px;
-        }
-        .picker-item {
-            border-radius: 12px; padding: 8px;
-            background: rgba(255,255,255,0.04);
-            border: 2px solid transparent;
-            cursor: pointer;
-            display: flex; flex-direction: column; align-items: center;
-            gap: 4px; min-height: 110px;
-        }
+        .picker-close { background: rgba(255,255,255,0.08); border: none; color: white; width: 38px; height: 38px; border-radius: 50%; font-size: 20px; cursor: pointer; }
+        .picker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; overflow-y: auto; flex: 1; padding-bottom: 20px; }
+        .picker-item { border-radius: 12px; padding: 8px; background: rgba(255,255,255,0.04); border: 2px solid transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 110px; }
         .picker-item img { max-width: 60px; max-height: 60px; object-fit: contain; filter: brightness(1.5); }
         .picker-item .picker-emoji { font-size: 40px; }
-        .picker-item .picker-name {
-            font-size: 10px; font-weight: 700; text-align: center;
-            line-height: 1.1;
-            overflow: hidden; text-overflow: ellipsis;
-            width: 100%; white-space: nowrap;
-        }
-        .picker-item .picker-price {
-            font-size: 11px; font-weight: 800; color: #f5a623;
-        }
-        .picker-item.legendary {
-            background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%);
-            border-color: rgba(245,166,35,0.3);
-        }
-        .picker-item.epic {
-            background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%);
-            border-color: rgba(168,85,247,0.3);
-        }
-        .picker-item.rare {
-            background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%);
-            border-color: rgba(59,130,246,0.3);
-        }
-        .picker-item.common {
-            background: linear-gradient(160deg, #2a2a2a 0%, #0f0f0f 100%);
-            border-color: rgba(156,163,175,0.3);
-        }
+        .picker-item .picker-name { font-size: 10px; font-weight: 700; text-align: center; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; width: 100%; white-space: nowrap; }
+        .picker-item .picker-price { font-size: 11px; font-weight: 800; color: #f5a623; }
+        .picker-item.legendary { background: linear-gradient(160deg, #3d2a0a 0%, #1a1208 100%); border-color: rgba(245,166,35,0.3); }
+        .picker-item.epic { background: linear-gradient(160deg, #2a1a4d 0%, #160b1e 100%); border-color: rgba(168,85,247,0.3); }
+        .picker-item.rare { background: linear-gradient(160deg, #1a2a4d 0%, #0b0f1e 100%); border-color: rgba(59,130,246,0.3); }
+        .picker-item.common { background: linear-gradient(160deg, #2a2a2a 0%, #0f0f0f 100%); border-color: rgba(156,163,175,0.3); }
 
-        #upgradeResult {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-            z-index: 300; display: none;
-            flex-direction: column; align-items: center; justify-content: center;
-            padding: 30px;
-        }
+        #upgradeResult { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); z-index: 300; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 30px; }
         #upgradeResult.active { display: flex; }
-        .result-status {
-            font-size: 28px; font-weight: 900; letter-spacing: 2px;
-            margin-bottom: 20px; text-transform: uppercase;
-        }
-        .result-status.success {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .result-status.fail {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .result-img-wrap {
-            width: 160px; height: 160px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px;
-        }
-        .result-img-wrap img {
-            max-width: 100%; max-height: 100%; object-fit: contain;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)) brightness(1.5);
-        }
+        .result-status { font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
+        .result-status.success { background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .result-status.fail { background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .result-img-wrap { width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .result-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)) brightness(1.5); }
         .result-img-wrap .result-emoji { font-size: 120px; }
-        .result-name {
-            font-size: 18px; font-weight: 800; text-align: center;
-            margin-bottom: 24px;
-        }
-        .result-btn {
-            padding: 16px 60px; border-radius: 30px; border: none;
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white; font-size: 16px; font-weight: 800;
-            cursor: pointer;
-        }
+        .result-name { font-size: 18px; font-weight: 800; text-align: center; margin-bottom: 24px; }
+        .result-btn { padding: 16px 60px; border-radius: 30px; border: none; background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; font-size: 16px; font-weight: 800; cursor: pointer; }
 
-        #multiResult {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-            z-index: 250; display: none;
-            flex-direction: column; padding: 30px 20px;
-            overflow-y: auto;
-        }
+        #multiResult { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); z-index: 250; display: none; flex-direction: column; padding: 30px 20px; overflow-y: auto; }
         #multiResult.active { display: flex; }
-        .multi-title {
-            text-align: center;
-            font-size: 22px; font-weight: 900;
-            color: #a855f7; margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        .multi-grid {
-            display: grid; grid-template-columns: 1fr;
-            gap: 12px; max-width: 500px;
-            margin: 0 auto; width: 100%;
-        }
-        .multi-item {
-            display: flex; align-items: center; gap: 14px;
-            padding: 14px; border-radius: 14px;
-            border-left: 3px solid #f5a623;
-            background: rgba(255,255,255,0.05);
-        }
+        .multi-title { text-align: center; font-size: 22px; font-weight: 900; color: #a855f7; margin-bottom: 20px; letter-spacing: 2px; }
+        .multi-grid { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 500px; margin: 0 auto; width: 100%; }
+        .multi-item { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 14px; border-left: 3px solid #f5a623; background: rgba(255,255,255,0.05); }
         .multi-item.rare { border-left-color: #3b82f6; background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(0,0,0,0.2)); }
         .multi-item.epic { border-left-color: #a855f7; background: linear-gradient(90deg, rgba(168,85,247,0.15), rgba(0,0,0,0.2)); }
         .multi-item.legendary { border-left-color: #f5a623; background: linear-gradient(90deg, rgba(245,166,35,0.15), rgba(0,0,0,0.2)); }
         .multi-item.common { border-left-color: #9ca3af; background: linear-gradient(90deg, rgba(156,163,175,0.15), rgba(0,0,0,0.2)); }
-        .multi-item img {
-            width: 50px; height: 50px; object-fit: contain;
-            filter: brightness(1.5) drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
+        .multi-item img { width: 50px; height: 50px; object-fit: contain; filter: brightness(1.5) drop-shadow(0 2px 6px rgba(0,0,0,0.6)); }
         .multi-item .multi-emoji { font-size: 36px; }
         .multi-item .multi-info { flex: 1; min-width: 0; }
-        .multi-item .multi-name {
-            font-size: 13px; font-weight: 700;
-            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
-        .multi-item .multi-rarity {
-            font-size: 11px; opacity: 0.7; margin-top: 2px;
-        }
-        .multi-btn-close {
-            display: block; margin: 24px auto 0;
-            padding: 16px 60px;
-            border-radius: 30px; border: none;
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: white; font-size: 16px; font-weight: 800;
-            cursor: pointer;
-        }
+        .multi-item .multi-name { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .multi-item .multi-rarity { font-size: 11px; opacity: 0.7; margin-top: 2px; }
+        .multi-btn-close { display: block; margin: 24px auto 0; padding: 16px 60px; border-radius: 30px; border: none; background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; font-size: 16px; font-weight: 800; cursor: pointer; }
 
-        #resultToast {
-            position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
-            background: rgba(15,12,25,0.95); backdrop-filter: blur(20px);
-            border: 1px solid rgba(168,85,247,0.4);
-            border-radius: 16px; padding: 12px 20px;
-            display: flex; align-items: center; gap: 10px;
-            z-index: 200; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s, transform 0.3s;
-            box-shadow: 0 10px 40px rgba(168,85,247,0.3);
-        }
+        #resultToast { position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(15,12,25,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(168,85,247,0.4); border-radius: 16px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; box-shadow: 0 10px 40px rgba(168,85,247,0.3); }
         #resultToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         #resultToast .rt-img { width: 50px; height: 50px; object-fit: contain; brightness: 1.5; }
         #resultToast .rt-emoji { font-size: 32px; }
@@ -1103,14 +440,7 @@
         #resultToast .rt-name { font-size: 13px; font-weight: 700; }
         #resultToast .rt-rarity { font-size: 10px; opacity: 0.7; }
 
-        #status {
-            position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
-            color: white; background: rgba(0,0,0,0.75); padding: 7px 18px;
-            border-radius: 16px; font-size: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            pointer-events: none; z-index: 400;
-            white-space: nowrap; opacity: 0; transition: opacity 0.3s;
-        }
+        #status { position: fixed; top: 70px; left: 50%; transform: translateX(-50%); color: white; background: rgba(0,0,0,0.75); padding: 7px 18px; border-radius: 16px; font-size: 12px; border: 1px solid rgba(255,255,255,0.1); pointer-events: none; z-index: 400; white-space: nowrap; opacity: 0; transition: opacity 0.3s; }
         #status.show { opacity: 1; }
 
         @media (max-width: 500px) {
@@ -1217,16 +547,13 @@
 
         <div class="tab-screen" id="screen-crash">
             <div class="section-title with-line">Crash</div>
-
             <div class="crash-container">
                 <div class="crash-history" id="crashHistory"></div>
-
                 <div class="crash-graph-wrapper">
                     <canvas id="crashCanvas"></canvas>
                     <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
                     <div class="crash-status" id="crashStatus">Сделайте ставку</div>
                 </div>
-
                 <div class="crash-controls">
                     <div class="crash-bet-block">
                         <label>Ставка</label>
@@ -1237,13 +564,13 @@
                             <button data-bet="100">100</button>
                             <button data-bet="500">500</button>
                             <button data-bet="1000">1000</button>
+                            <button data-bet="max" class="crash-max-btn">💰 МАКС</button>
                         </div>
                     </div>
                     <button class="crash-btn crash-btn-start" id="crashStartBtn">✈️ Взлёт</button>
                     <button class="crash-btn crash-btn-cashout" id="crashCashoutBtn" style="display: none;">💰 Забрать</button>
                 </div>
             </div>
-
             <div style="height: 20px;"></div>
         </div>
 
@@ -1260,8 +587,7 @@
                     <div class="upgrade-wheel">
                         <svg viewBox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="none" stroke="#ef4444" stroke-width="10" />
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="#22c55e" stroke-width="10"
-                                    stroke-dasharray="0 283" id="greenArc" />
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#22c55e" stroke-width="10" stroke-dasharray="0 283" id="greenArc" />
                         </svg>
                         <div class="wheel-pointer" id="wheelPointer">
                             <div class="wheel-pointer-inner"></div>
@@ -1548,15 +874,9 @@
         const donateItems = [];
 
         const cases = [
-            { id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png',
-              price: 600, badge: 'new', rarity: 'epic',
-              chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: kalashItems },
-            { id: 'rifle', name: 'Винтовки', emoji: '🎯', image: 'rifle.png',
-              price: 150, badge: 'new', rarity: 'legendary',
-              chances: { common: 0, rare: 0, epic: 40, legendary: 60 }, items: rifleItems },
-            { id: 'donate', name: 'Донат', emoji: '👑', image: null,
-              price: 500, badge: 'top', rarity: 'legendary',
-              chances: { common: 0, rare: 15, epic: 35, legendary: 50 }, items: donateItems, locked: true, isDonate: true },
+            { id: 'kalash', name: 'Калаши', emoji: '🔫', image: 'kalash.png', price: 600, badge: 'new', rarity: 'epic', chances: { common: 0, rare: 20, epic: 35, legendary: 45 }, items: kalashItems },
+            { id: 'rifle', name: 'Винтовки', emoji: '🎯', image: 'rifle.png', price: 150, badge: 'new', rarity: 'legendary', chances: { common: 0, rare: 0, epic: 40, legendary: 60 }, items: rifleItems },
+            { id: 'donate', name: 'Донат', emoji: '👑', image: null, price: 500, badge: 'top', rarity: 'legendary', chances: { common: 0, rare: 15, epic: 35, legendary: 50 }, items: donateItems, locked: true, isDonate: true },
         ];
 
         const achievements = [
@@ -1604,9 +924,7 @@
             try { localStorage.setItem('oxideCoins', coins); } catch(e) {}
         }
         updateCoins();
-        function saveInventory() {
-            try { localStorage.setItem('oxideInventory', JSON.stringify(inventory)); } catch(e) {}
-        }
+        function saveInventory() { try { localStorage.setItem('oxideInventory', JSON.stringify(inventory)); } catch(e) {} }
         document.getElementById('statOpened').textContent = totalOpened;
 
         let onlineBase = 850 + Math.floor(Math.random() * 350);
@@ -1625,11 +943,7 @@
             if (window.Telegram && window.Telegram.WebApp) {
                 window.Telegram.WebApp.ready();
                 const u = window.Telegram.WebApp.initDataUnsafe?.user;
-                if (u) {
-                    tgUser = { id: u.id, firstName: u.first_name || 'Игрок',
-                        lastName: u.last_name || '', username: u.username || '',
-                        photoUrl: u.photo_url || '' };
-                }
+                if (u) { tgUser = { id: u.id, firstName: u.first_name || 'Игрок', lastName: u.last_name || '', username: u.username || '', photoUrl: u.photo_url || '' }; }
             }
         } catch(e) {}
 
@@ -1640,29 +954,16 @@
                 if (c.badge === 'new') badgeHTML = '<div class="badge new">NEW</div>';
                 else if (c.badge === 'soon') badgeHTML = '<div class="badge soon">СКОРО</div>';
                 else if (c.badge === 'top') badgeHTML = '<div class="badge top">ТОП</div>';
-
-                let imageHTML = c.image
-                    ? '<img src="' + c.image + '" alt="' + c.name + '">'
-                    : '<div class="case-emoji-big">' + c.emoji + '</div>';
-
-                let priceHTML = c.locked
-                    ? '<div class="case-price-btn">🔒 Скоро</div>'
-                    : '<div class="case-price-btn"><span class="coin-icon">₿</span> ' + c.price + '</div>';
-
+                let imageHTML = c.image ? '<img src="' + c.image + '" alt="' + c.name + '">' : '<div class="case-emoji-big">' + c.emoji + '</div>';
+                let priceHTML = c.locked ? '<div class="case-price-btn">🔒 Скоро</div>' : '<div class="case-price-btn"><span class="coin-icon">₿</span> ' + c.price + '</div>';
                 let cardClass = 'case-card';
                 if (c.locked) cardClass += ' locked';
                 if (c.isDonate) cardClass += ' donate';
-
                 return '<div class="' + cardClass + '" data-id="' + c.id + '">' +
                     '<div class="case-top"><div class="case-title">' + c.name + '</div>' + badgeHTML + '</div>' +
-                    '<div class="case-image">' + imageHTML + '</div>' +
-                    priceHTML +
-                '</div>';
+                    '<div class="case-image">' + imageHTML + '</div>' + priceHTML + '</div>';
             }).join('');
-
-            grid.querySelectorAll('.case-card').forEach(el => {
-                el.addEventListener('click', () => showCasePreview(el.dataset.id));
-            });
+            grid.querySelectorAll('.case-card').forEach(el => { el.addEventListener('click', () => showCasePreview(el.dataset.id)); });
         }
 
         function showCasePreview(id) {
@@ -1673,49 +974,29 @@
             if (c.price > 0 && coins < c.price) { showStatus('❌ Недостаточно монет!'); return; }
             currentCase = c;
             multiMode = 1;
-
-            document.querySelectorAll('#multiBtnGroup .multi-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.multi === '1');
-            });
-
+            document.querySelectorAll('#multiBtnGroup .multi-btn').forEach(b => { b.classList.toggle('active', b.dataset.multi === '1'); });
             document.getElementById('previewName').textContent = c.name.toUpperCase();
-
             const heroEmoji = document.getElementById('previewEmoji');
             if (c.image) heroEmoji.innerHTML = '<img src="' + c.image + '" alt="' + c.name + '">';
             else heroEmoji.innerHTML = '<div class="hero-emoji">' + c.emoji + '</div>';
-
             updateOpenPrice();
-
             const hero = document.getElementById('caseHero');
             hero.classList.remove('spinning');
             hero.style.minHeight = '';
             document.getElementById('roulettesContainer').classList.remove('active');
             document.getElementById('roulettesContainer').innerHTML = '';
-
             const sortedItems = [...c.items].sort((a, b) => b.price - a.price);
-            const rarityChances = {
-                legendary: c.chances.legendary || 0, epic: c.chances.epic || 0,
-                rare: c.chances.rare || 0, common: c.chances.common || 0,
-            };
+            const rarityChances = { legendary: c.chances.legendary || 0, epic: c.chances.epic || 0, rare: c.chances.rare || 0, common: c.chances.common || 0 };
             const rarityCounts = {};
             sortedItems.forEach(item => { rarityCounts[item.rarity] = (rarityCounts[item.rarity] || 0) + 1; });
-
             const grid = document.getElementById('previewGrid');
             grid.innerHTML = sortedItems.map(item => {
                 const rarityChance = rarityChances[item.rarity] || 0;
                 const count = rarityCounts[item.rarity] || 1;
                 const itemChance = (rarityChance / count).toFixed(1);
-                const imgContent = item.image
-                    ? '<img src="' + item.image + '" alt="' + item.name + '">'
-                    : '<div class="item-emoji-big">' + item.emoji + '</div>';
-                return '<div class="item-card ' + item.rarity + '">' +
-                    '<div class="item-chance">' + itemChance + '%</div>' +
-                    '<div class="item-img-wrap">' + imgContent + '</div>' +
-                    '<div class="item-name">' + item.name + '</div>' +
-                    '<div class="item-price"><span class="coin-icon">₿</span> ' + item.price + '</div>' +
-                '</div>';
+                const imgContent = item.image ? '<img src="' + item.image + '" alt="' + item.name + '">' : '<div class="item-emoji-big">' + item.emoji + '</div>';
+                return '<div class="item-card ' + item.rarity + '"><div class="item-chance">' + itemChance + '%</div><div class="item-img-wrap">' + imgContent + '</div><div class="item-name">' + item.name + '</div><div class="item-price"><span class="coin-icon">₿</span> ' + item.price + '</div></div>';
             }).join('');
-
             document.getElementById('previewOpenBtn').disabled = false;
             document.getElementById('casePreview').classList.add('active');
         }
@@ -1735,9 +1016,7 @@
             });
         });
 
-        document.getElementById('previewCloseBtn').onclick = () => {
-            document.getElementById('casePreview').classList.remove('active');
-        };
+        document.getElementById('previewCloseBtn').onclick = () => { document.getElementById('casePreview').classList.remove('active'); };
 
         document.getElementById('fastToggle').onclick = () => {
             fastMode = !fastMode;
@@ -1749,15 +1028,12 @@
             if (!currentCase) return;
             const totalPrice = currentCase.price * multiMode;
             if (totalPrice > 0 && coins < totalPrice) { showStatus('❌ Недостаточно монет!'); return; }
-
             const c = currentCase;
             coins -= totalPrice;
             updateCoins();
             playCoinSound();
-
             const hero = document.getElementById('caseHero');
             hero.classList.remove('spinning');
-
             const wins = [];
             for (let i = 0; i < multiMode; i++) {
                 const rarity = getRandomRarity(c.chances);
@@ -1765,7 +1041,6 @@
                 if (items.length === 0) items = c.items;
                 wins.push(items[Math.floor(Math.random() * items.length)]);
             }
-
             isSpinning = true;
             startRoulettes(c, wins);
         };
@@ -1774,10 +1049,7 @@
             const roll = Math.random() * 100;
             let cumulative = 0;
             const order = ['legendary', 'epic', 'rare', 'common'];
-            for (const r of order) {
-                cumulative += chances[r] || 0;
-                if (roll < cumulative) return r;
-            }
+            for (const r of order) { cumulative += chances[r] || 0; if (roll < cumulative) return r; }
             return 'legendary';
         }
 
@@ -1785,87 +1057,65 @@
             const container = document.getElementById('roulettesContainer');
             const hero = document.getElementById('caseHero');
             const openBtn = document.getElementById('previewOpenBtn');
-
             openBtn.disabled = true;
             openBtn.textContent = '🎡 Крутится...';
             hero.classList.add('spinning');
-
             let heroHeight = 260;
             if (wins.length === 2) heroHeight = 340;
             if (wins.length === 3) heroHeight = 420;
             hero.style.minHeight = heroHeight + 'px';
-
             container.innerHTML = '';
             container.classList.add('active');
-
             wins.forEach((winItem, idx) => {
                 const row = document.createElement('div');
                 row.className = 'roulette-row';
-
                 const pointer = document.createElement('div');
                 pointer.className = 'roulette-pointer';
                 row.appendChild(pointer);
-
                 const track = document.createElement('div');
                 track.className = 'roulette-track';
-
                 const items = [];
-                for (let i = 0; i < 30; i++) {
-                    items.push(c.items[Math.floor(Math.random() * c.items.length)]);
-                }
+                for (let i = 0; i < 30; i++) items.push(c.items[Math.floor(Math.random() * c.items.length)]);
                 items[20] = winItem;
-
                 track.innerHTML = items.map(item => {
-                    const imgContent = item.image
-                        ? '<img class="item-image" src="' + item.image + '" alt="' + item.name + '">'
-                        : '<div class="item-emoji">' + item.emoji + '</div>';
+                    const imgContent = item.image ? '<img class="item-image" src="' + item.image + '" alt="' + item.name + '">' : '<div class="item-emoji">' + item.emoji + '</div>';
                     return '<div class="roulette-item ' + item.rarity + '">' + imgContent + '</div>';
                 }).join('');
-
                 track.style.transition = 'none';
                 track.style.transform = 'translateX(0)';
                 row.appendChild(track);
                 container.appendChild(row);
-
                 setTimeout(() => {
                     const spinTime = fastMode ? 3 : 6;
                     const itemWidth = 110;
                     const winWidth = row.offsetWidth;
                     const targetPos = -(20 * itemWidth) + (winWidth / 2) - (itemWidth / 2);
-
                     void track.offsetWidth;
                     track.style.transition = 'transform ' + spinTime + 's cubic-bezier(0.1, 0.8, 0.1, 1)';
                     track.style.transform = 'translateX(' + targetPos + 'px)';
                 }, 50 + idx * 100);
             });
-
             const spinTime = fastMode ? 3 : 6;
             const totalTime = spinTime * 1000 + 800 + (wins.length - 1) * 100;
-
             let tickCount = 0;
             const tickInterval = setInterval(() => {
                 playSound(500 + Math.random() * 300, 0.04, 0.06);
                 tickCount++;
                 if (tickCount > (fastMode ? 20 : 30)) clearInterval(tickInterval);
             }, fastMode ? 150 : 220);
-
             setTimeout(() => {
                 clearInterval(tickInterval);
                 playWinSound();
-
                 wins.forEach(item => inventory.push(item));
                 saveInventory();
                 totalOpened += wins.length;
                 document.getElementById('statOpened').textContent = totalOpened;
                 try { localStorage.setItem('oxideOpened', totalOpened); } catch(e) {}
-
                 checkAchievements();
                 showMultiResult(wins);
-
                 container.classList.remove('active');
                 hero.classList.remove('spinning');
                 hero.style.minHeight = '';
-
                 openBtn.disabled = false;
                 const totalPrice = c.price * multiMode;
                 if (totalPrice > 0 && coins < totalPrice) {
@@ -1882,30 +1132,17 @@
             const modal = document.getElementById('multiResult');
             const title = document.getElementById('multiTitle');
             const grid = document.getElementById('multiGrid');
-
             if (wins.length === 1) title.textContent = '🎁 ВЫПАЛ 1 СКИН';
             else title.textContent = '🎁 ВЫПАЛО ' + wins.length + ' СКИНА';
-
             grid.innerHTML = wins.map(item => {
                 const r = rarities[item.rarity];
-                const imgContent = item.image
-                    ? '<img src="' + item.image + '" alt="' + item.name + '">'
-                    : '<div class="multi-emoji">' + item.emoji + '</div>';
-                return '<div class="multi-item ' + item.rarity + '">' +
-                    imgContent +
-                    '<div class="multi-info">' +
-                        '<div class="multi-name">' + item.name + '</div>' +
-                        '<div class="multi-rarity" style="color:' + r.color + '">' + r.name + ' · ₿ ' + item.price + '</div>' +
-                    '</div>' +
-                '</div>';
+                const imgContent = item.image ? '<img src="' + item.image + '" alt="' + item.name + '">' : '<div class="multi-emoji">' + item.emoji + '</div>';
+                return '<div class="multi-item ' + item.rarity + '">' + imgContent + '<div class="multi-info"><div class="multi-name">' + item.name + '</div><div class="multi-rarity" style="color:' + r.color + '">' + r.name + ' · ₿ ' + item.price + '</div></div></div>';
             }).join('');
-
             modal.classList.add('active');
         }
 
-        document.getElementById('multiCloseBtn').onclick = () => {
-            document.getElementById('multiResult').classList.remove('active');
-        };
+        document.getElementById('multiCloseBtn').onclick = () => { document.getElementById('multiResult').classList.remove('active'); };
 
         function showStatus(text) {
             const s = document.getElementById('status');
@@ -1922,30 +1159,16 @@
             if (countEl) countEl.textContent = inventory.length;
             const totalValue = inventory.reduce((sum, item) => sum + item.price, 0);
             if (valueEl) valueEl.textContent = totalValue.toLocaleString('ru-RU');
-
             if (inventory.length === 0) {
                 list.innerHTML = '<div id="emptyInventory">🎒<br><br>Инвентарь пуст<br><span style="font-size:12px;opacity:0.6;">Открой кейс, чтобы получить скин</span></div>';
                 return;
             }
-
             const sortedInv = inventory.map((item, idx) => ({ item, idx })).sort((a, b) => b.item.price - a.item.price);
-
             list.innerHTML = sortedInv.map(({ item, idx }) => {
                 const r = rarities[item.rarity];
-                const imgContent = item.image
-                    ? '<img class="item-img" src="' + item.image + '" alt="' + item.name + '">'
-                    : '<span class="emoji">' + item.emoji + '</span>';
-                return '<div class="inventory-item ' + item.rarity + '">' +
-                    '<div class="info">' + imgContent +
-                        '<div style="min-width:0;flex:1;">' +
-                            '<div class="name">' + item.name + '</div>' +
-                            '<div class="rarity" style="color:' + r.color + '">' + r.name + '</div>' +
-                        '</div>' +
-                    '</div>' +
-                    '<button class="sell-btn" data-index="' + idx + '">₿ ' + item.price + '</button>' +
-                '</div>';
+                const imgContent = item.image ? '<img class="item-img" src="' + item.image + '" alt="' + item.name + '">' : '<span class="emoji">' + item.emoji + '</span>';
+                return '<div class="inventory-item ' + item.rarity + '"><div class="info">' + imgContent + '<div style="min-width:0;flex:1;"><div class="name">' + item.name + '</div><div class="rarity" style="color:' + r.color + '">' + r.name + '</div></div></div><button class="sell-btn" data-index="' + idx + '">₿ ' + item.price + '</button></div>';
             }).join('');
-
             list.querySelectorAll('.sell-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = parseInt(btn.dataset.index);
@@ -1966,7 +1189,6 @@
         function switchScreen(tab) {
             document.querySelectorAll('.tab-screen').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-
             if (tab === 'cases') {
                 document.getElementById('screen-cases').classList.add('active');
                 document.querySelector('.nav-item[data-tab="cases"]').classList.add('active');
@@ -1993,10 +1215,7 @@
             item.addEventListener('click', () => {
                 const tab = item.dataset.tab;
                 if (tab === 'quests') { claimBonus(); return; }
-                if (tab === 'cases' || tab === 'crash' || tab === 'upgrade' || tab === 'inventory' || tab === 'profile') {
-                    switchScreen(tab);
-                    return;
-                }
+                if (tab === 'cases' || tab === 'crash' || tab === 'upgrade' || tab === 'inventory' || tab === 'profile') { switchScreen(tab); return; }
                 showStatus('🚧 Раздел в разработке');
             });
         });
@@ -2021,30 +1240,19 @@
             const slotFrom = document.getElementById('upgradeSlotFrom');
             if (upgradeFrom !== null) {
                 const item = inventory[upgradeFrom];
-                const imgContent = item.image
-                    ? '<img src="' + item.image + '" alt="' + item.name + '">'
-                    : '<div class="slot-emoji">' + item.emoji + '</div>';
+                const imgContent = item.image ? '<img src="' + item.image + '" alt="' + item.name + '">' : '<div class="slot-emoji">' + item.emoji + '</div>';
                 slotFrom.classList.add('filled');
-                slotFrom.innerHTML = '<div class="slot-content">' + imgContent +
-                    '<div class="slot-name">' + item.name + '</div>' +
-                    '<div class="slot-price">₿ ' + item.price + '</div></div>';
+                slotFrom.innerHTML = '<div class="slot-content">' + imgContent + '<div class="slot-name">' + item.name + '</div><div class="slot-price">₿ ' + item.price + '</div></div>';
             }
-
             const slotTo = document.getElementById('upgradeSlotTo');
             if (upgradeTo !== null) {
-                const imgContent = upgradeTo.image
-                    ? '<img src="' + upgradeTo.image + '" alt="' + upgradeTo.name + '">'
-                    : '<div class="slot-emoji">' + upgradeTo.emoji + '</div>';
+                const imgContent = upgradeTo.image ? '<img src="' + upgradeTo.image + '" alt="' + upgradeTo.name + '">' : '<div class="slot-emoji">' + upgradeTo.emoji + '</div>';
                 slotTo.classList.add('filled');
-                slotTo.innerHTML = '<div class="slot-content">' + imgContent +
-                    '<div class="slot-name">' + upgradeTo.name + '</div>' +
-                    '<div class="slot-price">₿ ' + upgradeTo.price + '</div></div>';
+                slotTo.innerHTML = '<div class="slot-content">' + imgContent + '<div class="slot-name">' + upgradeTo.name + '</div><div class="slot-price">₿ ' + upgradeTo.price + '</div></div>';
             }
-
             const chanceValue = document.getElementById('upgradeChanceValue');
             const greenArc = document.getElementById('greenArc');
             const upgradeBtn = document.getElementById('upgradeBtn');
-
             if (upgradeFrom !== null && upgradeTo !== null) {
                 const fromPrice = inventory[upgradeFrom].price;
                 const toPrice = upgradeTo.price;
@@ -2077,31 +1285,21 @@
             const modal = document.getElementById('pickerModal');
             const grid = document.getElementById('pickerGrid');
             const title = document.getElementById('pickerTitle');
-
             if (type === 'inventory') {
                 title.textContent = 'Выбор из инвентаря';
                 grid.innerHTML = inventory.map((item, index) => {
-                    const imgContent = item.image
-                        ? '<img src="' + item.image + '" alt="' + item.name + '">'
-                        : '<div class="picker-emoji">' + item.emoji + '</div>';
-                    return '<div class="picker-item ' + item.rarity + '" data-type="inv" data-index="' + index + '">' +
-                        imgContent + '<div class="picker-name">' + item.name + '</div>' +
-                        '<div class="picker-price">₿ ' + item.price + '</div></div>';
+                    const imgContent = item.image ? '<img src="' + item.image + '" alt="' + item.name + '">' : '<div class="picker-emoji">' + item.emoji + '</div>';
+                    return '<div class="picker-item ' + item.rarity + '" data-type="inv" data-index="' + index + '">' + imgContent + '<div class="picker-name">' + item.name + '</div><div class="picker-price">₿ ' + item.price + '</div></div>';
                 }).join('');
             } else {
                 title.textContent = 'Выбор скина';
                 const allItems = [...kalashItems, ...rifleItems];
                 const sorted = allItems.sort((a, b) => b.price - a.price);
                 grid.innerHTML = sorted.map(item => {
-                    const imgContent = item.image
-                        ? '<img src="' + item.image + '" alt="' + item.name + '">'
-                        : '<div class="picker-emoji">' + item.emoji + '</div>';
-                    return '<div class="picker-item ' + item.rarity + '" data-type="all" data-id="' + item.id + '">' +
-                        imgContent + '<div class="picker-name">' + item.name + '</div>' +
-                        '<div class="picker-price">₿ ' + item.price + '</div></div>';
+                    const imgContent = item.image ? '<img src="' + item.image + '" alt="' + item.name + '">' : '<div class="picker-emoji">' + item.emoji + '</div>';
+                    return '<div class="picker-item ' + item.rarity + '" data-type="all" data-id="' + item.id + '">' + imgContent + '<div class="picker-name">' + item.name + '</div><div class="picker-price">₿ ' + item.price + '</div></div>';
                 }).join('');
             }
-
             grid.querySelectorAll('.picker-item').forEach(el => {
                 el.addEventListener('click', () => {
                     if (el.dataset.type === 'inv') upgradeFrom = parseInt(el.dataset.index);
@@ -2113,7 +1311,6 @@
                     modal.classList.remove('active');
                 });
             });
-
             modal.classList.add('active');
         }
 
@@ -2127,19 +1324,20 @@
             if (toItem.price <= fromItem.price) chance = 100;
             else { chance = Math.round((fromItem.price / toItem.price) * 100); if (chance > 95) chance = 95; if (chance < 1) chance = 1; }
             const success = Math.random() * 100 < chance;
-
             const pointer = document.getElementById('wheelPointer');
             const btn = document.getElementById('upgradeBtn');
             btn.disabled = true;
             btn.textContent = '🎡 Крутится...';
-
-            const finalAngle = 720 + Math.random() * 360;
+            const greenZoneSize = (chance / 100) * 360;
+            let targetAngle;
+            if (success) targetAngle = 5 + Math.random() * Math.max(greenZoneSize - 10, 5);
+            else targetAngle = greenZoneSize + 5 + Math.random() * Math.max(360 - greenZoneSize - 10, 5);
+            const finalAngle = targetAngle + 1080 - 90;
             pointer.classList.remove('spinning');
-            pointer.style.transform = 'translateX(-50%) rotate(0deg)';
+            pointer.style.transform = 'translateX(-50%) rotate(' + (finalAngle - 1080 - 90) + 'deg)';
             void pointer.offsetWidth;
             pointer.classList.add('spinning');
             pointer.style.transform = 'translateX(-50%) rotate(' + finalAngle + 'deg)';
-
             setTimeout(() => {
                 inventory.splice(upgradeFrom, 1);
                 if (success) {
@@ -2180,7 +1378,6 @@
             const nameEl = document.getElementById('profileName');
             const idEl = document.getElementById('profileId');
             const dateEl = document.getElementById('profileDate');
-
             if (tgUser) {
                 if (tgUser.photoUrl) avatar.innerHTML = '<img src="' + tgUser.photoUrl + '" alt="">';
                 else avatar.textContent = tgUser.firstName.charAt(0).toUpperCase();
@@ -2191,25 +1388,19 @@
                 nameEl.textContent = 'Игрок';
                 idEl.textContent = '#Гость';
             }
-
             let firstDate = null;
             try { firstDate = parseInt(localStorage.getItem('oxideFirstDate')); } catch(e) {}
-            if (firstDate) {
-                const d = new Date(firstDate);
-                dateEl.textContent = '📅 С нами с ' + d.toLocaleDateString('ru-RU');
-            } else { dateEl.textContent = '📅 С нами с сегодня'; }
-
+            if (firstDate) { const d = new Date(firstDate); dateEl.textContent = '📅 С нами с ' + d.toLocaleDateString('ru-RU'); }
+            else { dateEl.textContent = '📅 С нами с сегодня'; }
             document.getElementById('statBalance').textContent = coins.toLocaleString('ru-RU');
             document.getElementById('statCases').textContent = totalOpened;
             document.getElementById('statInvSize').textContent = inventory.length;
             const totalValue = inventory.reduce((sum, item) => sum + item.price, 0);
             document.getElementById('statInvValue').textContent = totalValue.toLocaleString('ru-RU');
-
             let bestSkin = '—'; let bestPrice = 0;
             inventory.forEach(item => { if (item.price > bestPrice) { bestPrice = item.price; bestSkin = item.emoji || '🔫'; } });
             document.getElementById('statBestSkin').textContent = bestSkin;
             document.getElementById('statLegendary').textContent = inventory.filter(i => i.rarity === 'legendary').length;
-
             renderAchievements();
         }
 
@@ -2219,9 +1410,7 @@
             try { unlocked = JSON.parse(localStorage.getItem('oxideAchievements') || '[]'); } catch(e) {}
             grid.innerHTML = achievements.map(a => {
                 const isUnlocked = unlocked.includes(a.id);
-                return '<div class="achievement ' + (isUnlocked ? 'unlocked' : '') + '" data-id="' + a.id + '">' +
-                    '<div class="ach-icon">' + (isUnlocked ? a.icon : '🔒') + '</div>' +
-                    '<div class="ach-name">' + a.name + '</div></div>';
+                return '<div class="achievement ' + (isUnlocked ? 'unlocked' : '') + '" data-id="' + a.id + '"><div class="ach-icon">' + (isUnlocked ? a.icon : '🔒') + '</div><div class="ach-name">' + a.name + '</div></div>';
             }).join('');
             grid.querySelectorAll('.achievement').forEach(el => {
                 el.addEventListener('click', () => {
@@ -2317,7 +1506,9 @@
             planeX: 0,
             planeY: 0,
             planeAngle: -10,
-            smokeTimer: 0
+            smokeTimer: 0,
+            cashoutFlyStart: 0,
+            cashoutExplodeAt: 0
         };
 
         const crashCanvas = document.getElementById('crashCanvas');
@@ -2347,17 +1538,11 @@
             crashCtx.lineWidth = 2;
             for (let i = 0; i <= 4; i++) {
                 const y = (h / 4) * i;
-                crashCtx.beginPath();
-                crashCtx.moveTo(0, y);
-                crashCtx.lineTo(w, y);
-                crashCtx.stroke();
+                crashCtx.beginPath(); crashCtx.moveTo(0, y); crashCtx.lineTo(w, y); crashCtx.stroke();
             }
             for (let i = 0; i <= 6; i++) {
                 const x = (w / 6) * i;
-                crashCtx.beginPath();
-                crashCtx.moveTo(x, 0);
-                crashCtx.lineTo(x, h);
-                crashCtx.stroke();
+                crashCtx.beginPath(); crashCtx.moveTo(x, 0); crashCtx.lineTo(x, h); crashCtx.stroke();
             }
 
             crashCtx.fillStyle = 'rgba(255,255,255,0.15)';
@@ -2378,9 +1563,7 @@
                 crashCtx.fillStyle = crashState.cashouted ? 'rgba(34,197,94,0.15)' : 'rgba(168,85,247,0.15)';
                 crashCtx.beginPath();
                 crashCtx.moveTo(40, h - 40);
-                crashPoints.forEach(p => {
-                    crashCtx.lineTo(40 + p.x * scaleX, h - 40 - p.y * scaleY);
-                });
+                crashPoints.forEach(p => { crashCtx.lineTo(40 + p.x * scaleX, h - 40 - p.y * scaleY); });
                 crashCtx.lineTo(40 + maxX * scaleX, h - 40);
                 crashCtx.closePath();
                 crashCtx.fill();
@@ -2411,13 +1594,9 @@
 
                 if (crashState.playing && !crashState.explosion && Math.random() < 0.6) {
                     crashState.particles.push({
-                        x: crashState.planeX,
-                        y: crashState.planeY,
-                        vx: -1 - Math.random() * 2,
-                        vy: -0.5 - Math.random() * 1,
-                        life: 1,
-                        size: 6 + Math.random() * 8,
-                        color: '255,255,255'
+                        x: crashState.planeX, y: crashState.planeY,
+                        vx: -1 - Math.random() * 2, vy: -0.5 - Math.random() * 1,
+                        life: 1, size: 6 + Math.random() * 8, color: '255,255,255'
                     });
                 }
 
@@ -2437,16 +1616,8 @@
 
             for (let i = crashState.particles.length - 1; i >= 0; i--) {
                 const p = crashState.particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life -= 0.02;
-                p.size *= 0.98;
-
-                if (p.life <= 0 || p.size < 1) {
-                    crashState.particles.splice(i, 1);
-                    continue;
-                }
-
+                p.x += p.vx; p.y += p.vy; p.life -= 0.02; p.size *= 0.98;
+                if (p.life <= 0 || p.size < 1) { crashState.particles.splice(i, 1); continue; }
                 crashCtx.beginPath();
                 crashCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 crashCtx.fillStyle = 'rgba(' + p.color + ',' + (p.life * 0.8) + ')';
@@ -2468,15 +1639,12 @@
 
         function startCrash() {
             if (crashState.playing) return;
-
             const bet = parseInt(document.getElementById('crashBet').value) || 0;
             if (bet < 10) { showStatus('⚠️ Минимальная ставка 10 монет'); return; }
             if (bet > coins) { showStatus('❌ Недостаточно монет!'); return; }
-
             coins -= bet;
             updateCoins();
             playCoinSound();
-
             crashState.playing = true;
             crashState.cashouted = false;
             crashState.explosion = false;
@@ -2485,7 +1653,6 @@
             crashState.startTime = performance.now();
             crashPoints = [{ x: 0, y: 0 }];
             crashState.particles = [];
-
             const r = Math.random();
             let crashAt;
             if (r < 0.5) crashAt = 1 + Math.random() * 0.5;
@@ -2493,141 +1660,143 @@
             else if (r < 0.95) crashAt = 2.5 + Math.random() * 2.5;
             else crashAt = 5 + Math.random() * 10;
             crashState.crashAt = crashAt;
-
             document.getElementById('crashStartBtn').disabled = true;
             document.getElementById('crashStartBtn').style.display = 'none';
             document.getElementById('crashCashoutBtn').style.display = 'block';
             document.getElementById('crashStatus').textContent = '✈️ Летит! Успей забрать';
             document.getElementById('crashMultiplier').className = 'crash-multiplier green';
-
             crashState.rafId = requestAnimationFrame(crashTick);
         }
 
         function crashTick(now) {
-            if (!crashState.playing) {
+            if (!crashState.playing && !crashState.cashouted && !crashState.explosion) {
                 drawCrashGraph();
+                return;
+            }
+
+            if (crashState.cashouted && !crashState.explosion) {
+                const flyElapsed = now - crashState.cashoutFlyStart;
+                const lastPoint = crashPoints[crashPoints.length - 1];
+                crashPoints.push({
+                    x: lastPoint.x + 0.4,
+                    y: lastPoint.y + 0.15 + Math.random() * 0.1
+                });
+                if (crashPoints.length > 120) crashPoints.shift();
+                drawCrashGraph();
+
+                if (flyElapsed >= crashState.cashoutExplodeAt) {
+                    crashState.explosion = true;
+                    playFailSound();
+                    document.getElementById('crashStatus').textContent = '💥 Самолётик взорвался! Но ты уже забрал монеты 😎';
+                    for (let i = 0; i < 60; i++) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const speed = 3 + Math.random() * 12;
+                        crashState.particles.push({
+                            x: crashState.planeX, y: crashState.planeY,
+                            vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                            life: 1, size: 8 + Math.random() * 12,
+                            color: Math.random() < 0.5 ? '239,68,68' : (Math.random() < 0.5 ? '245,158,11' : '255,255,255')
+                        });
+                    }
+                    setTimeout(() => {
+                        crashState.explosion = false;
+                        resetCrashUI();
+                    }, 2000);
+                    animateParticles();
+                    return;
+                }
+                crashState.rafId = requestAnimationFrame(crashTick);
                 return;
             }
 
             const elapsed = (now - crashState.startTime) / 1000;
             const newMultiplier = 1.00 * Math.pow(1.15, elapsed);
             crashState.multiplier = Math.min(newMultiplier, crashState.crashAt);
-
             const multEl = document.getElementById('crashMultiplier');
             multEl.textContent = crashState.multiplier.toFixed(2) + 'x';
-
             const lastPoint = crashPoints[crashPoints.length - 1];
-            crashPoints.push({
-                x: lastPoint.x + 0.4,
-                y: crashState.multiplier - 1
-            });
-
+            crashPoints.push({ x: lastPoint.x + 0.4, y: crashState.multiplier - 1 });
             if (crashPoints.length > 120) crashPoints.shift();
-
             drawCrashGraph();
-
             if (Math.random() < 0.15) playSound(600 + crashState.multiplier * 40, 0.05, 0.04);
-
-            if (crashState.multiplier >= crashState.crashAt - 0.005) {
-                endCrash(false);
-                return;
-            }
-
+            if (crashState.multiplier >= crashState.crashAt - 0.005) { endCrash(false); return; }
             crashState.rafId = requestAnimationFrame(crashTick);
         }
 
         document.getElementById('crashCashoutBtn').onclick = () => {
             if (!crashState.playing || crashState.cashouted) return;
             crashState.cashouted = true;
+            crashState.cashoutFlyStart = performance.now();
+            crashState.cashoutExplodeAt = 500 + Math.random() * 2500;
+            document.getElementById('crashCashoutBtn').style.display = 'none';
+            document.getElementById('crashStatus').textContent = '💸 Забрано! Самолётик летит дальше...';
             endCrash(true);
         };
 
         function endCrash(success) {
-            crashState.playing = false;
-            if (crashState.rafId) cancelAnimationFrame(crashState.rafId);
-
             const multEl = document.getElementById('crashMultiplier');
             const statusEl = document.getElementById('crashStatus');
-
             if (success) {
                 const winAmount = Math.floor(crashState.bet * crashState.multiplier);
                 coins += winAmount;
                 updateCoins();
                 playWinSound();
                 multEl.className = 'crash-multiplier green';
-                statusEl.textContent = '💰 Забрано: +' + winAmount + ' монет (' + crashState.multiplier.toFixed(2) + 'x)';
+                statusEl.textContent = '💰 +' + winAmount + ' монет (' + crashState.multiplier.toFixed(2) + 'x) — летим дальше!';
                 crashState.history.unshift({ value: crashState.multiplier, won: true });
-
                 for (let i = 0; i < 20; i++) {
                     crashState.particles.push({
-                        x: crashState.planeX,
-                        y: crashState.planeY,
-                        vx: (Math.random() - 0.5) * 10,
-                        vy: (Math.random() - 0.5) * 10,
-                        life: 1, size: 8 + Math.random() * 6,
-                        color: '34,197,94'
+                        x: crashState.planeX, y: crashState.planeY,
+                        vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10,
+                        life: 1, size: 8 + Math.random() * 6, color: '34,197,94'
                     });
                 }
-
-                setTimeout(() => {
-                    document.getElementById('crashStartBtn').disabled = false;
-                    document.getElementById('crashStartBtn').style.display = 'block';
-                    document.getElementById('crashCashoutBtn').style.display = 'none';
-                    document.getElementById('crashMultiplier').textContent = '1.00x';
-                    document.getElementById('crashMultiplier').className = 'crash-multiplier';
-                    statusEl.textContent = 'Сделайте ставку';
-                    crashPoints = [];
-                    drawCrashGraph();
-                    checkAchievements();
-                }, 2000);
-
+                crashState.playing = false;
+                crashState.rafId = requestAnimationFrame(crashTick);
             } else {
+                crashState.playing = false;
+                if (crashState.rafId) cancelAnimationFrame(crashState.rafId);
                 crashState.explosion = true;
                 playFailSound();
                 multEl.className = 'crash-multiplier red';
                 statusEl.textContent = '💥 Крах на ' + crashState.crashAt.toFixed(2) + 'x — ставка сгорела';
                 crashState.history.unshift({ value: crashState.crashAt, won: false });
-
                 for (let i = 0; i < 60; i++) {
                     const angle = Math.random() * Math.PI * 2;
                     const speed = 3 + Math.random() * 12;
                     crashState.particles.push({
-                        x: crashState.planeX,
-                        y: crashState.planeY,
-                        vx: Math.cos(angle) * speed,
-                        vy: Math.sin(angle) * speed,
-                        life: 1,
-                        size: 8 + Math.random() * 12,
+                        x: crashState.planeX, y: crashState.planeY,
+                        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                        life: 1, size: 8 + Math.random() * 12,
                         color: Math.random() < 0.5 ? '239,68,68' : (Math.random() < 0.5 ? '245,158,11' : '255,255,255')
                     });
                 }
-
-                setTimeout(() => {
-                    crashState.explosion = false;
-                    document.getElementById('crashStartBtn').disabled = false;
-                    document.getElementById('crashStartBtn').style.display = 'block';
-                    document.getElementById('crashCashoutBtn').style.display = 'none';
-                    document.getElementById('crashMultiplier').textContent = '1.00x';
-                    document.getElementById('crashMultiplier').className = 'crash-multiplier';
-                    statusEl.textContent = 'Сделайте ставку';
-                    crashPoints = [];
-                    drawCrashGraph();
-                    checkAchievements();
-                }, 1800);
+                setTimeout(() => { crashState.explosion = false; resetCrashUI(); }, 2000);
             }
-
             if (crashState.history.length > 10) crashState.history.pop();
             renderCrashHistory();
-
             animateParticles();
+        }
+
+        function resetCrashUI() {
+            crashState.playing = false;
+            crashState.cashouted = false;
+            crashState.explosion = false;
+            document.getElementById('crashStartBtn').disabled = false;
+            document.getElementById('crashStartBtn').style.display = 'block';
+            document.getElementById('crashCashoutBtn').style.display = 'none';
+            document.getElementById('crashMultiplier').textContent = '1.00x';
+            document.getElementById('crashMultiplier').className = 'crash-multiplier';
+            document.getElementById('crashStatus').textContent = 'Сделайте ставку';
+            crashPoints = [];
+            drawCrashGraph();
+            checkAchievements();
         }
 
         function animateParticles() {
             const loop = () => {
                 drawCrashGraph();
-                if (crashState.particles.length > 0 || crashState.explosion) {
-                    requestAnimationFrame(loop);
-                }
+                if (crashState.particles.length > 0 || crashState.explosion) requestAnimationFrame(loop);
             };
             loop();
         }
@@ -2645,7 +1814,15 @@
 
         document.querySelectorAll('.crash-quick-bets button').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.getElementById('crashBet').value = btn.dataset.bet;
+                const val = btn.dataset.bet;
+                const input = document.getElementById('crashBet');
+                if (val === 'max') {
+                    if (coins >= 1500) input.value = 1500;
+                    else if (coins >= 10) input.value = coins;
+                    else input.value = 10;
+                } else {
+                    input.value = val;
+                }
             });
         });
 
@@ -2663,7 +1840,7 @@
             if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand();
         } catch(e) {}
 
-        console.log('🎰 Игра с Crash запущена!');
+        console.log('🎰 Всё готово!');
     </script>
 </body>
 </html>
